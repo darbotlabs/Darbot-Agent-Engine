@@ -5,6 +5,15 @@
     duration: 3000,
   });
   const apiEndpoint = getStoredData("apiEndpoint");
+  
+  if (!apiEndpoint) {
+    console.error("API endpoint not configured");
+    notyf.error("API endpoint not configured. Please refresh the page.");
+    return;
+  }
+  
+  console.log('Using API endpoint:', apiEndpoint);
+  
   const newTaskPrompt = document.getElementById("newTaskPrompt");
   const startTaskButton = document.getElementById("startTaskButton");
   const startTaskButtonContainer = document.querySelector(".send-button");
@@ -101,8 +110,14 @@
             description: newTaskPrompt.value,
           }),
         })
-          .then((response) => response.json())
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+          })
           .then((data) => {
+            console.log('Task creation response:', data);
             if (data.status == "Plan not created" || data.plan_id == "") {
               notyf.error("Unable to create plan for this task.");
               newTaskPrompt.disabled = false;
@@ -140,10 +155,12 @@
             hideOverlay();
           })
           .catch((error) => {
-            console.error("Error:", error);
+            console.error("Error creating task:", error);
             newTaskPrompt.disabled = false;
             startTaskButton.disabled = false;
             startTaskButton.classList.remove("is-loading");
+            
+            notyf.error("Failed to create task. Please try again.");
 
             // Remove spinner and hide overlay
             removeSpinner();
