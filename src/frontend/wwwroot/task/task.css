@@ -62,8 +62,9 @@
 .task-progress {
   height: 40vh;
   overflow-y: auto;
-  background-color: white;
-  border-radius: var(--bulma-radius);
+  background: var(--card-bg);
+  backdrop-filter: blur(14px) saturate(160%);
+  border-radius: var(--radius-lg);
 }
 
 @media (min-height: 1200px) {
@@ -114,7 +115,7 @@
   font-size: 1.4rem;
   margin-top: 3px;
   border-radius: 50%;
-  background-color: rgb(247, 249, 251);
+  background-color: var(--bg-page);
   padding: 5px;
 }
 
@@ -153,8 +154,8 @@
   align-items: center;
   position: absolute;
   inset: 0;
-  color: black;
-  background-color: rgb(247, 249, 251);
+  color: var(--txt-main);
+  background-color: var(--bg-page);
   z-index: 1000;
   font-weight: 500;
 }
@@ -191,14 +192,14 @@
   margin: 1rem 0;
   font-size: 0.85rem;
   font-weight: 500;
-  border: 1px solid rgb(71, 80, 235);
+  border: 1px solid var(--primary);
   border-left-width: 0;
   border-right-width: 0;
   border-bottom-width: 0;
 }
 
 .task-stage-divider legend {
-  color: rgb(71, 80, 235);
+  color: var(--primary);
   -webkit-padding-start: 1rem;
   -webkit-padding-end: 1rem;
   background: transparent;
@@ -207,15 +208,16 @@
 .text-input-container {
   position: relative;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: white;
+  border-radius: var(--radius-md);
+  background: var(--card-bg);
+  backdrop-filter: blur(14px) saturate(160%);
 }
 
 textarea {
   width: 98%;
   padding: 16px 0px 0px 0px;
   border: none;
-  border-radius: 8px 8px 0 0;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
   font-size: 16px;
   line-height: 1.5;
   resize: none;
@@ -223,7 +225,8 @@ textarea {
   overflow: hidden;
   margin: 0 10px;
   align-items: center;
-  background-color: white;
+  background: transparent;
+  color: var(--txt-main);
 }
 
 .star-icon {
@@ -249,7 +252,7 @@ textarea {
   align-items: center;
   padding: 3px 10px;
   border-top: none;
-  border-bottom: 4px solid #0f6cbd;
+  border-bottom: 4px solid var(--g-mid);
 }
 
 .send-button {
