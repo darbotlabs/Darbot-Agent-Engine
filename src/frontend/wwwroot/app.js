@@ -6,6 +6,8 @@
     const closeModalButtons = document.querySelectorAll(".modal-close-button");
     const myTasksMenu = document.getElementById("myTasksMenu");
     const tasksStats = document.getElementById("tasksStats");
+    const taskAgentsModal = document.getElementById("taskAgentsModal");
+    const taskWokFlowModal = document.getElementById("taskWokFlowModal");
     
     if(AUTH_ENABLED !== undefined) {
         setStoredData('authEnabled', AUTH_ENABLED.toString().toLowerCase());
@@ -36,6 +38,7 @@
             const viewRoute = getQueryParam('v');
             const viewContext = getStoredData('context');
             const noCache = '?nocache=' + new Date().getTime();
+            console.log(`Switching view to: ${viewRoute || 'default'}`);
             switch (viewRoute) {
                 case 'home':
                     viewIframe.src = 'home/home.html' + noCache;
@@ -44,8 +47,11 @@
                     viewIframe.src = `task/${viewContext}.html` + noCache;
                     break;
                 default:
-                    viewIframe.src = 'home/home.html';
+                    viewIframe.src = 'home/home.html' + noCache;
             }
+            console.log(`Iframe src set to: ${viewIframe.src}`);
+        } else {
+            console.error('viewIframe element not found');
         }
     };
     // get user session 
@@ -105,12 +111,16 @@
     const messageListeners = () => {
 
         window.addEventListener('message', (event) => {
+            console.log('Received message:', event.data);
             if (event.data && event.data.button) {
                 if (event.data.button === 'taskAgentsButton') taskAgentsModal.classList.add('is-active');
                 if (event.data.button === 'taskWokFlowButton') taskWokFlowModal.classList.add('is-active');
             }
             if (event.data && event.data.action) {
-                if (event.data.action === 'taskStarted') fetchTasksIfNeeded();
+                if (event.data.action === 'taskStarted') {
+                    console.log('Task started event received, fetching tasks...');
+                    fetchTasksIfNeeded();
+                }
             }
         });
 
@@ -125,21 +135,32 @@
     }
 
     const fetchTasksIfNeeded = async () => {
-        const taskStore = JSON.parse(getStoredData('task'));
+        console.log('fetchTasksIfNeeded called');
+        const taskStoreData = getStoredData('task');
+        const taskStore = taskStoreData ? JSON.parse(taskStoreData) : null;
+        console.log('API endpoint for plans:', apiEndpoint + '/plans');
         window.headers
             .then(headers => {
+                console.log('Headers resolved, making fetch request');
                 fetch(apiEndpoint + '/plans', {
                     method: 'GET',
                     headers: headers,
                 })
-                    .then(response => response.json())
+                    .then(response => {
+                        console.log('Fetch response received:', response.status, response.statusText);
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
                     .then(data => {
+                        console.log('Fetched plans data:', data);
         
                         if (myTasksMenu){
                             myTasksMenu.innerHTML = '';
                         }
         
-                        if (data && data.length > 0) {
+                        if (data && Array.isArray(data) && data.length > 0) {
         
                             const lastFiveTasks = data.slice(-5);
                             let taskCount = 1;
@@ -149,8 +170,14 @@
                             let stagesRejectedCount = 0;
         
                             lastFiveTasks.forEach(task => {
+                                if (!task || !task.session_id || !task.initial_goal) {
+                                    console.warn('Invalid task data:', task);
+                                    return;
+                                }
+                                
                                 const newTaskItem = document.createElement('li');
-                                const completedSteps = task.completed;
+                                const completedSteps = task.completed || 0;
+                                const totalSteps = task.total_steps || 0;
                                 let taskActive = '';
         
                                 if (taskStore && taskStore.id === task.session_id) taskActive = 'is-active';
@@ -161,7 +188,7 @@
                                 <a href class="menu-task ${taskActive}" data-name="${task.initial_goal}" data-id="${task.session_id}" title="Status: ${task.overall_status}, Session id: ${task.session_id} ">
                                     ${taskStatus}
                                     <span>${taskCount}.  ${task.initial_goal}</span>
-                                    <div class="tag is-dark ml-3">${completedSteps}/${task.total_steps}</div>
+                                    <div class="tag is-dark ml-3">${completedSteps}/${totalSteps}</div>
                                 </a>
                                 `;
                                 
@@ -206,13 +233,22 @@
                                 taskCount++;
         
                             })
-        
-        
+                        } else {
+                            // No tasks found
+                            if(myTasksMenu) {
+                                myTasksMenu.innerHTML = '<li><div class="notification is-info">No tasks found. Create your first task!</div></li>';
+                            }
+                            if(tasksStats) {
+                                tasksStats.innerHTML = '<li><a><strong>0</strong> tasks</a></li>';
+                            }
                         }
         
                     })
                     .catch(error => {
-                        console.error('Error:', error);
+                        console.error('Error fetching tasks:', error);
+                        if(myTasksMenu) {
+                            myTasksMenu.innerHTML = '<div class="notification is-danger">Error loading tasks</div>';
+                        }
                     })
 
     })

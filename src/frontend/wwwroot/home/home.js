@@ -5,6 +5,17 @@
     duration: 3000,
   });
   const apiEndpoint = getStoredData("apiEndpoint");
+  
+  console.log('Home page loaded, API endpoint:', apiEndpoint);
+  
+  if (!apiEndpoint) {
+    console.error("API endpoint not configured");
+    notyf.error("API endpoint not configured. Please refresh the page.");
+    return;
+  }
+  
+  console.log('Using API endpoint:', apiEndpoint);
+  
   const newTaskPrompt = document.getElementById("newTaskPrompt");
   const startTaskButton = document.getElementById("startTaskButton");
   const startTaskButtonContainer = document.querySelector(".send-button");
@@ -81,11 +92,16 @@
 
   const startTask = () => {
     startTaskButton.addEventListener("click", (event) => {
+      console.log('Start task button clicked');
       if (startTaskButton.disabled) {
+        console.log('Button is disabled, returning');
         return;
       }
       const sessionId =
         "sid_" + new Date().getTime() + "_" + Math.floor(Math.random() * 10000);
+
+      console.log('Generated session ID:', sessionId);
+      console.log('Task description:', newTaskPrompt.value);
 
       newTaskPrompt.disabled = true;
       startTaskButton.disabled = true;
@@ -101,8 +117,14 @@
             description: newTaskPrompt.value,
           }),
         })
-          .then((response) => response.json())
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+          })
           .then((data) => {
+            console.log('Task creation response:', data);
             if (data.status == "Plan not created" || data.plan_id == "") {
               notyf.error("Unable to create plan for this task.");
               newTaskPrompt.disabled = false;
@@ -114,6 +136,13 @@
             newTaskPrompt.disabled = false;
             startTaskButton.disabled = false;
             startTaskButton.classList.remove("is-loading");
+
+            console.log('Sending postMessage to parent window:', {
+              action: "taskStarted",
+              session_id: data.session_id,
+              task_id: data.plan_id,
+              task_name: newTaskPrompt.value,
+            });
 
             window.parent.postMessage(
               {
@@ -140,10 +169,12 @@
             hideOverlay();
           })
           .catch((error) => {
-            console.error("Error:", error);
+            console.error("Error creating task:", error);
             newTaskPrompt.disabled = false;
             startTaskButton.disabled = false;
             startTaskButton.classList.remove("is-loading");
+            
+            notyf.error("Failed to create task. Please try again.");
 
             // Remove spinner and hide overlay
             removeSpinner();
