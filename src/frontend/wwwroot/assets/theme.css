@@ -1,4 +1,37 @@
 :root {
+    /* Brand gradient */
+    --g-start: #b54cff;  /* Darbot purple */
+    --g-mid: #0078ff;    /* Nitrous blue  */
+    --g-end: #00e0b4;    /* Teal accent   */
+
+    --primary: #464feb;          /* Legacy primary (Bulma $primary) */
+    --success: #1db954;          /* Bulma $success  override        */
+    --warning: #ffb020;          /* Bulma $warning  override        */
+    --danger: #ff4d4f;           /* Bulma $danger   override        */
+
+    --bg-surface: #0e0f13;       /* Dark surface for app chrome     */
+    --bg-page: #f7f9fb;          /* Light page background (light UI)*/
+    --txt-main: #222831;         /* Dark text on light areas        */
+    --txt-main-dark: #f4f4f6;    /* Light text on dark areas        */
+    --txt-sub: #6b7280;          /* Muted gray                      */
+
+    /* Corner radius system */
+    --radius-lg: 12px;           /* Cards, modals */
+    --radius-md: 8px;            /* Buttons, inputs */
+    --radius-pill: 999px;        /* Status bullets */
+
+    /* Spacing tokens (8-pt grid) */
+    --s-1: 4px;
+    --s-2: 8px;
+    --s-3: 12px;
+    --s-4: 16px;
+    --s-5: 24px;
+    --s-6: 32px;
+
+    /* Acrylic glass background */
+    --card-bg: rgba(255, 255, 255, 0.85);
+
+    /* Bulma variable overrides */
     --bulma-link-h: 200deg;
     --bulma-info-s: 0%;
     --bulma-link-l: 0%;
@@ -17,13 +50,13 @@
     --bulma-soft-l: 80%;
     --bulma-bold-l: 0%;
 
-    --bulma-family-primary: ui-sans-serif, -apple-system, system-ui, Segoe UI, Helvetica, Apple Color Emoji, Arial, sans-serif, Segoe UI Emoji, Segoe UI Symbol;
-    --bulma-family-secondary: ui-sans-serif, -apple-system, system-ui, Segoe UI, Helvetica, Apple Color Emoji, Arial, sans-serif, Segoe UI Emoji, Segoe UI Symbol;
+    --bulma-family-primary: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    --bulma-family-secondary: 'Segoe UI', Tahoma, Verdana, sans-serif;
 
-    --bulma-body-background-color: hsl(0, 100%, 100%);
-    --bulma-body-color: rgb(74, 74, 74);
-    --bulma-strong-color: hsl(0, 0%, 0%);
-    --bulma-control-radius: 1000px;
+    --bulma-body-background-color: var(--bg-page);
+    --bulma-body-color: var(--txt-main);
+    --bulma-strong-color: var(--txt-main);
+    --bulma-control-radius: var(--radius-md);
     --bulma-info-invert-l: 98%;
 
     --bulma-success-h: 134deg;
@@ -34,14 +67,64 @@
     --bulma-danger-h: 354deg;
     --bulma-danger-s: 70%;
     --bulma-danger-l: 54%;
+
+    /* Update primary to use our design system */
+    --bulma-primary: var(--primary);
+}
+
+/* Brand gradient utility */
+.gradient-bg {
+    background: linear-gradient(135deg, var(--g-start) 0%, var(--g-mid) 40%, var(--g-end) 100%);
+}
+
+/* Dark theme support */
+[data-theme="dark"] {
+    --bg-page: var(--bg-surface);
+    --txt-main: var(--txt-main-dark);
+    --card-bg: rgba(14, 15, 19, 0.85);
+    --bulma-body-background-color: var(--bg-surface);
+    --bulma-body-color: var(--txt-main-dark);
+    --bulma-strong-color: var(--txt-main-dark);
+}
+
+[data-theme="dark"] .card {
+    background: rgba(14, 15, 19, 0.85);
+    color: var(--txt-main-dark);
+}
+
+[data-theme="dark"] .modal-card,
+[data-theme="dark"] .modal-card-head,
+[data-theme="dark"] .modal-card-body,
+[data-theme="dark"] .modal-card-foot {
+    background: rgba(14, 15, 19, 0.95);
+    color: var(--txt-main-dark);
+}
+
+[data-theme="dark"] .text-input-container,
+[data-theme="dark"] textarea {
+    background: rgba(14, 15, 19, 0.9);
+    color: var(--txt-main-dark);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .task-progress {
+    background: rgba(14, 15, 19, 0.9);
+}
+
+/* Typography */
+html {
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
 }
 
 .card {
-    --bulma-card-color: rgb(74, 74, 74);
+    --bulma-card-color: var(--txt-main);
     --bulma-card-shadow: rgba(51, 51, 51, 0.05) 0px 1px 2px 0px,
         rgba(51, 51, 51, 0.05) 0px 2px 4px 0px,
         rgb(214, 217, 224) 0px 0px 0px 1px inset;
     --bulma-card-header-shadow: 0;
+    border-radius: var(--radius-lg);
+    background: var(--card-bg);
+    backdrop-filter: blur(14px) saturate(160%);
 }
 
 .card.is-hoverable {
@@ -51,25 +134,67 @@
 .card.is-hoverable:hover {
     cursor: pointer;
     transform: translateY(-2px);
+    filter: brightness(1.08);
     --bulma-card-shadow: 0 0 2px rgba(0, 0, 0, 0.12),
         0 4px 8px rgba(0, 0, 0, 0.14),
-        rgb(70, 79, 235) 0px 0px 0px 1px inset;
+        rgba(181, 76, 255, 0.4) 0px 0px 0px 1px inset;
+}
+
+/* Task card with gradient header */
+.card.task-card .card-header {
+    background: linear-gradient(135deg, var(--g-start) 0%, var(--g-mid) 40%, var(--g-end) 100%);
+    color: white;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
 .media {
     --bulma-media-border-size: 0;
 }
 
-.modal-card-head {
-    box-shadow: 0px 1px 1px 0px rgb(214, 217, 224);
-}
-
 .modal {
     --bulma-modal-background-background-color: hsla(0, 0%, 0%, 0.5);
-    --bulma-modal-card-head-background-color: hsl(0, 0%, 100%);
-    --bulma-modal-card-title-color: hsl(0, 0%, 0%);
-    --bulma-modal-card-foot-background-color: hsl(0, 0%, 100%);
-    --bulma-modal-card-body-background-color: hsl(0, 0%, 100%);
+    --bulma-modal-card-head-background-color: var(--card-bg);
+    --bulma-modal-card-title-color: var(--txt-main);
+    --bulma-modal-card-foot-background-color: var(--card-bg);
+    --bulma-modal-card-body-background-color: var(--card-bg);
+    --bulma-modal-card-title-size: 1.15rem;
+    --bulma-modal-card-head-padding: 1rem 2rem;
+}
+
+.modal-card {
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(14px) saturate(160%);
+    animation: modalScale 120ms ease-out;
+}
+
+@keyframes modalScale {
+    from {
+        transform: scale(0.96);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-card-title {
+    font-weight: 600;
+}
+
+.modal-card-head {
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 1px 1px 0px rgb(214, 217, 224);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.modal-card-head .button {
+    --bulma-button-padding-horizontal: 0.68rem;
+}
+
+.modal-card-head .button i {
+    margin-top: 1px;
 }
 
 .box {
@@ -93,7 +218,7 @@
 }
 
 .menu-label {
-    --bulma-menu-label-color: hsl(0, 0%, 0%);
+    --bulma-menu-label-color: var(--txt-main);
     --bulma-menu-label-font-size: .85rem;
     text-transform: none;
     font-weight: 500;
@@ -101,38 +226,48 @@
 }
 
 .menu-list i {
-    color: hsl(0, 0%, 0%);
+    color: var(--txt-main);
 }
 
 .title {
     font-weight: 700;
-    color: hsl(0, 0%, 0%);
+    color: var(--txt-main);
 }
 
 .button {
-    --bulma-button-ghost-color: hsl(0, 0%, 0%);
+    --bulma-button-ghost-color: var(--txt-main);
+    border-radius: var(--radius-md);
 }
 
-.modal {
-    --bulma-modal-card-title-size: 1.15rem;
-    --bulma-modal-card-head-padding: 1rem 2rem;
+/* Primary gradient button */
+.button.is-primary.gradient,
+.button.gradient {
+    background: linear-gradient(135deg, var(--g-start) 0%, var(--g-mid) 40%, var(--g-end) 100%);
+    color: white;
+    border: none;
+    transition: filter 0.2s ease;
 }
 
-.modal-card-title {
-    font-weight: 600;
+.button.is-primary.gradient:hover,
+.button.gradient:hover {
+    filter: brightness(1.1);
 }
 
-.modal-card-head {
-    display: flex;
-    align-items: center;
+/* Secondary button */
+.button.is-light {
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    background: transparent;
 }
 
-.modal-card-head .button {
-    --bulma-button-padding-horizontal: 0.68rem;
+/* Ghost button */
+.button.is-text {
+    background: transparent;
+    text-decoration: none;
 }
 
-.modal-card-head .button i {
-    margin-top: 1px;
+.button.is-text:hover {
+    text-decoration: underline;
 }
 
 .dropdown-content {
@@ -159,4 +294,99 @@
 
 .progress::-webkit-progress-value {
     transition: width 0.5s ease;
+    background: linear-gradient(135deg, var(--g-start) 0%, var(--g-mid) 40%, var(--g-end) 100%);
+}
+
+.progress::-moz-progress-bar {
+    background: linear-gradient(135deg, var(--g-start) 0%, var(--g-mid) 40%, var(--g-end) 100%);
+}
+
+/* Avatar with status */
+.avatar {
+    position: relative;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.status-dot {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    background: var(--success);
+    border-radius: var(--radius-pill);
+    box-shadow: 0 0 4px var(--success);
+    border: 2px solid white;
+}
+
+.status-dot.is-success {
+    background: var(--success);
+    box-shadow: 0 0 4px var(--success);
+}
+
+.status-dot.is-warning {
+    background: var(--warning);
+    box-shadow: 0 0 4px var(--warning);
+}
+
+.status-dot.is-danger {
+    background: var(--danger);
+    box-shadow: 0 0 4px var(--danger);
+}
+
+/* Focus ring */
+.button:focus,
+.input:focus,
+.textarea:focus,
+.select select:focus {
+    outline: 2px solid var(--g-end);
+    outline-offset: 2px;
+}
+
+/* Accessibility - reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+    .shimmer {
+        animation: none !important;
+    }
+}
+
+/* Shimmer loading animation */
+.shimmer {
+    background: linear-gradient(90deg, var(--g-start), var(--g-mid), var(--g-end), var(--g-start));
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Loading states */
+.is-loading.shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.is-loading.shimmer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 2s infinite linear;
 }

@@ -13,7 +13,7 @@ body {
 
 body {
   position: relative;
-  background: rgb(247, 249, 251);
+  background: var(--bg-page);
   min-height: 100vh;
 }
 
@@ -32,7 +32,8 @@ body {
   overflow: hidden; /* Prevent scrolling within modals and menus */
 }
 #app .asside {
-  background: rgba(231, 236, 243, 0.7);
+  background: var(--bg-surface);
+  color: var(--txt-main-dark);
 }
 ul#tasksStats.menu-list {
   min-height: 100px;
@@ -47,6 +48,7 @@ ul#tasksStats.menu-list {
   font-size: 1.25rem;
   font-weight: 700;
   cursor: pointer;
+  color: var(--txt-main-dark);
 }
 
 #app .menu-logo img {
@@ -58,7 +60,8 @@ ul#tasksStats.menu-list {
 }
 
 #app .asside .menu-list a.is-active {
-  background-color: rgb(71, 80, 235);
+  background: linear-gradient(135deg, var(--g-start) 0%, var(--g-mid) 40%, var(--g-end) 100%);
+  border-radius: var(--radius-pill);
 }
 
 #app .asside .menu-list a.is-active i {
@@ -66,7 +69,8 @@ ul#tasksStats.menu-list {
 }
 
 #app .asside .menu-list a.is-active:hover {
-  background-color: rgb(71, 80, 235);
+  background: linear-gradient(135deg, var(--g-start) 0%, var(--g-mid) 40%, var(--g-end) 100%);
+  filter: brightness(1.1);
 }
 
 #app .asside .menu-list a.menu-task {
@@ -79,7 +83,8 @@ ul#tasksStats.menu-list {
 }
 
 #app .asside .menu-list a:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
 }
 
 #app .iframe {
@@ -240,3 +245,17 @@ ul#tasksStats.menu-list {
   background-color: rgba(0, 0, 0, 0.2);
 }
 /* Menu list scroll style end*/
+
+/* Dark sidebar menu styling */
+#app .asside .menu-label {
+  color: var(--txt-sub);
+  font-weight: 500;
+}
+
+#app .asside .menu-list a {
+  color: var(--txt-main-dark);
+}
+
+#app .asside .menu-list i {
+  color: var(--txt-main-dark);
+}

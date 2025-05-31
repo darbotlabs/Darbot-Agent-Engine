@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Multi-Agent - Custom Automation Engine</title>
+    <title>Darbot Agent Engine</title>
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
     <link rel="stylesheet" href="app.css">
@@ -17,15 +17,24 @@
             <aside class="menu mx-3 mt-5">
                 <strong id="goHomeButton" class="menu-logo is-flex is-align-items-center">
                     <img class="mr-3" src="../assets/app-logo.svg">
-                    <span>Multi-Agent-Custom-Automation-Engine</span>
+                    <span>Darbot Agent Engine</span>
                 </strong>
-                <button id="newTaskButton" class="button is-fullwidth my-6">New task</button>
+                <button id="newTaskButton" class="button is-fullwidth my-6 gradient">New task</button>
                 <p class="menu-label">My tasks</p>
                 <ul id="myTasksMenu" class="menu-list"></ul>
             </aside>
             <aside class="menu mx-3">
                 <p class="menu-label">Status</p>
                 <ul id="tasksStats" class="menu-list"></ul>
+                <p class="menu-label">Settings</p>
+                <ul class="menu-list">
+                    <li>
+                        <a id="themeToggle" href="#" class="is-flex is-align-items-center">
+                            <i class="fa-solid fa-moon mr-2"></i>
+                            <span>Dark Mode</span>
+                        </a>
+                    </li>
+                </ul>
                 <p class="menu-label"></p>
             </aside>
             <!-- App menu end -->
