@@ -38,6 +38,7 @@
             const viewRoute = getQueryParam('v');
             const viewContext = getStoredData('context');
             const noCache = '?nocache=' + new Date().getTime();
+            console.log(`Switching view to: ${viewRoute || 'default'}`);
             switch (viewRoute) {
                 case 'home':
                     viewIframe.src = 'home/home.html' + noCache;
@@ -46,8 +47,11 @@
                     viewIframe.src = `task/${viewContext}.html` + noCache;
                     break;
                 default:
-                    viewIframe.src = 'home/home.html';
+                    viewIframe.src = 'home/home.html' + noCache;
             }
+            console.log(`Iframe src set to: ${viewIframe.src}`);
+        } else {
+            console.error('viewIframe element not found');
         }
     };
     // get user session 
