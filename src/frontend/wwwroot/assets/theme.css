@@ -87,6 +87,30 @@
     --bulma-strong-color: var(--txt-main-dark);
 }
 
+[data-theme="dark"] .card {
+    background: rgba(14, 15, 19, 0.85);
+    color: var(--txt-main-dark);
+}
+
+[data-theme="dark"] .modal-card,
+[data-theme="dark"] .modal-card-head,
+[data-theme="dark"] .modal-card-body,
+[data-theme="dark"] .modal-card-foot {
+    background: rgba(14, 15, 19, 0.95);
+    color: var(--txt-main-dark);
+}
+
+[data-theme="dark"] .text-input-container,
+[data-theme="dark"] textarea {
+    background: rgba(14, 15, 19, 0.9);
+    color: var(--txt-main-dark);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .task-progress {
+    background: rgba(14, 15, 19, 0.9);
+}
+
 /* Typography */
 html {
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
@@ -332,4 +356,37 @@ html {
     .shimmer {
         animation: none !important;
     }
+}
+
+/* Shimmer loading animation */
+.shimmer {
+    background: linear-gradient(90deg, var(--g-start), var(--g-mid), var(--g-end), var(--g-start));
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Loading states */
+.is-loading.shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.is-loading.shimmer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 2s infinite linear;
 }

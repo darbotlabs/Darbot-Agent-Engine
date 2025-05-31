@@ -265,6 +265,44 @@
         });
     };
 
+    const themeActions = () => {
+        const themeToggle = document.getElementById("themeToggle");
+        const html = document.documentElement;
+        
+        // Initialize theme from localStorage or default to light
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        updateThemeToggle(savedTheme);
+        
+        if (themeToggle) {
+            themeToggle.addEventListener('click', (event) => {
+                event.preventDefault();
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeToggle(newTheme);
+            });
+        }
+    };
+    
+    const updateThemeToggle = (theme) => {
+        const themeToggle = document.getElementById("themeToggle");
+        if (themeToggle) {
+            const icon = themeToggle.querySelector('i');
+            const text = themeToggle.querySelector('span');
+            
+            if (theme === 'dark') {
+                icon.className = 'fa-solid fa-sun mr-2';
+                text.textContent = 'Light Mode';
+            } else {
+                icon.className = 'fa-solid fa-moon mr-2';
+                text.textContent = 'Dark Mode';
+            }
+        }
+    };
+
     const initializeApp = async () => {
         // Fetch user info when the app loads
         const userInfo = await getUserInfo();
@@ -282,4 +320,5 @@
     switchView();
     messageListeners();
     modalActions();
+    themeActions();
 })();
