@@ -131,15 +131,19 @@
     }
 
     const fetchTasksIfNeeded = async () => {
+        console.log('fetchTasksIfNeeded called');
         const taskStoreData = getStoredData('task');
         const taskStore = taskStoreData ? JSON.parse(taskStoreData) : null;
+        console.log('API endpoint for plans:', apiEndpoint + '/plans');
         window.headers
             .then(headers => {
+                console.log('Headers resolved, making fetch request');
                 fetch(apiEndpoint + '/plans', {
                     method: 'GET',
                     headers: headers,
                 })
                     .then(response => {
+                        console.log('Fetch response received:', response.status, response.statusText);
                         if (!response.ok) {
                             throw new Error(`HTTP error! status: ${response.status}`);
                         }

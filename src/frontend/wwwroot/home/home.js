@@ -6,6 +6,8 @@
   });
   const apiEndpoint = getStoredData("apiEndpoint");
   
+  console.log('Home page loaded, API endpoint:', apiEndpoint);
+  
   if (!apiEndpoint) {
     console.error("API endpoint not configured");
     notyf.error("API endpoint not configured. Please refresh the page.");
@@ -90,11 +92,16 @@
 
   const startTask = () => {
     startTaskButton.addEventListener("click", (event) => {
+      console.log('Start task button clicked');
       if (startTaskButton.disabled) {
+        console.log('Button is disabled, returning');
         return;
       }
       const sessionId =
         "sid_" + new Date().getTime() + "_" + Math.floor(Math.random() * 10000);
+
+      console.log('Generated session ID:', sessionId);
+      console.log('Task description:', newTaskPrompt.value);
 
       newTaskPrompt.disabled = true;
       startTaskButton.disabled = true;
@@ -129,6 +136,13 @@
             newTaskPrompt.disabled = false;
             startTaskButton.disabled = false;
             startTaskButton.classList.remove("is-loading");
+
+            console.log('Sending postMessage to parent window:', {
+              action: "taskStarted",
+              session_id: data.session_id,
+              task_id: data.plan_id,
+              task_name: newTaskPrompt.value,
+            });
 
             window.parent.postMessage(
               {
