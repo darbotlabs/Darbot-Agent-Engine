@@ -2,10 +2,10 @@ import logging
 from datetime import datetime
 from typing import Dict, List, Optional
 
-from context.cosmos_memory_kernel import CosmosMemoryContext
-from event_utils import track_event_if_configured
-from kernel_agents.agent_base import BaseAgent
-from models.messages_kernel import (ActionRequest, AgentMessage, AgentType,
+from backend.context.cosmos_memory_kernel import CosmosMemoryContext
+from backend.event_utils import track_event_if_configured
+from backend.kernel_agents.agent_base import BaseAgent
+from backend.models.messages_kernel import (ActionRequest, AgentMessage, AgentType,
                                     HumanFeedback, HumanFeedbackStatus, InputTask,
                                     Plan, Step, StepStatus)
 # pylint: disable=E0611

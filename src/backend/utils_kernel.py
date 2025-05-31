@@ -10,21 +10,21 @@ import requests
 import semantic_kernel as sk
 
 # Import AppConfig from app_config
-from app_config import config
+from backend.app_config import config
 from azure.identity import DefaultAzureCredential
-from context.cosmos_memory_kernel import CosmosMemoryContext
+from backend.context.cosmos_memory_kernel import CosmosMemoryContext
 
 # Import agent factory and the new AppConfig
-from kernel_agents.agent_factory import AgentFactory
-from kernel_agents.group_chat_manager import GroupChatManager
-from kernel_agents.hr_agent import HrAgent
-from kernel_agents.human_agent import HumanAgent
-from kernel_agents.marketing_agent import MarketingAgent
-from kernel_agents.planner_agent import PlannerAgent
-from kernel_agents.procurement_agent import ProcurementAgent
-from kernel_agents.product_agent import ProductAgent
-from kernel_agents.tech_support_agent import TechSupportAgent
-from models.messages_kernel import AgentType
+from backend.kernel_agents.agent_factory import AgentFactory
+from backend.kernel_agents.group_chat_manager import GroupChatManager
+from backend.kernel_agents.hr_agent import HrAgent
+from backend.kernel_agents.human_agent import HumanAgent
+from backend.kernel_agents.marketing_agent import MarketingAgent
+from backend.kernel_agents.planner_agent import PlannerAgent
+from backend.kernel_agents.procurement_agent import ProcurementAgent
+from backend.kernel_agents.product_agent import ProductAgent
+from backend.kernel_agents.tech_support_agent import TechSupportAgent
+from backend.models.messages_kernel import AgentType
 from semantic_kernel.agents.azure_ai.azure_ai_agent import AzureAIAgent
 
 logging.basicConfig(level=logging.INFO)

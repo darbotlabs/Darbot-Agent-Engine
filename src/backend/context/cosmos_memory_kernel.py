@@ -16,8 +16,8 @@ from semantic_kernel.memory.memory_store_base import MemoryStoreBase
 from semantic_kernel.contents import ChatMessageContent, ChatHistory, AuthorRole
 
 # Import the AppConfig instance
-from app_config import config
-from models.messages_kernel import BaseDataModel, Plan, Session, Step, AgentMessage
+from backend.app_config import config
+from backend.models.messages_kernel import BaseDataModel, Plan, Session, Step, AgentMessage
 
 
 # Add custom JSON encoder class for datetime objects

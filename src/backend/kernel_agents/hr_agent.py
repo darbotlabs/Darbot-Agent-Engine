@@ -1,10 +1,10 @@
 import logging
 from typing import Dict, List, Optional
 
-from context.cosmos_memory_kernel import CosmosMemoryContext
-from kernel_agents.agent_base import BaseAgent
-from kernel_tools.hr_tools import HrTools
-from models.messages_kernel import AgentType
+from backend.context.cosmos_memory_kernel import CosmosMemoryContext
+from backend.kernel_agents.agent_base import BaseAgent
+from backend.kernel_tools.hr_tools import HrTools
+from backend.models.messages_kernel import AgentType
 from semantic_kernel.functions import KernelFunction
 
 

@@ -4,22 +4,23 @@ import logging
 import uuid
 from typing import Dict, List, Optional
 
-# Semantic Kernel imports
-from app_config import config
-from auth.auth_utils import get_authenticated_user_details
-
-# Azure monitoring
-from config_kernel import Config
-from event_utils import track_event_if_configured
-
 # FastAPI imports
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
-from kernel_agents.agent_factory import AgentFactory
+
+# Semantic Kernel imports
+from backend import app_config
+config = app_config.config
+from backend.auth.auth_utils import get_authenticated_user_details
+
+# Azure monitoring
+from backend.config_kernel import Config
+from backend.event_utils import track_event_if_configured
 
 # Local imports
-from middleware.health_check import HealthCheckMiddleware
-from models.messages_kernel import (
+from backend.kernel_agents.agent_factory import AgentFactory
+from backend.middleware.health_check import HealthCheckMiddleware
+from backend.models.messages_kernel import (
     AgentMessage,
     AgentType,
     HumanClarification,
@@ -30,7 +31,7 @@ from models.messages_kernel import (
 )
 
 # Updated import for KernelArguments
-from utils_kernel import initialize_runtime_and_context, rai_success
+from backend.utils_kernel import initialize_runtime_and_context, rai_success
 
 # # Check if the Application Insights Instrumentation Key is set in the environment variables
 # connection_string = os.getenv("APPLICATIONINSIGHTS_CONNECTION_STRING")

@@ -23,7 +23,7 @@ os.environ["AZURE_OPENAI_ENDPOINT"] = "https://mock-openai-endpoint"
 
 # Mock telemetry initialization to prevent errors
 with patch("azure.monitor.opentelemetry.configure_azure_monitor", MagicMock()):
-    from src.backend.app import app
+    from backend.app_kernel import app
 
 # Initialize FastAPI test client
 client = TestClient(app)

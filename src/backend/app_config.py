@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 from semantic_kernel.kernel import Kernel
 
 # Load environment variables from .env file
-load_dotenv()
+load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
 
 
 class AppConfig:
