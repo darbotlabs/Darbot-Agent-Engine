@@ -2,14 +2,8 @@
 
 # This PowerShell script checks the deployment status and ensures that all components are functioning as expected.
 
-# Script parameters
-param(
-    [string]$ResourceGroupName = "Studio-CAT",
-    [string]$DeploymentName = "0ac64f82-105c-4025-9b3d-cf5c4494c52d"  # Using existing deployment ID
-)
-
 # Define the function to validate deployment using Azure CLI
-function Test-Deployment {
+function Validate-Deployment {
     param (
         [string]$resourceGroupName,
         [string]$deploymentName
@@ -52,6 +46,12 @@ function Test-Deployment {
     }
 }
 
+# Script parameters
+param(
+    [string]$ResourceGroupName = "Studio-CAT",
+    [string]$DeploymentName = "0ac64f82-105c-4025-9b3d-cf5c4494c52d"
+)
+
 # Main script execution
 
 # Display validation information
@@ -61,7 +61,7 @@ Write-Host "Deployment Name: $DeploymentName" -ForegroundColor Cyan
 Write-Host ""
 
 # Call the validation function
-$validationResult = Test-Deployment -resourceGroupName $ResourceGroupName -deploymentName $DeploymentName
+$validationResult = Validate-Deployment -resourceGroupName $ResourceGroupName -deploymentName $DeploymentName
 
 if ($validationResult) {
     Write-Host "`n🎉 All components are functioning as expected." -ForegroundColor Green

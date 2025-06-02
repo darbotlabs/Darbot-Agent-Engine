@@ -9,16 +9,16 @@ from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 # Semantic Kernel imports
-from backend import app_config
+from backend import app_config  # Thought into existence by Darbot
 config = app_config.config
-from backend.auth.auth_utils import get_authenticated_user_details
+from backend.auth.auth_utils import get_authenticated_user_details, user_has_role  # Thought into existence by Darbot
 
 # Azure monitoring
-from backend.config_kernel import Config
-from backend.event_utils import track_event_if_configured
+from backend.config_kernel import Config  # Thought into existence by Darbot
+from backend.event_utils import track_event_if_configured  # Thought into existence by Darbot
 
 # Local imports
-from backend.kernel_agents.agent_factory import AgentFactory
+from backend.kernel_agents.agent_factory import AgentFactory  # Thought into existence by Darbot
 from backend.middleware.health_check import HealthCheckMiddleware
 from backend.models.messages_kernel import (
     AgentMessage,
@@ -62,14 +62,32 @@ logging.getLogger("azure.monitor.opentelemetry.exporter.export._base").setLevel(
 )
 
 # Initialize the FastAPI app
-app = FastAPI()
+app = FastAPI(
+    title="Darbot Agent Engine API",
+    description="Multi-Agent Custom Automation Engine",
+    version="1.0.0"
+)
+
+# Thought into existence by Darbot - Add server info endpoint
+@app.get("/api/server-info")
+async def get_server_info():
+    """Get server configuration information."""
+    return {
+        "service": "Darbot Agent Engine",
+        "version": "1.0.0",
+        "backend_host": config.BACKEND_HOST,
+        "backend_port": config.BACKEND_PORT,
+        "frontend_url": config.FRONTEND_SITE_NAME,
+        "status": "running"
+    }
 
 frontend_url = Config.FRONTEND_SITE_NAME
 
 # Add this near the top of your app.py, after initializing the app
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[frontend_url],  # Add your frontend server URL
+    # Allow all origins during development (more permissive for testing)
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -761,7 +779,7 @@ async def get_agent_messages(session_id: str, request: Request) -> List[AgentMes
 async def delete_all_messages(request: Request) -> Dict[str, str]:
     """
     Delete all messages across sessions.
-
+    RBAC: Requires 'admin' role. Enforced via user_has_role utility.
     ---
     tags:
       - Messages
@@ -776,15 +794,19 @@ async def delete_all_messages(request: Request) -> Dict[str, str]:
               description: Status message indicating all messages were deleted
       400:
         description: Missing or invalid user information
+      403:
+        description: User does not have required role
     """
     authenticated_user = get_authenticated_user_details(request_headers=request.headers)
     user_id = authenticated_user["user_principal_id"]
     if not user_id:
         raise HTTPException(status_code=400, detail="no user")
+    # RBAC enforcement: require 'admin' role
+    if not user_has_role(authenticated_user, "admin"):
+        raise HTTPException(status_code=403, detail="User does not have required role: admin")
 
     # Initialize memory context
     kernel, memory_store = await initialize_runtime_and_context("", user_id)
-
     logging.info("Deleting all plans")
     await memory_store.delete_all_items("plan")
     logging.info("Deleting all sessions")
@@ -793,10 +815,8 @@ async def delete_all_messages(request: Request) -> Dict[str, str]:
     await memory_store.delete_all_items("step")
     logging.info("Deleting all agent_messages")
     await memory_store.delete_all_items("agent_message")
-
     # Clear the agent factory cache
     AgentFactory.clear_cache()
-
     return {"status": "All messages deleted"}
 
 
@@ -804,7 +824,7 @@ async def delete_all_messages(request: Request) -> Dict[str, str]:
 async def get_all_messages(request: Request):
     """
     Retrieve all messages across sessions.
-
+    RBAC: Requires authenticated user. Logs user roles for audit.
     ---
     tags:
       - Messages
@@ -842,6 +862,7 @@ async def get_all_messages(request: Request):
     user_id = authenticated_user["user_principal_id"]
     if not user_id:
         raise HTTPException(status_code=400, detail="no user")
+    logging.info("User %s roles: %s", user_id, authenticated_user.get("roles"))
 
     # Initialize memory context
     kernel, memory_store = await initialize_runtime_and_context("", user_id)
@@ -885,4 +906,10 @@ async def get_agent_tools():
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run("app_kernel:app", host="127.0.0.1", port=8000, reload=True)
+    # Thought into existence by Darbot - Use config for consistent port management
+    uvicorn.run(
+        "app_kernel:app", 
+        host=config.BACKEND_HOST, 
+        port=config.BACKEND_PORT, 
+        reload=True
+    )

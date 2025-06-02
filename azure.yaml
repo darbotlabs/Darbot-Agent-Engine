@@ -2,13 +2,3 @@
 name: multi-agent-custom-automation-engine-solution-accelerator
 metadata:
   template: multi-agent-custom-automation-engine-solution-accelerator@1.0
-
-services:
-  backend:
-    project: ./src/backend
-    language: py
-    host: containerapp
-  frontend:
-    project: ./src/frontend
-    language: py
-    host: containerapp

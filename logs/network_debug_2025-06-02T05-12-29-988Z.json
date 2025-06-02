@@ -1,0 +1,1203 @@
+[
+  {
+    "timestamp": "2025-06-02T05:12:31.151Z",
+    "url": "http://localhost:3000/",
+    "method": "GET",
+    "headers": {
+      "upgrade-insecure-requests": "1",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "resourceType": "document",
+    "isNavigationRequest": true,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.505Z",
+    "type": "response",
+    "url": "http://localhost:3000/",
+    "status": 307,
+    "statusText": "Temporary Redirect",
+    "headers": {
+      "content-length": "0",
+      "date": "Mon, 02 Jun 2025 05:12:30 GMT",
+      "location": "/app.html?v=home",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.505Z",
+    "url": "http://localhost:3000/app.html?v=home",
+    "method": "GET",
+    "headers": {
+      "upgrade-insecure-requests": "1",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "resourceType": "document",
+    "isNavigationRequest": true,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.507Z",
+    "type": "response",
+    "url": "http://localhost:3000/app.html?v=home",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-length": "4315",
+      "content-type": "text/html; charset=utf-8",
+      "date": "Mon, 02 Jun 2025 05:12:30 GMT",
+      "etag": "\"3c6aacc63329fb74a71a573eec00dd42\"",
+      "last-modified": "Sun, 01 Jun 2025 15:56:16 GMT",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.513Z",
+    "url": "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "stylesheet",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.513Z",
+    "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "stylesheet",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.513Z",
+    "url": "http://localhost:3000/assets/theme.css",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/app.html?v=home",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "stylesheet",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.513Z",
+    "url": "http://localhost:3000/assets/bulma-switch.css",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/app.html?v=home",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "stylesheet",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.515Z",
+    "url": "http://localhost:3000/app.css",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/app.html?v=home",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "stylesheet",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.515Z",
+    "url": "http://localhost:3000/assets/app-logo.svg",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/app.html?v=home",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "image",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.515Z",
+    "url": "http://localhost:3000/config.js",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/app.html?v=home",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "script",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.515Z",
+    "url": "http://localhost:3000/utils.js",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/app.html?v=home",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "script",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.515Z",
+    "url": "http://localhost:3000/app.js",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/app.html?v=home",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "script",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.517Z",
+    "type": "response",
+    "url": "http://localhost:3000/assets/theme.css",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-length": "22391",
+      "date": "Mon, 02 Jun 2025 05:12:30 GMT",
+      "etag": "\"68024210999ffaedf55d48099678d431\"",
+      "content-type": "text/css; charset=utf-8",
+      "last-modified": "Sun, 01 Jun 2025 07:16:01 GMT",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.517Z",
+    "type": "response",
+    "url": "http://localhost:3000/assets/bulma-switch.css",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-length": "16041",
+      "date": "Mon, 02 Jun 2025 05:12:30 GMT",
+      "etag": "\"7c582c88611b1cbd2a2cd86b6b7c3b6c\"",
+      "content-type": "text/css; charset=utf-8",
+      "last-modified": "Tue, 27 May 2025 05:34:14 GMT",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.522Z",
+    "type": "response",
+    "url": "http://localhost:3000/app.css",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-length": "9758",
+      "date": "Mon, 02 Jun 2025 05:12:30 GMT",
+      "etag": "\"1837d6a17777378861a1aae7fb19adf6\"",
+      "content-type": "text/css; charset=utf-8",
+      "last-modified": "Sun, 01 Jun 2025 15:54:26 GMT",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.526Z",
+    "url": "https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "stylesheet",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.526Z",
+    "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "stylesheet",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.527Z",
+    "type": "response",
+    "url": "http://localhost:3000/assets/app-logo.svg",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-length": "8506",
+      "date": "Mon, 02 Jun 2025 05:12:31 GMT",
+      "etag": "\"dca764af2d829cef1366756e8553df45\"",
+      "content-type": "image/svg+xml",
+      "last-modified": "Tue, 27 May 2025 05:34:14 GMT",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.529Z",
+    "type": "response",
+    "url": "http://localhost:3000/config.js",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "content-length": "103",
+      "date": "Mon, 02 Jun 2025 05:12:31 GMT",
+      "content-type": "text/plain; charset=utf-8",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.532Z",
+    "type": "response",
+    "url": "http://localhost:3000/utils.js",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-length": "4535",
+      "date": "Mon, 02 Jun 2025 05:12:31 GMT",
+      "etag": "\"80421c50e1d41bfeea055ccc29666203\"",
+      "content-type": "application/javascript",
+      "last-modified": "Tue, 27 May 2025 05:34:14 GMT",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.541Z",
+    "type": "response",
+    "url": "http://localhost:3000/app.js",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-length": "14315",
+      "date": "Mon, 02 Jun 2025 05:12:31 GMT",
+      "etag": "\"97914d443d62505c47c73af249cddf74\"",
+      "content-type": "application/javascript",
+      "last-modified": "Sat, 31 May 2025 21:36:45 GMT",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.623Z",
+    "type": "response",
+    "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css",
+    "status": 200,
+    "statusText": "",
+    "headers": {
+      "cf-cdnjs-via": "cfworker/kv",
+      "content-encoding": "br",
+      "cf-cache-status": "HIT",
+      "etag": "\"620188b3-3b90\"",
+      "age": "843062",
+      "report-to": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=Wv56SwzQpqZMK4PF4P5p%2FImX2v7RHz87ixJIWXSofF7z%2BXCekIdcjyPIrZLSP6fhj5SmVaXbO8skz9J3SLfdGnOkq1AW%2FSswAaLgKHPlv5qB%2FAI8FRLYdmKjzD77ImDx6TO%2BOph%2F\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "x-content-type-options": "nosniff",
+      "expires": "Sat, 23 May 2026 05:12:43 GMT",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "date": "Mon, 02 Jun 2025 05:12:43 GMT",
+      "content-type": "text/css; charset=utf-8",
+      "last-modified": "Mon, 07 Feb 2022 21:01:39 GMT",
+      "vary": "Accept-Encoding",
+      "strict-transport-security": "max-age=15780000",
+      "cache-control": "public, max-age=30672000",
+      "timing-allow-origin": "*",
+      "nel": "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "cross-origin-resource-policy": "cross-origin",
+      "cf-ray": "949475163a4b76a5-SEA",
+      "accept-ranges": "bytes",
+      "access-control-allow-origin": "*",
+      "content-length": "15248",
+      "server": "cloudflare"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.627Z",
+    "type": "response",
+    "url": "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css",
+    "status": 200,
+    "statusText": "",
+    "headers": {
+      "access-control-expose-headers": "*",
+      "content-encoding": "br",
+      "cf-cache-status": "HIT",
+      "etag": "W/\"329c6-nL+P0n9QpqJ97JxmCBpSBWnGeaQ\"",
+      "age": "1355989",
+      "report-to": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=gcqDnsXuDNAzd8ZxCSReN27N7EnVSjpMlvxdD%2Bbh0Bj1l8fqv2krKz3Id24BYCA74bDUcFpg%2Ba%2Bnqu2tVMrQ09XX6%2FYBS9ILTna8DWUF4yWzHfHpGpXRr0ejvm59TSkn8LA%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "x-content-type-options": "nosniff",
+      "x-jsd-version-type": "version",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "x-cache": "HIT, HIT",
+      "date": "Mon, 02 Jun 2025 05:12:43 GMT",
+      "content-type": "text/css; charset=utf-8",
+      "x-served-by": "cache-fra-etou8220141-FRA, cache-lga21960-LGA",
+      "vary": "Accept-Encoding",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "cache-control": "public, max-age=31536000, s-maxage=31536000, immutable",
+      "timing-allow-origin": "*",
+      "nel": "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "cross-origin-resource-policy": "cross-origin",
+      "cf-ray": "949475164d2ab9e2-SEA",
+      "accept-ranges": "bytes",
+      "access-control-allow-origin": "*",
+      "content-length": "29970",
+      "server": "cloudflare",
+      "x-jsd-version": "0.9.4"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.639Z",
+    "type": "response",
+    "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css",
+    "status": 200,
+    "statusText": "",
+    "headers": {
+      "cf-cdnjs-via": "cfworker/kv",
+      "content-encoding": "br",
+      "cf-cache-status": "HIT",
+      "etag": "\"6696a8d8-491a\"",
+      "age": "295644",
+      "report-to": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=jM8%2BuFLAu5fEGuhzQZ2uOpDi8xczfR7iJglgQtKh4muWpXOQUO4XrNf3xXdkGFbOYzaflyS%2BpSMA5rZteaUt7h4C7iBVXMERbhl4tWqomQDrLqsLfA4ci8ReXv%2FZIS%2F%2F2CqGiCyd\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "x-content-type-options": "nosniff",
+      "expires": "Sat, 23 May 2026 05:12:43 GMT",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "date": "Mon, 02 Jun 2025 05:12:43 GMT",
+      "content-type": "text/css; charset=utf-8",
+      "last-modified": "Tue, 16 Jul 2024 17:07:36 GMT",
+      "vary": "Accept-Encoding",
+      "strict-transport-security": "max-age=15780000",
+      "cache-control": "public, max-age=30672000",
+      "timing-allow-origin": "*",
+      "nel": "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "cross-origin-resource-policy": "cross-origin",
+      "cf-ray": "949475163a4c76a5-SEA",
+      "accept-ranges": "bytes",
+      "access-control-allow-origin": "*",
+      "content-length": "18714",
+      "server": "cloudflare"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.659Z",
+    "type": "response",
+    "url": "https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css",
+    "status": 200,
+    "statusText": "",
+    "headers": {
+      "access-control-expose-headers": "*",
+      "content-encoding": "br",
+      "cf-cache-status": "HIT",
+      "etag": "W/\"a557a-5a+Jgf/nL4m0GFj2K/p34Y/W8MA\"",
+      "age": "1458530",
+      "report-to": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=5GPllPVRopKm1HtafkVmrcoGF3wWIWrp%2FwcN8gY5SrkrIFfUM828wOKVkywKodwkd4bUciPNuPzABeevsGLy9ztSmzCANIV0Y4Mu1yVsX%2BI%2Bi63lt57xq4J4%2FPBfNx54paI%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "x-content-type-options": "nosniff",
+      "x-jsd-version-type": "version",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "x-cache": "MISS, MISS",
+      "date": "Mon, 02 Jun 2025 05:12:43 GMT",
+      "content-type": "text/css; charset=utf-8",
+      "x-served-by": "cache-fra-eddf8230121-FRA, cache-lga21980-LGA",
+      "vary": "Accept-Encoding",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "cache-control": "public, max-age=31536000, s-maxage=31536000, immutable",
+      "timing-allow-origin": "*",
+      "nel": "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "cross-origin-resource-policy": "cross-origin",
+      "cf-ray": "949475164d2bb9e2-SEA",
+      "accept-ranges": "bytes",
+      "access-control-allow-origin": "*",
+      "content-length": "43467",
+      "server": "cloudflare",
+      "x-jsd-version": "1.0.2"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.693Z",
+    "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/webfonts/fa-solid-900.woff2",
+    "method": "GET",
+    "headers": {
+      "origin": "http://localhost:3000",
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "font",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.696Z",
+    "url": "http://localhost:3000/home/home.html?nocache=1748841151700",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/app.html?v=home",
+      "upgrade-insecure-requests": "1",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "resourceType": "document",
+    "isNavigationRequest": true,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.697Z",
+    "url": "http://localhost:8001/plans",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "x-ms-client-principal-id": "12345678-abcd-efgh-ijkl-9876543210ab",
+      "x-ms-client-principal-name": "Local User",
+      "referer": "http://localhost:3000/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-ms-client-principal-idp": "mock-identity-provider",
+      "sec-ch-ua-mobile": "?0",
+      "x-ms-client-principal": "mock-client-principal-id",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "resourceType": "fetch",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.698Z",
+    "url": "http://localhost:8001/plans",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "x-ms-client-principal-id": "12345678-abcd-efgh-ijkl-9876543210ab",
+      "x-ms-client-principal-name": "Local User",
+      "referer": "http://localhost:3000/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-ms-client-principal-idp": "mock-identity-provider",
+      "sec-ch-ua-mobile": "?0",
+      "x-ms-client-principal": "mock-client-principal-id",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    },
+    "resourceType": "fetch",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.707Z",
+    "type": "response",
+    "url": "http://localhost:3000/home/home.html?nocache=1748841151700",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-length": "4410",
+      "content-type": "text/html; charset=utf-8",
+      "date": "Mon, 02 Jun 2025 05:12:31 GMT",
+      "etag": "\"3bc39c57624e060a2a800a6d52de3bb8\"",
+      "last-modified": "Sun, 01 Jun 2025 15:54:26 GMT",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.712Z",
+    "url": "http://localhost:3000/home/home.css",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/home/home.html?nocache=1748841151700",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "stylesheet",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.712Z",
+    "url": "https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "stylesheet",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.712Z",
+    "url": "http://localhost:3000/assets/app-logo.svg",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/home/home.html?nocache=1748841151700",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "image",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.713Z",
+    "type": "response",
+    "url": "http://localhost:3000/assets/app-logo.svg",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-length": "8506",
+      "date": "Mon, 02 Jun 2025 05:12:31 GMT",
+      "etag": "\"dca764af2d829cef1366756e8553df45\"",
+      "content-type": "image/svg+xml",
+      "last-modified": "Tue, 27 May 2025 05:34:14 GMT",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.713Z",
+    "url": "http://localhost:3000/assets/images/stars.svg",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/home/home.html?nocache=1748841151700",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "image",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.713Z",
+    "url": "http://localhost:3000/assets/images/air-button.svg",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/home/home.html?nocache=1748841151700",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "image",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.713Z",
+    "url": "https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "script",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.713Z",
+    "url": "http://localhost:3000/utils.js",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/home/home.html?nocache=1748841151700",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "script",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.713Z",
+    "type": "response",
+    "url": "http://localhost:3000/utils.js",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-length": "4535",
+      "date": "Mon, 02 Jun 2025 05:12:31 GMT",
+      "etag": "\"80421c50e1d41bfeea055ccc29666203\"",
+      "content-type": "application/javascript",
+      "last-modified": "Tue, 27 May 2025 05:34:14 GMT",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.713Z",
+    "url": "http://localhost:3000/app.js",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/home/home.html?nocache=1748841151700",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "script",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.713Z",
+    "type": "response",
+    "url": "http://localhost:3000/app.js",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-length": "14315",
+      "date": "Mon, 02 Jun 2025 05:12:31 GMT",
+      "etag": "\"97914d443d62505c47c73af249cddf74\"",
+      "content-type": "application/javascript",
+      "last-modified": "Sat, 31 May 2025 21:36:45 GMT",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.714Z",
+    "url": "http://localhost:3000/home/home.js",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/home/home.html?nocache=1748841151700",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "script",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.740Z",
+    "type": "response",
+    "url": "http://localhost:3000/home/home.css",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-length": "4774",
+      "date": "Mon, 02 Jun 2025 05:12:31 GMT",
+      "etag": "\"a17cc22ad4ec2941c4eb226024db548b\"",
+      "content-type": "text/css; charset=utf-8",
+      "last-modified": "Sun, 01 Jun 2025 15:54:26 GMT",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.741Z",
+    "url": "https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "stylesheet",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.741Z",
+    "type": "response",
+    "url": "https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css",
+    "status": 200,
+    "statusText": "",
+    "headers": {
+      "access-control-expose-headers": "*",
+      "content-encoding": "br",
+      "cf-cache-status": "HIT",
+      "etag": "W/\"a557a-5a+Jgf/nL4m0GFj2K/p34Y/W8MA\"",
+      "age": "1458530",
+      "report-to": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=5GPllPVRopKm1HtafkVmrcoGF3wWIWrp%2FwcN8gY5SrkrIFfUM828wOKVkywKodwkd4bUciPNuPzABeevsGLy9ztSmzCANIV0Y4Mu1yVsX%2BI%2Bi63lt57xq4J4%2FPBfNx54paI%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "x-content-type-options": "nosniff",
+      "x-jsd-version-type": "version",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "x-cache": "MISS, MISS",
+      "date": "Mon, 02 Jun 2025 05:12:43 GMT",
+      "content-type": "text/css; charset=utf-8",
+      "x-served-by": "cache-fra-eddf8230121-FRA, cache-lga21980-LGA",
+      "vary": "Accept-Encoding",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "cache-control": "public, max-age=31536000, s-maxage=31536000, immutable",
+      "timing-allow-origin": "*",
+      "nel": "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "cross-origin-resource-policy": "cross-origin",
+      "cf-ray": "949475164d2bb9e2-SEA",
+      "accept-ranges": "bytes",
+      "access-control-allow-origin": "*",
+      "content-length": "43467",
+      "server": "cloudflare",
+      "x-jsd-version": "1.0.2"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.741Z",
+    "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "stylesheet",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.741Z",
+    "type": "response",
+    "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css",
+    "status": 200,
+    "statusText": "",
+    "headers": {
+      "cf-cdnjs-via": "cfworker/kv",
+      "content-encoding": "br",
+      "cf-cache-status": "HIT",
+      "etag": "\"6696a8d8-491a\"",
+      "age": "295644",
+      "report-to": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=jM8%2BuFLAu5fEGuhzQZ2uOpDi8xczfR7iJglgQtKh4muWpXOQUO4XrNf3xXdkGFbOYzaflyS%2BpSMA5rZteaUt7h4C7iBVXMERbhl4tWqomQDrLqsLfA4ci8ReXv%2FZIS%2F%2F2CqGiCyd\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "x-content-type-options": "nosniff",
+      "expires": "Sat, 23 May 2026 05:12:43 GMT",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "date": "Mon, 02 Jun 2025 05:12:43 GMT",
+      "content-type": "text/css; charset=utf-8",
+      "last-modified": "Tue, 16 Jul 2024 17:07:36 GMT",
+      "vary": "Accept-Encoding",
+      "strict-transport-security": "max-age=15780000",
+      "cache-control": "public, max-age=30672000",
+      "timing-allow-origin": "*",
+      "nel": "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "cross-origin-resource-policy": "cross-origin",
+      "cf-ray": "949475163a4c76a5-SEA",
+      "accept-ranges": "bytes",
+      "access-control-allow-origin": "*",
+      "content-length": "18714",
+      "server": "cloudflare"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.741Z",
+    "url": "http://localhost:3000/assets/theme.css",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/app.css",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "stylesheet",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.741Z",
+    "type": "response",
+    "url": "http://localhost:3000/assets/theme.css",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-length": "22391",
+      "date": "Mon, 02 Jun 2025 05:12:30 GMT",
+      "etag": "\"68024210999ffaedf55d48099678d431\"",
+      "content-type": "text/css; charset=utf-8",
+      "last-modified": "Sun, 01 Jun 2025 07:16:01 GMT",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.741Z",
+    "url": "http://localhost:3000/app.css",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/home/home.css",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "stylesheet",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.741Z",
+    "type": "response",
+    "url": "http://localhost:3000/app.css",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-length": "9758",
+      "date": "Mon, 02 Jun 2025 05:12:30 GMT",
+      "etag": "\"1837d6a17777378861a1aae7fb19adf6\"",
+      "content-type": "text/css; charset=utf-8",
+      "last-modified": "Sun, 01 Jun 2025 15:54:26 GMT",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.741Z",
+    "type": "response",
+    "url": "http://localhost:3000/assets/images/stars.svg",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-length": "3950",
+      "date": "Mon, 02 Jun 2025 05:12:31 GMT",
+      "etag": "\"1684d648894feb2a6efa70d38834cab4\"",
+      "content-type": "image/svg+xml",
+      "last-modified": "Tue, 27 May 2025 05:34:14 GMT",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.742Z",
+    "type": "response",
+    "url": "http://localhost:3000/assets/images/air-button.svg",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-length": "650",
+      "date": "Mon, 02 Jun 2025 05:12:31 GMT",
+      "etag": "\"58a83ba3bee903a1566396c280444217\"",
+      "content-type": "image/svg+xml",
+      "last-modified": "Tue, 27 May 2025 05:34:14 GMT",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.744Z",
+    "type": "response",
+    "url": "http://localhost:3000/home/home.js",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-length": "8228",
+      "date": "Mon, 02 Jun 2025 05:12:31 GMT",
+      "etag": "\"3b08987e9df1056adcbdfb5f5fe38d7f\"",
+      "content-type": "application/javascript",
+      "last-modified": "Mon, 02 Jun 2025 05:05:08 GMT",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.765Z",
+    "type": "response",
+    "url": "https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js",
+    "status": 200,
+    "statusText": "",
+    "headers": {
+      "access-control-expose-headers": "*",
+      "content-encoding": "br",
+      "cf-cache-status": "HIT",
+      "etag": "W/\"1dde-EVH5AS6ZDNe2+1OZlVPmAisEvmM\"",
+      "age": "23743",
+      "report-to": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=zXt3Z3yLwwoD8%2FuF0sA%2B5dadFE6e8Ok0uBm1j9daLwyV74zUPZA7YuYnsDUfuB3rYwnF9rynnURqM4tFw7ELIgGQq%2BnCByH8ghtft8uNffokxIQ0jBn8cz90CuxTN3uBPmE%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "x-content-type-options": "nosniff",
+      "x-jsd-version-type": "version",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "x-cache": "HIT, HIT",
+      "date": "Mon, 02 Jun 2025 05:12:43 GMT",
+      "content-type": "application/javascript; charset=utf-8",
+      "x-served-by": "cache-fra-eddf8230072-FRA, cache-lga21932-LGA",
+      "vary": "Accept-Encoding",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "cache-control": "public, max-age=604800, s-maxage=43200",
+      "timing-allow-origin": "*",
+      "nel": "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "cross-origin-resource-policy": "cross-origin",
+      "cf-ray": "949475172db3b9e2-SEA",
+      "accept-ranges": "bytes",
+      "access-control-allow-origin": "*",
+      "content-length": "2550",
+      "server": "cloudflare",
+      "x-jsd-version": "3.10.0"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.767Z",
+    "type": "response",
+    "url": "https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css",
+    "status": 200,
+    "statusText": "",
+    "headers": {
+      "access-control-expose-headers": "*",
+      "content-encoding": "br",
+      "cf-cache-status": "HIT",
+      "etag": "W/\"1427-l8DX14Qs1voyRJ2MkAml60VWDX0\"",
+      "age": "15759",
+      "report-to": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=EPH0eSW07fsCQrJe8PQKJ7haM0NslGSCb%2B3I2DXdm9HFD2pDklJ7Rib7GAQOkbI97WbNL2oLEpTxAY2aApAs4T86Hf4OBjE26wNO5It%2FqpDxPyufHFDXu9MoWp%2BdiuOleUQ%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "x-content-type-options": "nosniff",
+      "x-jsd-version-type": "version",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "x-cache": "HIT, HIT",
+      "date": "Mon, 02 Jun 2025 05:12:43 GMT",
+      "content-type": "text/css; charset=utf-8",
+      "x-served-by": "cache-fra-etou8220022-FRA, cache-lga21970-LGA",
+      "vary": "Accept-Encoding",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "cache-control": "public, max-age=604800, s-maxage=43200",
+      "timing-allow-origin": "*",
+      "nel": "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "cross-origin-resource-policy": "cross-origin",
+      "cf-ray": "949475172db2b9e2-SEA",
+      "accept-ranges": "bytes",
+      "access-control-allow-origin": "*",
+      "content-length": "1278",
+      "server": "cloudflare",
+      "x-jsd-version": "3.10.0"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.789Z",
+    "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/webfonts/fa-solid-900.woff2",
+    "method": "GET",
+    "headers": {
+      "origin": "http://localhost:3000",
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "font",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:32.027Z",
+    "type": "response",
+    "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/webfonts/fa-solid-900.woff2",
+    "status": 200,
+    "statusText": "",
+    "headers": {
+      "cf-cdnjs-via": "cfworker/kv",
+      "cf-cache-status": "HIT",
+      "etag": "\"6696a8d8-26608\"",
+      "age": "822304",
+      "report-to": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=F2qgfEqQm3%2FLLHWPSSYaazogoe8cYLiXHWn6dT43QJL9hYlIXNX6QX%2FkTa6z4zoOvEURxz%2F6hg8DRrACaTH1t8yg5nezoMw144g3v8%2B5ATOJNoqMxuhLNvIIyTBGpwXvp42W32PV\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "x-content-type-options": "nosniff",
+      "expires": "Sat, 23 May 2026 05:12:43 GMT",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "server-timing": "cfExtPri",
+      "date": "Mon, 02 Jun 2025 05:12:43 GMT",
+      "content-type": "application/octet-stream; charset=utf-8",
+      "last-modified": "Tue, 16 Jul 2024 17:07:36 GMT",
+      "vary": "Accept-Encoding",
+      "priority": "u=0,i=?0",
+      "strict-transport-security": "max-age=15780000",
+      "cache-control": "public, max-age=30672000",
+      "timing-allow-origin": "*",
+      "nel": "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "cross-origin-resource-policy": "cross-origin",
+      "cf-ray": "949475174eaa764c-SEA",
+      "accept-ranges": "bytes",
+      "access-control-allow-origin": "*",
+      "content-length": "157192",
+      "server": "cloudflare"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:32.028Z",
+    "type": "response",
+    "url": "http://localhost:8001/plans",
+    "status": 404,
+    "statusText": "Not Found",
+    "headers": {
+      "access-control-allow-origin": "http://localhost:3000",
+      "content-length": "22",
+      "date": "Mon, 02 Jun 2025 05:12:31 GMT",
+      "content-type": "application/json",
+      "vary": "Origin",
+      "server": "uvicorn",
+      "access-control-allow-credentials": "true"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:32.029Z",
+    "type": "response",
+    "url": "http://localhost:8001/plans",
+    "status": 404,
+    "statusText": "Not Found",
+    "headers": {
+      "access-control-allow-origin": "http://localhost:3000",
+      "content-length": "22",
+      "date": "Mon, 02 Jun 2025 05:12:31 GMT",
+      "content-type": "application/json",
+      "vary": "Origin",
+      "server": "uvicorn",
+      "access-control-allow-credentials": "true"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:32.030Z",
+    "type": "response",
+    "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/webfonts/fa-solid-900.woff2",
+    "status": 200,
+    "statusText": "",
+    "headers": {
+      "cf-cdnjs-via": "cfworker/kv",
+      "cf-cache-status": "HIT",
+      "etag": "\"6696a8d8-26608\"",
+      "age": "822304",
+      "report-to": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=F2qgfEqQm3%2FLLHWPSSYaazogoe8cYLiXHWn6dT43QJL9hYlIXNX6QX%2FkTa6z4zoOvEURxz%2F6hg8DRrACaTH1t8yg5nezoMw144g3v8%2B5ATOJNoqMxuhLNvIIyTBGpwXvp42W32PV\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "x-content-type-options": "nosniff",
+      "expires": "Sat, 23 May 2026 05:12:43 GMT",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "server-timing": "cfExtPri",
+      "date": "Mon, 02 Jun 2025 05:12:43 GMT",
+      "content-type": "application/octet-stream; charset=utf-8",
+      "last-modified": "Tue, 16 Jul 2024 17:07:36 GMT",
+      "vary": "Accept-Encoding",
+      "priority": "u=0,i=?0",
+      "cache-control": "public, max-age=30672000",
+      "timing-allow-origin": "*",
+      "nel": "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "cross-origin-resource-policy": "cross-origin",
+      "cf-ray": "949475174eaa764c-SEA",
+      "accept-ranges": "bytes",
+      "access-control-allow-origin": "*",
+      "content-length": "157192",
+      "server": "cloudflare"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:32.032Z",
+    "url": "http://localhost:3000/assets/favicon/favicon-32x32.png",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/app.html?v=home",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "other",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:32.035Z",
+    "type": "response",
+    "url": "http://localhost:3000/assets/favicon/favicon-32x32.png",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-length": "1980",
+      "date": "Mon, 02 Jun 2025 05:12:31 GMT",
+      "etag": "\"521a81ba173cd8a24869694e878eb547\"",
+      "content-type": "image/png",
+      "last-modified": "Tue, 27 May 2025 05:34:14 GMT",
+      "server": "uvicorn"
+    }
+  },
+  {
+    "timestamp": "2025-06-02T05:12:32.038Z",
+    "url": "http://localhost:3000/assets/favicon/favicon-16x16.png",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "http://localhost:3000/app.html?v=home",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "resourceType": "other",
+    "isNavigationRequest": false,
+    "postData": null
+  },
+  {
+    "timestamp": "2025-06-02T05:12:32.041Z",
+    "type": "response",
+    "url": "http://localhost:3000/assets/favicon/favicon-16x16.png",
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-length": "816",
+      "date": "Mon, 02 Jun 2025 05:12:31 GMT",
+      "etag": "\"3afb1a56fb8f78033edf010ef21fc783\"",
+      "content-type": "image/png",
+      "last-modified": "Tue, 27 May 2025 05:34:14 GMT",
+      "server": "uvicorn"
+    }
+  }
+]

@@ -17,10 +17,10 @@ from datetime import datetime
 # Add the parent directory to the path so we can import our modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from config_kernel import Config
-from kernel_agents.planner_agent import PlannerAgent
-from context.cosmos_memory_kernel import CosmosMemoryContext
-from models.messages_kernel import (
+from backend.config_kernel import Config
+from backend.kernel_agents.planner_agent import PlannerAgent
+from backend.context.cosmos_memory_kernel import CosmosMemoryContext
+from backend.models.messages_kernel import (
     InputTask, 
     Plan, 
     Step, 

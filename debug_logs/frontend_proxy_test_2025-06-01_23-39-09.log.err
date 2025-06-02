@@ -1,0 +1,9 @@
+2025-06-01 23:39:29,128 - INFO - Testing frontend proxy with session ID: test_session_1748846369
+2025-06-01 23:39:29,128 - INFO - Testing proxy for server info...
+2025-06-01 23:39:31,836 - ERROR - Server info proxy error: 500 - {"error":"Proxy error: All connection attempts failed"}
+2025-06-01 23:39:31,838 - ERROR - Response headers: <CIMultiDictProxy('Date': 'Mon, 02 Jun 2025 06:39:28 GMT', 'Server': 'uvicorn', 'Content-Length': '55', 'Content-Type': 'application/json')>
+2025-06-01 23:39:31,838 - INFO - Testing task submission through proxy...
+2025-06-01 23:39:34,361 - ERROR - Task submission proxy error: 500 - {"error":"Proxy error: All connection attempts failed"}
+2025-06-01 23:39:34,361 - ERROR - Response headers: <CIMultiDictProxy('Date': 'Mon, 02 Jun 2025 06:39:31 GMT', 'Server': 'uvicorn', 'Content-Length': '55', 'Content-Type': 'application/json')>
+2025-06-01 23:39:34,361 - INFO - Testing plans endpoint through proxy...
+2025-06-01 23:39:36,870 - ERROR - Plans endpoint proxy error: 500 - {"error":"Proxy error: All connection attempts failed"}

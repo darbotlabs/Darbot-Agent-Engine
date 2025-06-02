@@ -1,0 +1,22 @@
+INFO:     Will watch for changes in these directories: ['D:\\0GH_PROD\\Darbot-Agent-Engine\\src\\frontend']
+INFO:     Uvicorn running on http://127.0.0.1:3000 (Press CTRL+C to quit)
+INFO:     Started reloader process [68056] using WatchFiles
+INFO:     Started server process [32784]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'frontend_server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [32784]
+INFO:     Started server process [71548]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'frontend_server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [71548]
+INFO:     Started server process [138024]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.

@@ -4,17 +4,15 @@
     ripple: false,
     duration: 3000,
   });
-  const apiEndpoint = getStoredData("apiEndpoint");
+  // Always use proxy approach (empty string) for API endpoint
+  setStoredData('apiEndpoint', '');
+  const apiEndpoint = '';
   
-  console.log('Home page loaded, API endpoint:', apiEndpoint);
+  console.log('Home page loaded, using proxy approach for API calls');
   
-  if (!apiEndpoint) {
-    console.error("API endpoint not configured");
-    notyf.error("API endpoint not configured. Please refresh the page.");
-    return;
+  if (typeof window.BACKEND_API_URL !== 'undefined' && window.BACKEND_API_URL !== '') {
+    console.log('Warning: BACKEND_API_URL is set but using proxy approach instead');
   }
-  
-  console.log('Using API endpoint:', apiEndpoint);
   
   const newTaskPrompt = document.getElementById("newTaskPrompt");
   const startTaskButton = document.getElementById("startTaskButton");
@@ -105,11 +103,10 @@
 
       newTaskPrompt.disabled = true;
       startTaskButton.disabled = true;
-      startTaskButton.classList.add("is-loading");
-      createOverlay();
-      showOverlay();
-      window.headers.then((headers) => {
-        fetch(apiEndpoint + "/input_task", {
+      startTaskButton.classList.add("is-loading");      createOverlay();
+      showOverlay();      window.headers.then((headers) => {
+        // Thought into existence by Darbot - Using frontend server as proxy
+        fetch("/api/input_task", {  // Relative URL for proxy
           method: "POST",
           headers: headers,
           body: JSON.stringify({
@@ -227,8 +224,10 @@
       } else if (event.key === "Enter" && event.shiftKey) {
         return;
       }
-    });
-  };
+    });  };
+
+  // Thought into existence by Darbot
+  // Theme toggle logic removed - now handled by main app.js
 
   updateButtonImage();
   startTask();

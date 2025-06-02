@@ -1,103 +1,374 @@
 :root {
-    /* Brand gradient */
-    --g-start: #b54cff;  /* Darbot purple */
-    --g-mid: #0078ff;    /* Nitrous blue  */
-    --g-end: #00e0b4;    /* Teal accent   */
+    /* Retro Cyber Brand Gradient - Fluent 2.0 inspired */
+    --g-start: #ff0080;          /* Cyber magenta */
+    --g-mid: #00d4ff;            /* Electric blue */
+    --g-end: #00ff88;            /* Neon green */
+    --g-accent: #9d4edd;         /* Purple accent */
+    
+    /* Enhanced Cyber highlights */
+    --cyber-glow: #00ffff;       /* Cyan glow */
+    --cyber-orange: #ff6b00;     /* Neon orange */
+    --cyber-pink: #ff1b8d;       /* Hot pink */
+    --cyber-purple: #b440ff;     /* Electric purple */
+    --cyber-yellow: #ffff00;     /* Electric yellow */
+    
+    /* Darbot Brand Colors */
+    --darbot-primary: #ff0080;   /* Primary brand magenta */
+    --darbot-secondary: #00d4ff; /* Secondary brand blue */
+    --darbot-accent: #00ff88;    /* Accent brand green */
 
-    --primary: #464feb;          /* Legacy primary (Bulma $primary) */
-    --success: #1db954;          /* Bulma $success  override        */
-    --warning: #ffb020;          /* Bulma $warning  override        */
-    --danger: #ff4d4f;           /* Bulma $danger   override        */
+    --primary: #0078d4;          /* Microsoft Fluent primary */
+    --success: #00cc6a;          /* Fluent success green */
+    --warning: #ff8c00;          /* Fluent warning orange */
+    --danger: #ff4757;           /* Fluent danger red */
+    --info: #00d4ff;             /* Cyber blue info */
 
-    --bg-surface: #0e0f13;       /* Dark surface for app chrome     */
-    --bg-page: #f7f9fb;          /* Light page background (light UI)*/
-    --txt-main: #222831;         /* Dark text on light areas        */
-    --txt-main-dark: #f4f4f6;    /* Light text on dark areas        */
-    --txt-sub: #6b7280;          /* Muted gray                      */
+    /* Enhanced Fluent 2.0 Surface System */
+    --bg-surface: #0a0a0f;       /* Deep dark surface */
+    --bg-surface-secondary: #141418; /* Secondary surface */
+    --bg-page: #f8f9fa;          /* Light neutral background */
+    --bg-page-dark: #1a1a1f;     /* Dark mode page background */
+    --bg-card: rgba(255, 255, 255, 0.95); /* Enhanced glassmorphism card */
+    --bg-card-dark: rgba(20, 20, 24, 0.95); /* Enhanced dark glassmorphism */
+    
+    /* Enhanced Typography System */
+    --txt-main: #1a1a1f;         /* Primary text */
+    --txt-main-dark: #ffffff;     /* Dark mode primary text */
+    --txt-secondary: #616161;     /* Secondary text */
+    --txt-secondary-dark: #c7c7c7; /* Dark mode secondary */
+    --txt-accent: #0078d4;        /* Accent text */
+    --txt-glow: #00ffff;          /* Cyber glow text */
+    --txt-brand: #ff0080;         /* Darbot brand text */
 
-    /* Corner radius system */
-    --radius-lg: 12px;           /* Cards, modals */
-    --radius-md: 8px;            /* Buttons, inputs */
-    --radius-pill: 999px;        /* Status bullets */
-
-    /* Spacing tokens (8-pt grid) */
+    /* Enhanced Fluent 2.0 Corner Radius System */
+    --radius-xs: 2px;            /* Extra small elements */
+    --radius-sm: 4px;            /* Small elements */
+    --radius-md: 8px;            /* Standard elements */
+    --radius-lg: 16px;           /* Cards, containers */
+    --radius-xl: 24px;           /* Large surfaces */
+    --radius-xxl: 32px;          /* Extra large surfaces */
+    --radius-pill: 999px;        /* Pills and badges */    /* Spacing tokens (Fluent 2.0 - 4pt grid) */
     --s-1: 4px;
     --s-2: 8px;
     --s-3: 12px;
     --s-4: 16px;
-    --s-5: 24px;
-    --s-6: 32px;
+    --s-5: 20px;
+    --s-6: 24px;
+    --s-7: 32px;
+    --s-8: 40px;
 
-    /* Acrylic glass background */
-    --card-bg: rgba(255, 255, 255, 0.85);
+    /* Elevation & Shadow System */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.04);
+    --shadow-cyber: 0 0 20px var(--cyber-glow), 0 0 40px var(--cyber-glow);
 
-    /* Bulma variable overrides */
-    --bulma-link-h: 200deg;
-    --bulma-info-s: 0%;
-    --bulma-link-l: 0%;
+    /* Glassmorphism backdrop filter */
+    --glass-blur: blur(20px);
+    --glass-blur-sm: blur(10px);
 
-    --bulma-info-h: 237deg;
-    --bulma-info-s: 80%;
-    --bulma-info-l: 60%;
+    /* Bulma variable overrides for Fluent 2.0 */
+    --bulma-link-h: 210deg;
+    --bulma-link-s: 100%;
+    --bulma-link-l: 50%;
 
-    --bulma-focus-h: 237deg;
-    --bulma-focus-s: 80%;
-    --bulma-focus-l: 60%;
+    --bulma-info-h: 195deg;
+    --bulma-info-s: 100%;
+    --bulma-info-l: 50%;
 
-    --bulma-scheme-h: 200;
-    --bulma-scheme-s: 0%;
+    --bulma-focus-h: 210deg;
+    --bulma-focus-s: 100%;
+    --bulma-focus-l: 50%;
 
-    --bulma-soft-l: 80%;
-    --bulma-bold-l: 0%;
+    --bulma-scheme-h: 210;
+    --bulma-scheme-s: 15%;
+    --bulma-soft-l: 85%;
+    --bulma-bold-l: 15%;
 
-    --bulma-family-primary: 'Segoe UI', Tahoma, Verdana, sans-serif;
-    --bulma-family-secondary: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    --bulma-family-primary: 'Segoe UI Variable', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --bulma-family-secondary: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
 
     --bulma-body-background-color: var(--bg-page);
     --bulma-body-color: var(--txt-main);
     --bulma-strong-color: var(--txt-main);
     --bulma-control-radius: var(--radius-md);
-    --bulma-info-invert-l: 98%;
 
-    --bulma-success-h: 134deg;
-    --bulma-success-s: 61%;
-    --bulma-success-l: 41%;
-    --bulma-success-invert-l: 98%;
+    /* Update colors to Fluent 2.0 palette */
+    --bulma-success-h: 150deg;
+    --bulma-success-s: 100%;
+    --bulma-success-l: 40%;
 
-    --bulma-danger-h: 354deg;
-    --bulma-danger-s: 70%;
-    --bulma-danger-l: 54%;
+    --bulma-danger-h: 355deg;
+    --bulma-danger-s: 85%;
+    --bulma-danger-l: 58%;
 
-    /* Update primary to use our design system */
     --bulma-primary: var(--primary);
 }
 
-/* Brand gradient utility */
+/* Cyber Gradient Utilities */
 .gradient-bg {
-    background: linear-gradient(135deg, var(--g-start) 0%, var(--g-mid) 40%, var(--g-end) 100%);
+    background: linear-gradient(135deg, var(--g-start) 0%, var(--g-mid) 50%, var(--g-end) 100%);
 }
 
-/* Dark theme support */
+.gradient-text {
+    background: linear-gradient(135deg, var(--g-start) 0%, var(--g-mid) 50%, var(--g-end) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cyber-glow {
+    text-shadow: 0 0 10px var(--cyber-glow), 0 0 20px var(--cyber-glow), 0 0 30px var(--cyber-glow);
+}
+
+.cyber-border {
+    border: 1px solid var(--cyber-glow);
+    box-shadow: 0 0 10px var(--cyber-glow);
+}
+
+/* Glassmorphism Card System */
+.glass-card {
+    background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.glass-card-dark {
+    background: var(--bg-card-dark);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Fluent 2.0 Button System */
+.btn-cyber {
+    background: linear-gradient(135deg, var(--g-start) 0%, var(--g-mid) 100%);
+    border: none;
+    border-radius: var(--radius-md);
+    color: white;
+    font-weight: 600;
+    padding: var(--s-3) var(--s-5);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-cyber:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl), var(--shadow-cyber);
+    filter: brightness(1.1);
+}
+
+.btn-cyber:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Dark Theme Support - Cyber Aesthetic */
 [data-theme="dark"] {
-    --bg-page: var(--bg-surface);
+    --bg-page: var(--bg-page-dark);
     --txt-main: var(--txt-main-dark);
-    --card-bg: rgba(14, 15, 19, 0.85);
-    --bulma-body-background-color: var(--bg-surface);
+    --txt-secondary: var(--txt-secondary-dark);
+    --bg-card: var(--bg-card-dark);
+    
+    --bulma-body-background-color: var(--bg-page-dark);
     --bulma-body-color: var(--txt-main-dark);
     --bulma-strong-color: var(--txt-main-dark);
 }
 
 [data-theme="dark"] .card {
-    background: rgba(14, 15, 19, 0.85);
+    background: var(--bg-card-dark);
     color: var(--txt-main-dark);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 [data-theme="dark"] .modal-card,
 [data-theme="dark"] .modal-card-head,
 [data-theme="dark"] .modal-card-body,
 [data-theme="dark"] .modal-card-foot {
-    background: rgba(14, 15, 19, 0.95);
+    background: var(--bg-card-dark);
     color: var(--txt-main-dark);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Cyber Animations */
+@keyframes cyber-pulse {
+    0%, 100% {
+        text-shadow: 0 0 5px var(--cyber-glow), 0 0 10px var(--cyber-glow);
+    }
+    50% {
+        text-shadow: 0 0 10px var(--cyber-glow), 0 0 20px var(--cyber-glow), 0 0 30px var(--cyber-glow);
+    }
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.cyber-pulse {
+    animation: cyber-pulse 2s ease-in-out infinite;
+}
+
+.gradient-animated {
+    background: linear-gradient(-45deg, var(--g-start), var(--g-mid), var(--g-end), var(--g-accent));
+    background-size: 400% 400%;
+    animation: gradient-shift 3s ease infinite;
+}
+
+/* Enhanced Darbot Engine API Branding */
+.darbot-brand {
+    background: linear-gradient(135deg, var(--darbot-primary) 0%, var(--darbot-secondary) 50%, var(--darbot-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    text-shadow: 0 0 30px rgba(255, 0, 128, 0.5);
+}
+
+.darbot-engine-title {
+    background: linear-gradient(135deg, var(--darbot-primary) 0%, var(--darbot-secondary) 50%, var(--darbot-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+    font-size: 2.5rem;
+    text-shadow: 0 0 30px rgba(255, 0, 128, 0.3);
+    animation: cyber-pulse 3s ease-in-out infinite;
+}
+
+.darbot-tagline {
+    color: var(--txt-secondary);
+    font-weight: 500;
+    font-size: 1.1rem;
+    opacity: 0.9;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Retro Cyber Grid Pattern */
+.cyber-grid {
+    background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+.cyber-grid-animated {
+    background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 24px 24px;
+    animation: grid-shift 10s linear infinite;
+}
+
+@keyframes grid-shift {
+    0% { background-position: 0 0; }
+    100% { background-position: 24px 24px; }
+}
+
+/* Enhanced Neon Effects */
+.neon-border {
+    border: 2px solid var(--cyber-glow);
+    border-radius: var(--radius-md);
+    box-shadow: 
+        0 0 5px var(--cyber-glow),
+        0 0 10px var(--cyber-glow),
+        0 0 15px var(--cyber-glow),
+        inset 0 0 5px rgba(0, 255, 255, 0.1);
+    animation: neon-pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes neon-pulse {
+    from {
+        box-shadow: 
+            0 0 5px var(--cyber-glow),
+            0 0 10px var(--cyber-glow),
+            0 0 15px var(--cyber-glow),
+            inset 0 0 5px rgba(0, 255, 255, 0.1);
+    }
+    to {
+        box-shadow: 
+            0 0 10px var(--cyber-glow),
+            0 0 20px var(--cyber-glow),
+            0 0 30px var(--cyber-glow),
+            inset 0 0 10px rgba(0, 255, 255, 0.2);
+    }
+}
+
+/* Holographic Effect */
+.holographic {
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.5) 50%,
+        transparent 70%
+    );
+    background-size: 200% 200%;
+    animation: holographic-shine 3s ease-in-out infinite;
+}
+
+@keyframes holographic-shine {
+    0% { background-position: -200% -200%; }
+    50% { background-position: 200% 200%; }
+    100% { background-position: -200% -200%; }
+}
+
+/* Enhanced Cyber Animations */
+@keyframes data-stream {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.data-stream {
+    position: relative;
+    overflow: hidden;
+}
+
+.data-stream::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyber-glow), transparent);
+    animation: data-stream 2s ease-in-out infinite;
+}
+
+/* Fluent 2.0 Acrylic Material */
+.acrylic {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(30px) saturate(125%);
+    -webkit-backdrop-filter: blur(30px) saturate(125%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.acrylic-dark {
+    background: rgba(30, 30, 30, 0.7);
+    backdrop-filter: blur(30px) saturate(125%);
+    -webkit-backdrop-filter: blur(30px) saturate(125%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 [data-theme="dark"] .text-input-container,
@@ -389,4 +660,174 @@ html {
     bottom: 0;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
     animation: shimmer 2s infinite linear;
+}
+
+/* Enhanced UI Components */
+.cyber-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: var(--radius-md);
+    color: var(--txt-main);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.cyber-input:focus {
+    border-color: var(--cyber-glow);
+    box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Improved Glassmorphism Effects */
+.glass-panel {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    box-shadow: 
+        0 8px 32px rgba(31, 38, 135, 0.37),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced Task Cards */
+.task-card-cyber {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(15px) saturate(160%);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+}
+
+.task-card-cyber::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyber-glow), transparent);
+    transition: all 0.3s ease;
+}
+
+.task-card-cyber:hover::before {
+    animation: data-stream 2s ease-in-out infinite;
+}
+
+.task-card-cyber:hover {
+    border-color: var(--cyber-glow);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.3),
+        0 8px 32px rgba(31, 38, 135, 0.37);
+    transform: translateY(-4px) scale(1.02);
+}
+
+/* Status Indicators with Cyber Style */
+.status-cyber {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--s-1) var(--s-3);
+    border-radius: var(--radius-pill);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    color: var(--cyber-glow);
+}
+
+.status-cyber.active {
+    background: rgba(0, 255, 136, 0.1);
+    border-color: rgba(0, 255, 136, 0.3);
+    color: var(--g-end);
+}
+
+.status-cyber.processing {
+    background: rgba(255, 0, 128, 0.1);
+    border-color: rgba(255, 0, 128, 0.3);
+    color: var(--g-start);
+    animation: cyber-pulse 2s ease-in-out infinite;
+}
+
+/* Enhanced Dark Mode Improvements */
+[data-theme="dark"] .glass-panel {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .cyber-input {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    color: var(--txt-main-dark);
+}
+
+[data-theme="dark"] .task-card-cyber {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+    .darbot-engine-title {
+        font-size: 2rem;
+    }
+    
+    .cyber-grid-animated {
+        background-size: 16px 16px;
+    }
+    
+    @keyframes grid-shift {
+        0% { background-position: 0 0; }
+        100% { background-position: 16px 16px; }
+    }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+    .cyber-pulse,
+    .gradient-animated,
+    .cyber-grid-animated,
+    .data-stream,
+    .holographic {
+        animation: none;
+    }
+    
+    .neon-border {
+        animation: none;
+        box-shadow: 0 0 5px var(--cyber-glow);
+    }
+}
+
+/* Focus Improvements for Keyboard Navigation */
+.cyber-input:focus,
+.btn-cyber:focus,
+.task-card-cyber:focus {
+    outline: 2px solid var(--cyber-glow);
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .darbot-brand,
+    .darbot-engine-title {
+        -webkit-text-fill-color: var(--txt-main);
+        background: none;
+        color: var(--txt-main);
+    }
+    
+    .cyber-glow,
+    .neon-border {
+        --cyber-glow: #ffffff;
+    }
 }

@@ -1,13 +1,23 @@
 import logging
 import os
-from azure.monitor.events.extension import track_event
+
+# Thought into existence by Darbot - Fix Azure Monitor import issue
+try:
+    # Try importing from azure-monitor-opentelemetry-exporter 
+    from azure.monitor.opentelemetry.exporter import AzureMonitorTraceExporter
+    from opentelemetry import trace
+    from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
+    AZURE_MONITOR_AVAILABLE = True
+except ImportError:
+    AZURE_MONITOR_AVAILABLE = False
+    logging.warning("Azure Monitor OpenTelemetry exporter not available")
 
 
 def track_event_if_configured(event_name: str, event_data: dict):
     """Track an event if Application Insights is configured.
 
-    This function safely wraps the Azure Monitor track_event function
-    to handle potential errors with the ProxyLogger.
+    This function safely wraps Azure Monitor functionality to track events.
+    Falls back gracefully if Azure Monitor is not available.
 
     Args:
         event_name: The name of the event to track
@@ -15,15 +25,18 @@ def track_event_if_configured(event_name: str, event_data: dict):
     """
     try:
         instrumentation_key = os.getenv("APPLICATIONINSIGHTS_CONNECTION_STRING")
-        if instrumentation_key:
-            track_event(event_name, event_data)
+        if instrumentation_key and AZURE_MONITOR_AVAILABLE:
+            # Use OpenTelemetry to track events
+            tracer = trace.get_tracer(__name__)
+            with tracer.start_as_current_span(event_name) as span:
+                for key, value in event_data.items():
+                    span.set_attribute(key, str(value))
+                logging.info(f"Tracked event: {event_name} with data: {event_data}")
         else:
-            logging.warning(
-                f"Skipping track_event for {event_name} as Application Insights is not configured"
-            )
-    except AttributeError as e:
-        # Handle the 'ProxyLogger' object has no attribute 'resource' error
-        logging.warning(f"ProxyLogger error in track_event: {e}")
+            # Just log the event if Azure Monitor is not configured or available
+            logging.info(f"Event tracking (not configured): {event_name} - {event_data}")
     except Exception as e:
-        # Catch any other exceptions to prevent them from bubbling up
+        # Catch any exceptions to prevent them from bubbling up
         logging.warning(f"Error in track_event: {e}")
+        # Still log the event for debugging
+        logging.info(f"Event (fallback): {event_name} - {event_data}")

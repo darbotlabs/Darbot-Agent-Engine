@@ -38,12 +38,14 @@ class AppConfig:
         self.AZURE_OPENAI_ENDPOINT = self._get_required("AZURE_OPENAI_ENDPOINT")
         self.AZURE_OPENAI_SCOPES = [
             f"{self._get_optional('AZURE_OPENAI_SCOPE', 'https://cognitiveservices.azure.com/.default')}"
-        ]
-
-        # Frontend settings
+        ]        # Frontend settings
         self.FRONTEND_SITE_NAME = self._get_optional(
             "FRONTEND_SITE_NAME", "http://127.0.0.1:3000"
         )
+        
+        # Backend server settings - Thought into existence by Darbot
+        self.BACKEND_HOST = self._get_optional("BACKEND_HOST", "0.0.0.0")
+        self.BACKEND_PORT = int(self._get_optional("BACKEND_PORT", "8001"))
 
         # Azure AI settings
         self.AZURE_AI_SUBSCRIPTION_ID = self._get_required("AZURE_AI_SUBSCRIPTION_ID")
@@ -51,14 +53,12 @@ class AppConfig:
         self.AZURE_AI_PROJECT_NAME = self._get_required("AZURE_AI_PROJECT_NAME")
         self.AZURE_AI_AGENT_PROJECT_CONNECTION_STRING = self._get_required(
             "AZURE_AI_AGENT_PROJECT_CONNECTION_STRING"
-        )
-
-        # Cached clients and resources
+        )        # Cached clients and resources
         self._azure_credentials = None
         self._cosmos_client = None
         self._cosmos_database = None
         self._ai_project_client = None
-
+        
     def _get_required(self, name: str, default: Optional[str] = None) -> str:
         """Get a required configuration value from environment variables.
 
@@ -72,6 +72,10 @@ class AppConfig:
         Raises:
             ValueError: If the environment variable is not found and no default is provided
         """
+        # Thought into existence by Darbot
+        # Check if we're using local memory for development
+        use_local_memory = os.environ.get("USE_LOCAL_MEMORY", "").lower() == "true"
+        
         if name in os.environ:
             return os.environ[name]
         if default is not None:
@@ -79,6 +83,25 @@ class AppConfig:
                 "Environment variable %s not found, using default value", name
             )
             return default
+        # For local development with USE_LOCAL_MEMORY=True, provide mock values
+        if use_local_memory:
+            # Provide mock values for required variables in local development
+            mock_values = {
+                "AZURE_OPENAI_ENDPOINT": "https://mockendpoint.openai.azure.com/",
+                "AZURE_OPENAI_API_KEY": "mock-key-for-testing-only",
+                "AZURE_OPENAI_DEPLOYMENT_NAME": "gpt-35-turbo",
+                "AZURE_OPENAI_API_VERSION": "2023-05-15",
+                "AZURE_AI_SUBSCRIPTION_ID": "00000000-0000-0000-0000-000000000000",
+                "AZURE_AI_RESOURCE_GROUP": "mockgroup",
+                "AZURE_AI_PROJECT_NAME": "mockproject",
+                "AZURE_AI_AGENT_PROJECT_CONNECTION_STRING": "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://mock.applicationinsights.azure.com/"
+            }
+            if name in mock_values:
+                logging.warning(
+                    f"Environment variable {name} not found, using mock value for local development"
+                )
+                return mock_values[name]
+                
         raise ValueError(
             f"Environment variable {name} not found and no default provided"
         )

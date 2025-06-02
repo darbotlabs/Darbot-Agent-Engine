@@ -239,7 +239,7 @@
   const fetchPlanDetails = async (session_id) => {
     const headers = await window.headers;
 
-    return fetch(apiEndpoint + "/plans?session_id=" + session_id, {
+    return fetch(apiEndpoint + "/api/plans?session_id=" + session_id, {
       method: "GET",
       headers: headers,
     })
@@ -288,7 +288,7 @@
 
   const fetchTaskStages = (task) => {
     window.headers.then((headers) => {
-      fetch(apiEndpoint + "/steps/" + task.id, {
+      fetch(apiEndpoint + "/api/steps/" + task.id, {
         method: "GET",
         headers: headers,
       })
@@ -420,7 +420,7 @@
 
   const fetchTaskMessages = (task) => {
     window.headers.then((headers) => {
-      fetch(apiEndpoint + "/agent_messages/" + task.session_id, {
+      fetch(apiEndpoint + "/api/agent_messages/" + task.session_id, {
         method: "GET",
         headers: headers,
       })
@@ -690,7 +690,7 @@
     });
 
     window.headers.then((headers) => {
-      fetch(apiEndpoint + "/approve_step_or_steps", {
+      fetch(apiEndpoint + "/api/approve_step_or_steps", {
         method: "POST",
         headers: headers,
         body: JSON.stringify({
@@ -728,10 +728,8 @@
 
     // document.querySelectorAll('.menu-stage-actions').forEach(element => {
     //     element.style.display = 'none';
-    // });
-
-    window.headers.then((headers) => {
-      fetch(apiEndpoint + "/approve_step_or_steps", {
+    // });    window.headers.then((headers) => {
+      fetch(apiEndpoint + "/api/approve_step_or_steps", {
         method: "POST",
         headers: headers,
         body: JSON.stringify({
@@ -838,7 +836,7 @@
         });
 
         window.headers.then((headers) => {
-          fetch(apiEndpoint + "/human_clarification_on_plan", {
+          fetch(apiEndpoint + "/api/human_clarification_on_plan", {
             method: "POST",
             headers: headers,
             body: JSON.stringify({

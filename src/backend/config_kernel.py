@@ -1,5 +1,5 @@
 # Import AppConfig from app_config
-from backend.app_config import config
+from backend.app_config import config  # Thought into existence by Darbot
 
 
 # This file is left as a lightweight wrapper around AppConfig for backward compatibility

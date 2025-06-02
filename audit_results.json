@@ -1,0 +1,47 @@
+{
+  "timestamp": "2025-06-01T16:17:59.175Z",
+  "summary": {
+    "frontend": "pass",
+    "themeToggle": "fail",
+    "navigation": "unknown",
+    "taskCreation": "unknown",
+    "errorCount": 1
+  },
+  "details": {
+    "frontend": {
+      "status": "pass",
+      "tests": [
+        {
+          "name": "Page Load",
+          "status": "pass",
+          "details": "Title: Directory listing for /"
+        }
+      ]
+    },
+    "themeToggle": {
+      "status": "fail",
+      "tests": [
+        {
+          "name": "Theme Toggle Visibility",
+          "status": "fail",
+          "details": "Theme toggle not found"
+        }
+      ]
+    },
+    "navigation": {
+      "status": "unknown",
+      "tests": []
+    },
+    "taskCreation": {
+      "status": "unknown",
+      "tests": []
+    },
+    "errors": [
+      {
+        "type": "console_error",
+        "message": "Failed to load resource: the server responded with a status of 404 (File not found)",
+        "timestamp": "2025-06-01T16:17:53.499Z"
+      }
+    ]
+  }
+}

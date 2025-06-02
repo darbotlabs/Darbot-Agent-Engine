@@ -28,8 +28,28 @@ def get_authenticated_user_details(request_headers):
         "x-ms-client-principal"
     )
     user_object["aad_id_token"] = normalized_headers.get("x-ms-token-aad-id-token")
+    # Extract user roles from claims if present
+    user_object["roles"] = []
+    if user_object["client_principal_b64"]:
+        try:
+            import base64, json
 
+            decoded = base64.b64decode(user_object["client_principal_b64"])
+            claims = json.loads(decoded)
+            # Azure Static Web Apps puts roles in 'roles' or 'userRoles'
+            user_object["roles"] = claims.get("roles") or claims.get("userRoles") or []
+        except Exception as ex:  # nosec B110
+            logging.warning("Failed to decode user roles from client principal: %s", ex)
     return user_object
+
+
+# RBAC utility: check if user has a required role
+def user_has_role(user_object, required_roles):
+    """Return True if user has any of the required roles."""
+    user_roles = user_object.get("roles") or []
+    if isinstance(required_roles, str):
+        required_roles = [required_roles]
+    return any(role in user_roles for role in required_roles)
 
 
 def get_tenantid(client_principal_b64):

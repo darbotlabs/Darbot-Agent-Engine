@@ -1,0 +1,92 @@
+[
+  {
+    "timestamp": "2025-06-02T05:12:31.694Z",
+    "type": "log",
+    "text": "Running locally. Skipping authentication details fetch."
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.695Z",
+    "type": "log",
+    "text": "fetchTasksIfNeeded called"
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.695Z",
+    "type": "log",
+    "text": "API endpoint for plans: http://localhost:8001/plans"
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.696Z",
+    "type": "log",
+    "text": "Switching view to: home"
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.696Z",
+    "type": "log",
+    "text": "Iframe src set to: http://localhost:3000/home/home.html?nocache=1748841151700"
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.697Z",
+    "type": "log",
+    "text": "Headers resolved, making fetch request"
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.697Z",
+    "type": "log",
+    "text": "fetchTasksIfNeeded called"
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.698Z",
+    "type": "log",
+    "text": "API endpoint for plans: http://localhost:8001/plans"
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.698Z",
+    "type": "log",
+    "text": "Headers resolved, making fetch request"
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.768Z",
+    "type": "log",
+    "text": "Running locally. Skipping authentication details fetch."
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.770Z",
+    "type": "log",
+    "text": "Home page loaded, API endpoint: http://localhost:8001"
+  },
+  {
+    "timestamp": "2025-06-02T05:12:31.770Z",
+    "type": "log",
+    "text": "Using API endpoint: http://localhost:8001"
+  },
+  {
+    "timestamp": "2025-06-02T05:12:32.028Z",
+    "type": "error",
+    "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  },
+  {
+    "timestamp": "2025-06-02T05:12:32.029Z",
+    "type": "log",
+    "text": "Fetch response received: 404 Not Found"
+  },
+  {
+    "timestamp": "2025-06-02T05:12:32.029Z",
+    "type": "error",
+    "text": "Error fetching tasks: Error: HTTP error! status: 404\n    at http://localhost:3000/app.js:152:35"
+  },
+  {
+    "timestamp": "2025-06-02T05:12:32.029Z",
+    "type": "error",
+    "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  },
+  {
+    "timestamp": "2025-06-02T05:12:32.029Z",
+    "type": "log",
+    "text": "Fetch response received: 404 Not Found"
+  },
+  {
+    "timestamp": "2025-06-02T05:12:32.030Z",
+    "type": "error",
+    "text": "Error fetching tasks: Error: HTTP error! status: 404\n    at http://localhost:3000/app.js:152:35"
+  }
+]

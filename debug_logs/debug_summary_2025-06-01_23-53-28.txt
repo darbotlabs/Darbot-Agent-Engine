@@ -1,0 +1,8 @@
+Debug Summary Report - 2025-06-01_23-53-28
+===================================
+
+Backend Errors: 2
+Top 10 backend errors:
+    raise ValueError(
+ValueError: Environment variable AZURE_AI_AGENT_PROJECT_CONNECTION_STRING not found and no default provided
+Frontend Errors: 0

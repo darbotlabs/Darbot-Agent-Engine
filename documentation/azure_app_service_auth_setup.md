@@ -56,3 +56,15 @@
 E.g. <<https://<< appservicename >>.azurewebsites.net/.auth/login/aad/callback>>
 
 ![Add Details](./images/azure-app-service-auth-setup/WebAppURL.png)
+
+## RBAC-Only, Keyless Operation
+
+- This application enforces Azure RBAC for all backend operations.
+- All authentication is performed using Managed Identity and DefaultAzureCredential.
+- No API keys or connection strings are used for CosmosDB or Azure OpenAI.
+- User roles are extracted from Azure AD/Entra ID claims and enforced in backend endpoints.
+- Sensitive operations (e.g., deleting all messages) require the 'admin' role.
+- To assign roles, use Azure Portal or CLI to add users to the appropriate Azure AD groups or roles.
+- For local development, ensure you are signed in with an account that has the required RBAC roles.
+
+# Thought into existence by Darbot

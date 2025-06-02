@@ -18,10 +18,10 @@
         </div>
         <section class="section is-flex is-flex-direction-column is-justify-content-center prompt-container">
             <img class="app-logo" src="../assets/app-logo.svg">
-            <span class="title mb-0"> Task list <span class="assistants"> Assistants</span>  </span>
-            <span class="description mt-0">Ask your AI team for help</span>
-            <div class="text-input-container">
-                <textarea id="newTaskPrompt" maxlength="1000" placeholder="Describe what needs to be done..."></textarea>
+            <span class="title mb-0 darbot-engine-title"> Darbot Engine <span class="assistants"> API</span>  </span>
+            <span class="description mt-0 darbot-tagline">Thought into existence by Darbot - Multi-agent automation platform</span>
+            <div class="text-input-container glass-panel">
+                <textarea id="newTaskPrompt" maxlength="1000" placeholder="Describe what needs to be done..." class="cyber-input"></textarea>
                 <div class="middle-bar">
                   <span class="char-count"><span id="charCount">0</span>/1000</span>
                 </div>
@@ -39,7 +39,7 @@
             <h2 class="title has-text-centered">Quick tasks</h2>
             <div class="columns">
                 <div class="column">
-                    <div class="card is-hoverable quick-task">
+                    <div class="card is-hoverable quick-task task-card-cyber">
                         <div class="card-content">
                             <i class="fa-solid fa-list-check has-text-info mb-3"></i><br />
                             <strong>Mobile plan query</strong>
@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="column">
-                    <div class="card is-hoverable quick-task">
+                    <div class="card is-hoverable quick-task task-card-cyber">
                         <div class="card-content">
                             <i class="fa-solid fa-list-check has-text-info mb-3"></i><br />
                             <strong>Buy add-on pack</strong>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="column">
-                    <div class="card is-hoverable quick-task">
+                    <div class="card is-hoverable quick-task task-card-cyber">
                         <div class="card-content">
                             <i class="fa-solid fa-list-check has-text-info mb-3"></i><br />
                             <strong>Onboard employee</strong>
@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="column">
-                    <div class="card is-hoverable quick-task">
+                    <div class="card is-hoverable quick-task task-card-cyber">
                         <div class="card-content">
                             <i class="fa-solid fa-list-check has-text-info mb-3"></i><br />
                             <strong>Draft a press release</strong>
@@ -77,7 +77,8 @@
                 </div>
         </section>
     </div>
-    </div>
+    <!-- Thought into existence by Darbot -->
+    <!-- Theme toggle removed - now positioned in main sidebar -->
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <script src="../utils.js"></script>
     <script src="../app.js"></script>

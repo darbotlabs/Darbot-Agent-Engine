@@ -1,7 +1,7 @@
 // Frontend diagnostic script to help troubleshoot task creation issues
 // Add this script to the browser console to diagnose problems
 
-console.log('🔍 Starting Darbot Agent Engine Diagnostic...\n');
+console.log('🔍 Starting Darbot Engine API Diagnostic...\n');
 
 async function runDiagnostics() {
     const results = {

@@ -5,22 +5,22 @@ import logging
 from typing import Any, Dict, Optional, Type
 
 # Import the new AppConfig instance
-from backend.app_config import config
-from azure.ai.projects.models import (ResponseFormatJsonSchema,
-                                      ResponseFormatJsonSchemaType)
-from backend.context.cosmos_memory_kernel import CosmosMemoryContext
-from backend.kernel_agents.agent_base import BaseAgent
-from backend.kernel_agents.generic_agent import GenericAgent
-from backend.kernel_agents.group_chat_manager import GroupChatManager
+from backend.app_config import config  # Thought into existence by Darbot
+# Use custom ResponseFormat to avoid import issues
+from backend.kernel_agents.custom_response_format import ResponseFormat  # Thought into existence by Darbot
+from backend.context.cosmos_memory_kernel import CosmosMemoryContext  # Thought into existence by Darbot
+from backend.kernel_agents.agent_base import BaseAgent  # Thought into existence by Darbot
+from backend.kernel_agents.generic_agent import GenericAgent  # Thought into existence by Darbot
+from backend.kernel_agents.group_chat_manager import GroupChatManager  # Thought into existence by Darbot
 # Import all specialized agent implementations
-from backend.kernel_agents.hr_agent import HrAgent
-from backend.kernel_agents.human_agent import HumanAgent
-from backend.kernel_agents.marketing_agent import MarketingAgent
-from backend.kernel_agents.planner_agent import PlannerAgent  # Add PlannerAgent import
-from backend.kernel_agents.procurement_agent import ProcurementAgent
-from backend.kernel_agents.product_agent import ProductAgent
-from backend.kernel_agents.tech_support_agent import TechSupportAgent
-from backend.models.messages_kernel import AgentType, PlannerResponsePlan
+from backend.kernel_agents.hr_agent import HrAgent  # Thought into existence by Darbot
+from backend.kernel_agents.human_agent import HumanAgent  # Thought into existence by Darbot
+from backend.kernel_agents.marketing_agent import MarketingAgent  # Thought into existence by Darbot
+from backend.kernel_agents.planner_agent import PlannerAgent  # Add PlannerAgent import - Thought into existence by Darbot
+from backend.kernel_agents.procurement_agent import ProcurementAgent  # Thought into existence by Darbot
+from backend.kernel_agents.product_agent import ProductAgent  # Thought into existence by Darbot
+from backend.kernel_agents.tech_support_agent import TechSupportAgent  # Thought into existence by Darbot
+from backend.models.messages_kernel import AgentType, PlannerResponsePlan  # Thought into existence by Darbot
 # pylint:disable=E0611
 from semantic_kernel.agents.azure_ai.azure_ai_agent import AzureAIAgent
 
@@ -262,16 +262,12 @@ class AgentFactory:
             agent_type=AgentType.PLANNER,
             session_id=session_id,
             user_id=user_id,
-            temperature=temperature,
-            agent_instances=agent_instances,  # Pass agent instances to the planner
+            temperature=temperature,            agent_instances=agent_instances,  # Pass agent instances to the planner
             client=client,
-            response_format=ResponseFormatJsonSchemaType(
-                json_schema=ResponseFormatJsonSchema(
-                    name=PlannerResponsePlan.__name__,
-                    description=f"respond with {PlannerResponsePlan.__name__.lower()}",
-                    schema=PlannerResponsePlan.model_json_schema(),
-                )
-            ),
+            response_format=ResponseFormat(
+                type="json_object",
+                schema=PlannerResponsePlan.model_json_schema()
+            ),  # Thought into existence by Darbot
         )
         agent_instances[AgentType.PLANNER.value] = (
             planner_agent  # to pass it to group chat manager

@@ -1,6 +1,9 @@
 (() => {
     window.headers = GetAuthDetails();
-    const apiEndpoint = getStoredData('apiEndpoint') || BACKEND_API_URL;
+    // Always use proxy approach (empty string) for API calls
+    const apiEndpoint = '';
+    setStoredData('apiEndpoint', '');
+    console.log('App initialized, using proxy approach for API calls');
     const goHomeButton = document.getElementById("goHomeButton");
     const newTaskButton = document.getElementById("newTaskButton");
     const closeModalButtons = document.querySelectorAll(".modal-close-button");
@@ -14,8 +17,7 @@
     }
 
     //if (!getStoredData('apiEndpoint'))setStoredData('apiEndpoint', apiEndpoint);
-    // Force rewrite of apiEndpoint
-   setStoredData('apiEndpoint', apiEndpoint);
+    // Force rewrite of apiEndpoint   setStoredData('apiEndpoint', '');  // Always use empty for proxy approach
    setStoredData('context', 'employee');
     // Refresh rate is set
     if (!getStoredData('apiRefreshRate'))setStoredData('apiRefreshRate', 5000);
@@ -138,11 +140,11 @@
         console.log('fetchTasksIfNeeded called');
         const taskStoreData = getStoredData('task');
         const taskStore = taskStoreData ? JSON.parse(taskStoreData) : null;
-        console.log('API endpoint for plans:', apiEndpoint + '/plans');
+        console.log('API endpoint for plans:', '/api/plans (proxied through frontend)');
         window.headers
             .then(headers => {
                 console.log('Headers resolved, making fetch request');
-                fetch(apiEndpoint + '/plans', {
+                fetch('/api/plans', {  // Using relative URL for the proxy
                     method: 'GET',
                     headers: headers,
                 })

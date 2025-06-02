@@ -1,0 +1,157 @@
+{
+  "timestamp": "2025-06-01T15:51:12.021Z",
+  "summary": {
+    "backend": "pass",
+    "frontend": "pass",
+    "navigation": "pass",
+    "taskCreation": "pass",
+    "totalErrors": 7,
+    "totalTests": 15,
+    "passedTests": 12
+  },
+  "details": {
+    "backend": {
+      "status": "pass",
+      "tests": [
+        {
+          "name": "FastAPI Docs",
+          "status": "pass",
+          "details": "Title: Darbot Agent Engine API - Swagger UI"
+        },
+        {
+          "name": "OpenAPI JSON",
+          "status": "pass",
+          "details": "Status: 200"
+        },
+        {
+          "name": "Health Check",
+          "status": "fail",
+          "details": "HTTP 404: Not Found"
+        },
+        {
+          "name": "Plans Endpoint",
+          "status": "pass",
+          "details": "Status: 200"
+        }
+      ]
+    },
+    "frontend": {
+      "status": "pass",
+      "tests": [
+        {
+          "name": "Element: App Container",
+          "status": "pass",
+          "details": "Selector: #app"
+        },
+        {
+          "name": "Element: Menu Logo",
+          "status": "pass",
+          "details": "Selector: .menu-logo"
+        },
+        {
+          "name": "Element: New Task Button",
+          "status": "pass",
+          "details": "Selector: #newTaskButton"
+        },
+        {
+          "name": "Element: View Iframe",
+          "status": "pass",
+          "details": "Selector: #viewIframe"
+        },
+        {
+          "name": "Page Load",
+          "status": "pass",
+          "details": "Title: Darbot Engine API"
+        },
+        {
+          "name": "Diagnostics",
+          "status": "pass",
+          "details": "{\"apiEndpoint\":\"configured\",\"apiEndpointValue\":\"http://localhost:8001/api\",\"localStorage\":\"working\",\"iframe\":\"found\",\"iframeSrc\":\"http://localhost:3000/home/home.html?nocache=1748793063122\",\"userAgent\":\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36\"}"
+        }
+      ]
+    },
+    "authentication": {
+      "status": "unknown",
+      "tests": []
+    },
+    "taskCreation": {
+      "status": "pass",
+      "tests": [
+        {
+          "name": "Task Creation",
+          "status": "partial",
+          "details": "Task submitted but success notification not detected"
+        },
+        {
+          "name": "Quick Task",
+          "status": "pass",
+          "details": "Quick task populates textarea"
+        },
+        {
+          "name": "Task List",
+          "status": "fail",
+          "details": "No tasks found in sidebar"
+        }
+      ]
+    },
+    "navigation": {
+      "status": "pass",
+      "tests": [
+        {
+          "name": "New Task Navigation",
+          "status": "pass",
+          "details": "Successfully navigated to home"
+        },
+        {
+          "name": "Theme Toggle",
+          "status": "pass",
+          "details": "Theme: dark"
+        }
+      ]
+    },
+    "errors": [
+      {
+        "type": "console_error",
+        "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "timestamp": "2025-06-01T15:50:30.910Z"
+      },
+      {
+        "type": "page_error",
+        "message": "AUTH_ENABLED is not defined",
+        "stack": "ReferenceError: AUTH_ENABLED is not defined\n    at http://localhost:3000/app.js:12:5\n    at http://localhost:3000/app.js:324:3",
+        "timestamp": "2025-06-01T15:50:33.563Z"
+      },
+      {
+        "type": "page_error",
+        "message": "AUTH_ENABLED is not defined",
+        "stack": "ReferenceError: AUTH_ENABLED is not defined\n    at http://localhost:3000/app.js:12:5\n    at http://localhost:3000/app.js:324:3",
+        "timestamp": "2025-06-01T15:50:39.948Z"
+      },
+      {
+        "type": "page_error",
+        "message": "AUTH_ENABLED is not defined",
+        "stack": "ReferenceError: AUTH_ENABLED is not defined\n    at http://localhost:3000/app.js:12:5\n    at http://localhost:3000/app.js:324:3",
+        "timestamp": "2025-06-01T15:50:45.506Z"
+      },
+      {
+        "type": "console_error",
+        "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+        "timestamp": "2025-06-01T15:50:59.145Z"
+      },
+      {
+        "type": "console_error",
+        "message": "Error creating task: Error: HTTP error! status: 400\n    at http://localhost:3000/home/home.js:127:21",
+        "timestamp": "2025-06-01T15:50:59.146Z"
+      },
+      {
+        "type": "page_error",
+        "message": "AUTH_ENABLED is not defined",
+        "stack": "ReferenceError: AUTH_ENABLED is not defined\n    at http://localhost:3000/app.js:12:5\n    at http://localhost:3000/app.js:324:3",
+        "timestamp": "2025-06-01T15:51:03.141Z"
+      }
+    ]
+  },
+  "recommendations": [
+    "7 errors detected. Review console errors and fix JavaScript issues."
+  ]
+}

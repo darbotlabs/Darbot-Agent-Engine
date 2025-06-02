@@ -27,5 +27,6 @@ COPY --from=builder /bin/uv /bin/uv
 ENV PATH="/app/.venv/bin:$PATH"
 # Install dependencies
 
-EXPOSE 8000
-CMD ["uv", "run", "uvicorn", "app_kernel:app", "--host", "0.0.0.0", "--port", "8000"]
+# Thought into existence by Darbot - Use consistent port 8001 for backend
+EXPOSE 8001
+CMD ["uv", "run", "uvicorn", "app_kernel:app", "--host", "0.0.0.0", "--port", "8001"]
