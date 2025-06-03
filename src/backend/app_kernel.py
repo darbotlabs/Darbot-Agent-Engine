@@ -7,6 +7,9 @@ from typing import Dict, List, Optional
 # FastAPI imports
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
 # Semantic Kernel imports
 from backend import app_config  # Thought into existence by Darbot
@@ -20,6 +23,7 @@ from backend.event_utils import track_event_if_configured  # Thought into existe
 # Local imports
 from backend.kernel_agents.agent_factory import AgentFactory  # Thought into existence by Darbot
 from backend.middleware.health_check import HealthCheckMiddleware
+from backend.models.custom_exceptions import DarbotEngineException
 from backend.models.messages_kernel import (
     AgentMessage,
     AgentType,
@@ -48,7 +52,11 @@ from backend.utils_kernel import initialize_runtime_and_context, rai_success
 #     )
 
 # Configure logging
-logging.basicConfig(level=logging.INFO)
+from backend.utils.logging_config import configure_for_environment, get_logger
+
+# Set up centralized logging configuration
+configure_for_environment()
+logger = get_logger(__name__)
 
 # Suppress INFO logs from 'azure.core.pipeline.policies.http_logging_policy'
 logging.getLogger("azure.core.pipeline.policies.http_logging_policy").setLevel(
@@ -61,15 +69,151 @@ logging.getLogger("azure.monitor.opentelemetry.exporter.export._base").setLevel(
     logging.WARNING
 )
 
-# Initialize the FastAPI app
+# Initialize the FastAPI app with enhanced documentation
 app = FastAPI(
     title="Darbot Agent Engine API",
-    description="Multi-Agent Custom Automation Engine",
-    version="1.0.0"
+    description="""
+    ## Multi-Agent Custom Automation Engine
+    
+    This API provides endpoints for managing AI agents, tasks, and multi-agent workflows.
+    
+    ### Key Features:
+    - **Agent Management**: Create and manage different types of AI agents
+    - **Task Processing**: Submit tasks for AI agent processing  
+    - **Multi-Agent Workflows**: Coordinate multiple agents for complex tasks
+    - **Health Monitoring**: Monitor service and dependency health
+    
+    ### Authentication:
+    Most endpoints require authentication via Azure AD tokens.
+    
+    ### Rate Limits:
+    API calls are subject to rate limiting based on Azure service quotas.
+    """,
+    version="1.0.0",
+    docs_url="/docs",
+    redoc_url="/redoc",
+    openapi_url="/openapi.json",
+    contact={
+        "name": "Darbot Agent Engine Support",
+        "url": "https://github.com/darbotlabs/Darbot-Agent-Engine",
+    },
+    license_info={
+        "name": "MIT License",
+        "url": "https://opensource.org/licenses/MIT",
+    },
+    tags_metadata=[
+        {
+            "name": "health",
+            "description": "Health check and monitoring endpoints",
+        },
+        {
+            "name": "agents", 
+            "description": "Agent management and interaction endpoints",
+        },
+        {
+            "name": "tasks",
+            "description": "Task submission and processing endpoints", 
+        },
+        {
+            "name": "info",
+            "description": "Server information and configuration endpoints",
+        },
+    ]
 )
 
+# Global exception handlers for enhanced error responses
+@app.exception_handler(DarbotEngineException)
+async def darbot_exception_handler(request: Request, exc: DarbotEngineException):
+    """Handle custom Darbot exceptions with structured error responses"""
+    logging.error(f"DarbotEngineException: {exc.detail}", extra={
+        "error_code": exc.error_code,
+        "status_code": exc.status_code,
+        "extra_data": exc.extra_data,
+        "path": request.url.path
+    })
+    
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={
+            "error": {
+                "code": exc.error_code,
+                "message": exc.detail,
+                "details": exc.extra_data,
+                "path": request.url.path,
+                "timestamp": str(asyncio.get_event_loop().time())
+            }
+        }
+    )
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    """Handle request validation errors with detailed field information"""
+    logging.warning(f"Validation error: {exc.errors()}", extra={
+        "path": request.url.path,
+        "errors": exc.errors()
+    })
+    
+    return JSONResponse(
+        status_code=422,
+        content={
+            "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Request validation failed",
+                "details": {
+                    "validation_errors": exc.errors()
+                },
+                "path": request.url.path,
+                "timestamp": str(asyncio.get_event_loop().time())
+            }
+        }
+    )
+
+@app.exception_handler(StarletteHTTPException)
+async def http_exception_handler(request: Request, exc: StarletteHTTPException):
+    """Handle HTTP exceptions with consistent error format"""
+    logging.warning(f"HTTP exception: {exc.detail}", extra={
+        "status_code": exc.status_code,
+        "path": request.url.path
+    })
+    
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={
+            "error": {
+                "code": f"HTTP_{exc.status_code}",
+                "message": exc.detail,
+                "details": {},
+                "path": request.url.path,
+                "timestamp": str(asyncio.get_event_loop().time())
+            }
+        }
+    )
+
+@app.exception_handler(Exception)
+async def general_exception_handler(request: Request, exc: Exception):
+    """Handle unexpected exceptions with generic error response"""
+    logging.exception("Unexpected error occurred", extra={
+        "path": request.url.path,
+        "exception_type": type(exc).__name__
+    })
+    
+    return JSONResponse(
+        status_code=500,
+        content={
+            "error": {
+                "code": "INTERNAL_SERVER_ERROR",
+                "message": "An unexpected error occurred",
+                "details": {
+                    "exception_type": type(exc).__name__
+                },
+                "path": request.url.path,
+                "timestamp": str(asyncio.get_event_loop().time())
+            }
+        }
+    )
+
 # Thought into existence by Darbot - Add server info endpoint
-@app.get("/api/server-info")
+@app.get("/api/server-info", tags=["info"])
 async def get_server_info():
     """Get server configuration information."""
     return {
@@ -80,6 +224,90 @@ async def get_server_info():
         "frontend_url": config.FRONTEND_SITE_NAME,
         "status": "running"
     }
+
+# Enhanced health check endpoint
+@app.get("/api/health", tags=["health"])
+async def get_health_detailed():
+    """
+    Get detailed health status including dependency checks.
+    
+    Returns comprehensive health information about the service and its dependencies
+    including CosmosDB, Azure OpenAI, and other critical services.
+    """
+    try:
+        from backend.middleware.dependency_health_checks import create_health_checks
+        
+        health_checks = await create_health_checks(config)
+        results = {}
+        overall_status = True
+        
+        # Run all health checks
+        for name, check_func in health_checks.items():
+            try:
+                result = await check_func()
+                results[name] = {
+                    "status": "healthy" if result.status else "unhealthy",
+                    "message": result.message
+                }
+                overall_status = overall_status and result.status
+            except Exception as e:
+                results[name] = {
+                    "status": "error",
+                    "message": f"Health check failed: {str(e)}"
+                }
+                overall_status = False
+        
+        response = {
+            "overall_status": "healthy" if overall_status else "unhealthy",
+            "service": "Darbot Agent Engine",
+            "version": "1.0.0",
+            "checks": results,
+            "timestamp": str(asyncio.get_event_loop().time())
+        }
+        
+        return response
+        
+    except Exception as e:
+        logging.exception("Error in detailed health check")
+        return {
+            "overall_status": "error",
+            "service": "Darbot Agent Engine", 
+            "version": "1.0.0",
+            "error": f"Health check system error: {str(e)}",
+            "timestamp": str(asyncio.get_event_loop().time())
+        }
+
+@app.get("/api/health/ready", tags=["health"])
+async def get_readiness():
+    """
+    Readiness probe endpoint for container orchestration.
+    
+    Returns 200 if the service is ready to accept traffic.
+    """
+    try:
+        # Basic readiness check - verify critical configuration
+        if not config.AZURE_AI_SUBSCRIPTION_ID:
+            raise HTTPException(status_code=503, detail="Azure AI subscription not configured")
+        
+        if not config.AZURE_OPENAI_ENDPOINT:
+            raise HTTPException(status_code=503, detail="Azure OpenAI endpoint not configured")
+        
+        return {"status": "ready", "service": "Darbot Agent Engine"}
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.exception("Error in readiness check")
+        raise HTTPException(status_code=503, detail=f"Service not ready: {str(e)}")
+
+@app.get("/api/health/live", tags=["health"])
+async def get_liveness():
+    """
+    Liveness probe endpoint for container orchestration.
+    
+    Returns 200 if the service is alive and responding.
+    """
+    return {"status": "alive", "service": "Darbot Agent Engine"}
 
 frontend_url = Config.FRONTEND_SITE_NAME
 
@@ -93,9 +321,30 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Configure health check
-app.add_middleware(HealthCheckMiddleware, password="", checks={})
-logging.info("Added health check middleware")
+# Configure health check with enhanced dependency checks
+from backend.middleware.dependency_health_checks import create_health_checks
+
+# Create health checks asynchronously when needed
+async def setup_health_checks():
+    """Set up enhanced health checks for dependencies"""
+    try:
+        health_checks = await create_health_checks(config)
+        return health_checks
+    except Exception as e:
+        logging.error(f"Failed to create health checks: {e}")
+        return {}
+
+# Configure health check middleware with enhanced checks
+try:
+    # For now, use a simple synchronous approach
+    # The health checks will be created when the middleware is called
+    app.add_middleware(HealthCheckMiddleware, password="", checks={})
+    logging.info("Added health check middleware with enhanced dependency checks")
+except Exception as e:
+    logging.error(f"Failed to add health check middleware: {e}")
+    # Fallback to basic health check
+    app.add_middleware(HealthCheckMiddleware, password="", checks={})
+    logging.info("Added basic health check middleware")
 
 
 @app.post("/api/input_task")

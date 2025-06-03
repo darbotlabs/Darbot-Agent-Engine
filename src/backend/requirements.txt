@@ -21,7 +21,13 @@ azure-ai-inference==1.0.0b9
 azure-search-documents 
 azure-ai-evaluation==1.6.0  # Thought into existence by Darbot
 
-opentelemetry-exporter-otlp-proto-grpc
+# Security vulnerability fixes
+certifi>=2024.7.4  # Fix for PYSEC-2024-230
+requests>=2.32.0   # Fix for GHSA-9wx4-h78v-vm56
+urllib3>=2.2.2     # Fix for GHSA-34jh-p97f-mpxf
+idna>=3.7          # Fix for PYSEC-2024-60
+configobj>=5.0.9   # Fix for GHSA-c33w-24p9-8m24
+setuptools>=78.1.1 # Fix for GHSA-5rjg-fvgr-3xxf
 
 # Testing tools
 pytest>=8.2,<9  # Compatible version for pytest-asyncio
