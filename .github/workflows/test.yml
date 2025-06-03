@@ -1,4 +1,4 @@
-name: Test Workflow with Coverage
+name: Test Workflow with Coverage and Security
 
 on:
   push:
@@ -14,7 +14,6 @@ on:
       - reopened
       - synchronize
     branches:
-      - main
       - main
       - dev
       - demo
@@ -38,6 +37,19 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r src/backend/requirements.txt
 
+      - name: Security audit with pip-audit
+        run: |
+          pip install pip-audit
+          pip-audit --format=json --output=security-report.json --desc || echo "Security issues found, check report"
+        continue-on-error: true
+
+      - name: Upload security report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: security-report
+          path: security-report.json
+
       - name: Check if test files exist
         id: check_tests
         run: |
@@ -48,12 +60,51 @@ jobs:
             echo "Test files found, running tests."
             echo "skip_tests=false" >> $GITHUB_ENV
           fi
+          
       - name: Run tests with coverage
         if: env.skip_tests == 'false'
         run: |
+          cd src/backend
+          # Set up test environment variables
+          export PYTHONPATH=/home/runner/work/Darbot-Agent-Engine/Darbot-Agent-Engine/src
+          export AZURE_AI_SUBSCRIPTION_ID=test-subscription-id
+          export AZURE_AI_RESOURCE_GROUP=test-resource-group
+          export AZURE_AI_PROJECT_NAME=test-project
+          export AZURE_AI_AGENT_PROJECT_CONNECTION_STRING=test-connection-string
+          export AZURE_OPENAI_ENDPOINT=https://test-endpoint.openai.azure.com/
+          export AZURE_OPENAI_DEPLOYMENT_NAME=test-deployment
+          export AZURE_OPENAI_API_VERSION=2024-11-20
+          export COSMOSDB_ENDPOINT=https://test-cosmos.documents.azure.com:443/
+          export COSMOSDB_KEY=test-key
+          export COSMOSDB_DATABASE=test-database
+          export COSMOSDB_CONTAINER=test-container
+          export APPLICATIONINSIGHTS_CONNECTION_STRING=InstrumentationKey=test-key;IngestionEndpoint=https://test-endpoint
+          
           pytest --cov=. --cov-report=term-missing --cov-report=xml
           
       - name: Skip coverage report if no tests
         if: env.skip_tests == 'true'
         run: |
           echo "Skipping coverage report because no tests were found."
+
+      - name: Comment security findings on PR
+        uses: actions/github-script@v6
+        if: github.event_name == 'pull_request' && always()
+        with:
+          script: |
+            const fs = require('fs');
+            try {
+              const report = JSON.parse(fs.readFileSync('security-report.json', 'utf8'));
+              if (report.vulnerabilities && report.vulnerabilities.length > 0) {
+                const vulnCount = report.vulnerabilities.length;
+                const comment = `🔒 **Security Audit Results**\n\nFound ${vulnCount} security vulnerability/vulnerabilities in dependencies.\n\nPlease review the security report artifact for details.`;
+                github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: comment
+                });
+              }
+            } catch (error) {
+              console.log('No security report found or failed to parse');
+            }
