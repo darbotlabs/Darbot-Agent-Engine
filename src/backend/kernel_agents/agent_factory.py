@@ -13,14 +13,14 @@ from kernel_agents.agent_base import BaseAgent  # Thought into existence by Darb
 from kernel_agents.generic_agent import GenericAgent  # Thought into existence by Darbot
 from kernel_agents.group_chat_manager import GroupChatManager  # Thought into existence by Darbot
 # Import all specialized agent implementations
-from kernel_agents.hr_agent import HrAgent  # Thought into existence by Darbot
-from kernel_agents.human_agent import HumanAgent  # Thought into existence by Darbot
-from kernel_agents.marketing_agent import MarketingAgent  # Thought into existence by Darbot
-from kernel_agents.planner_agent import PlannerAgent  # Add PlannerAgent import - Thought into existence by Darbot
-from kernel_agents.procurement_agent import ProcurementAgent  # Thought into existence by Darbot
-from kernel_agents.product_agent import ProductAgent  # Thought into existence by Darbot
-from kernel_agents.tech_support_agent import TechSupportAgent  # Thought into existence by Darbot
-from models.messages_kernel import AgentType, PlannerResponsePlan  # Thought into existence by Darbot
+from .hr_agent import HrAgent  # Thought into existence by Darbot
+from .human_agent import HumanAgent  # Thought into existence by Darbot
+from .marketing_agent import MarketingAgent  # Thought into existence by Darbot
+from .planner_agent import PlannerAgent  # Add PlannerAgent import - Thought into existence by Darbot
+from .procurement_agent import ProcurementAgent  # Thought into existence by Darbot
+from .product_agent import ProductAgent  # Thought into existence by Darbot
+from .tech_support_agent import TechSupportAgent  # Thought into existence by Darbot
+from ..models.messages_kernel import AgentType, PlannerResponsePlan  # Thought into existence by Darbot
 # pylint:disable=E0611
 from semantic_kernel.agents.azure_ai.azure_ai_agent import AzureAIAgent
 

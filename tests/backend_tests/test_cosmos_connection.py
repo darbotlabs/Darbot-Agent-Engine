@@ -4,13 +4,13 @@ import logging
 import sys
 import os
 
-# Add the src directory to the Python path
+# Add the src/backend directory to the Python path
 project_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-src_path = os.path.join(project_root, 'src')
-sys.path.insert(0, src_path)
+backend_path = os.path.join(project_root, 'src', 'backend')
+sys.path.insert(0, backend_path)
 
-from backend.context.cosmos_memory_kernel import CosmosMemoryContext
-from backend.models.messages_kernel import Session
+from context.cosmos_memory_kernel import CosmosMemoryContext
+from models.messages_kernel import Session
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)

@@ -9,7 +9,8 @@ param (
     [Parameter(Mandatory = $false)]
     [switch]$SkipBrowserOpen = $false,
     [Parameter(Mandatory = $false)]
-    [string]$EnvFile = "d:\0GH_PROD\Darbot-Agent-Engine\.env"
+    # Default to production .env
+    [string]$EnvFile = "g:\Github\darbotlabs\Darbot-Agent-Engine\src\backend\.env"
 )
 
 function Load-DotEnv {
@@ -31,10 +32,43 @@ function Load-DotEnv {
     }
 }
 
+function Check-RequiredEnvVars {
+    param([string[]]$RequiredVars)
+    $missing = @()
+    foreach ($var in $RequiredVars) {
+        if (-not [System.Environment]::GetEnvironmentVariable($var, "Process")) {
+            $missing += $var
+        }
+    }
+    if ($missing.Count -gt 0) {
+        Write-Host "❌ Missing required production environment variables:" -ForegroundColor Red
+        $missing | ForEach-Object { Write-Host "  - $_" -ForegroundColor Red }
+        exit 1
+    }
+}
+
+# Warn if using local dev .env
+if ($EnvFile -eq "g:\Github\darbotlabs\Darbot-Agent-Engine\.env") {
+    Write-Host "⚠️  WARNING: You are using the local development .env file. For production, use src/backend/.env or a secure production config!" -ForegroundColor Yellow
+}
+
 Write-Host "🚀 Starting Darbot Agent Engine with Azure Resources from .env..." -ForegroundColor Cyan
 
 # Load .env variables
 Load-DotEnv -Path $EnvFile
+
+# Check for required production variables
+$requiredVars = @(
+    "COSMOSDB_ENDPOINT",
+    "COSMOSDB_DATABASE",
+    "COSMOSDB_CONTAINER",
+    "AZURE_OPENAI_ENDPOINT",
+    "AZURE_OPENAI_MODEL_NAME",
+    "AZURE_AI_SUBSCRIPTION_ID",
+    "AZURE_AI_RESOURCE_GROUP",
+    "AZURE_AI_RESOURCE_NAME"
+)
+Check-RequiredEnvVars -RequiredVars $requiredVars
 
 # Override ports and auth if specified
 [System.Environment]::SetEnvironmentVariable("BACKEND_PORT", "$BackendPort", "Process")
@@ -43,7 +77,7 @@ Load-DotEnv -Path $EnvFile
 [System.Environment]::SetEnvironmentVariable("BACKEND_API_URL", "http://localhost:$BackendPort", "Process")
 
 # Set PYTHONPATH
-$rootPath = "d:\0GH_PROD\Darbot-Agent-Engine"
+$rootPath = "g:\Github\darbotlabs\Darbot-Agent-Engine"
 [System.Environment]::SetEnvironmentVariable("PYTHONPATH", "$rootPath\src", "Process")
 
 # Azure CLI login check

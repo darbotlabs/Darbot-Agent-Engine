@@ -139,8 +139,7 @@ class AppConfig:
 
         Returns:
             DefaultAzureCredential instance for Azure authentication
-        """
-        # Cache the credentials object
+        """        # Cache the credentials object
         if self._azure_credentials is not None:
             return self._azure_credentials
 
@@ -175,6 +174,25 @@ class AppConfig:
                 exc,
             )
             raise
+
+    def get_cosmos_client(self):
+        """Get a Cosmos DB client instance.
+        
+        Returns:
+            A Cosmos DB client instance
+        """
+        try:
+            if self._cosmos_client is None:
+                self._cosmos_client = CosmosClient(
+                    self.COSMOSDB_ENDPOINT, credential=self.get_azure_credentials()
+                )
+            return self._cosmos_client
+        except Exception as exc:
+            logging.error(
+                "Failed to create CosmosDB client: %s. CosmosDB is required for this application.",
+                exc,
+            )
+            return None
 
     def create_kernel(self):
         """Creates a new Semantic Kernel instance.

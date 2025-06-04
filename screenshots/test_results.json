@@ -1,84 +1,54 @@
 {
   "themeToggle": {
-    "status": "pass",
+    "status": "fail",
     "tests": [
       {
-        "name": "Visibility",
-        "status": "pass",
-        "details": "Theme toggle is visible"
-      },
-      {
-        "name": "Container",
-        "status": "pass",
-        "details": "Container is visible"
-      },
-      {
-        "name": "Position",
-        "status": "pass",
-        "details": "Theme toggle is at the bottom of the sidebar"
-      },
-      {
-        "name": "Toggle Functionality",
-        "status": "pass",
-        "details": "Theme changed from light to dark"
-      },
-      {
-        "name": "Toggle Revert",
-        "status": "pass",
-        "details": "Theme reverted back to light"
+        "name": "Error",
+        "status": "fail",
+        "details": "locator.isVisible: Target page, context or browser has been closed"
       }
     ]
   },
   "navigation": {
-    "status": "pass",
+    "status": "fail",
     "tests": [
       {
-        "name": "New Task Button",
-        "status": "pass",
-        "details": "Successfully navigated to home page"
+        "name": "Error",
+        "status": "fail",
+        "details": "page.click: Target page, context or browser has been closed"
       }
     ]
   },
   "taskCreation": {
-    "status": "pass",
+    "status": "fail",
     "tests": [
       {
-        "name": "Task Input",
-        "status": "pass",
-        "details": "Successfully entered task text"
-      },
-      {
-        "name": "Task Submission",
-        "status": "pass",
-        "details": "Successfully submitted task"
+        "name": "Error",
+        "status": "fail",
+        "details": "page.goto: Target page, context or browser has been closed"
       }
     ]
   },
   "errors": [
     {
       "type": "console_error",
-      "message": "viewIframe element not found",
-      "timestamp": "2025-06-03T07:07:48.284Z"
+      "message": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "timestamp": "2025-06-04T20:03:07.756Z"
     },
     {
       "type": "console_error",
-      "message": "viewIframe element not found",
-      "timestamp": "2025-06-03T07:07:54.003Z"
+      "message": "Error fetching tasks: Error: HTTP error! status: 500\n    at http://localhost:3000/app.js:200:35",
+      "timestamp": "2025-06-04T20:03:07.757Z"
     },
     {
       "type": "console_error",
-      "message": "viewIframe element not found",
-      "timestamp": "2025-06-03T07:07:56.616Z"
+      "message": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "timestamp": "2025-06-04T20:03:11.141Z"
     },
     {
       "type": "console_error",
-      "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)",
-      "timestamp": "2025-06-03T07:08:04.151Z"
-    },
-    {
-      "type": "console_error",
-      "message": "Error creating task: Error: HTTP error! status: 400\n    at http://localhost:3000/home/home.js:119:21",
-      "timestamp": "2025-06-03T07:08:04.151Z"
+      "message": "Error fetching tasks: Error: HTTP error! status: 500\n    at http://localhost:3000/app.js:200:35",
+      "timestamp": "2025-06-04T20:03:11.142Z"
     }
   ]
 }

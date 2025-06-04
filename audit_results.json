@@ -1,8 +1,8 @@
 {
-  "timestamp": "2025-06-01T16:17:59.175Z",
+  "timestamp": "2025-06-04T18:55:13.533Z",
   "summary": {
     "frontend": "pass",
-    "themeToggle": "fail",
+    "themeToggle": "pass",
     "navigation": "unknown",
     "taskCreation": "unknown",
     "errorCount": 1
@@ -14,17 +14,32 @@
         {
           "name": "Page Load",
           "status": "pass",
-          "details": "Title: Directory listing for /"
+          "details": "Title: Darbot Engine API"
         }
       ]
     },
     "themeToggle": {
-      "status": "fail",
+      "status": "pass",
       "tests": [
         {
           "name": "Theme Toggle Visibility",
-          "status": "fail",
-          "details": "Theme toggle not found"
+          "status": "pass",
+          "details": "Theme toggle is visible"
+        },
+        {
+          "name": "Theme Toggle Position",
+          "status": "pass",
+          "details": "Y position: 1023"
+        },
+        {
+          "name": "Theme Toggle Functionality",
+          "status": "pass",
+          "details": "Changed from light to dark"
+        },
+        {
+          "name": "Theme Toggle Revert",
+          "status": "pass",
+          "details": "Reverted to light"
         }
       ]
     },
@@ -39,8 +54,8 @@
     "errors": [
       {
         "type": "console_error",
-        "message": "Failed to load resource: the server responded with a status of 404 (File not found)",
-        "timestamp": "2025-06-01T16:17:53.499Z"
+        "message": "viewIframe element not found",
+        "timestamp": "2025-06-04T18:54:58.335Z"
       }
     ]
   }

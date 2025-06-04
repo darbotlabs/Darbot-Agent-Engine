@@ -5,15 +5,14 @@ import uuid
 from typing import Dict, List, Optional
 
 # FastAPI imports
-from fastapi import FastAPI, HTTPException, Query, Request
+from fastapi import FastAPI, HTTPException, Query, Request, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 # Semantic Kernel imports
-import app_config  # Thought into existence by Darbot
-config = app_config.config
+from app_config import config  # Thought into existence by Darbot
 from auth.auth_utils import get_authenticated_user_details, user_has_role  # Thought into existence by Darbot
 
 # Azure monitoring
@@ -35,7 +34,7 @@ from models.messages_kernel import (
 )
 
 # Updated import for KernelArguments
-from utils_kernel import initialize_runtime_and_context, rai_success
+from .utils_kernel import initialize_runtime_and_context, rai_success
 
 # # Check if the Application Insights Instrumentation Key is set in the environment variables
 # connection_string = os.getenv("APPLICATIONINSIGHTS_CONNECTION_STRING")
@@ -52,7 +51,7 @@ from utils_kernel import initialize_runtime_and_context, rai_success
 #     )
 
 # Configure logging
-from utils.logging_config import configure_for_environment, get_logger
+from .utils.logging_config import configure_for_environment, get_logger
 
 # Set up centralized logging configuration
 configure_for_environment()
@@ -120,6 +119,20 @@ app = FastAPI(
         },
     ]
 )
+
+# Add a /healthz endpoint for compatibility with all launchers and scripts
+health_router = APIRouter()
+
+@health_router.get("/healthz", tags=["health"])
+@health_router.get("/health", tags=["health"])
+async def universal_health():
+    """
+    Universal health endpoint for all launchers and CI scripts.
+    Returns 200 if the service is running.
+    """
+    return {"status": "ok", "service": "Darbot Agent Engine"}
+
+app.include_router(health_router)
 
 # Global exception handlers for enhanced error responses
 @app.exception_handler(DarbotEngineException)
@@ -235,7 +248,7 @@ async def get_health_detailed():
     including CosmosDB, Azure OpenAI, and other critical services.
     """
     try:
-        from middleware.dependency_health_checks import create_health_checks
+        from .middleware.dependency_health_checks import create_health_checks
         
         health_checks = await create_health_checks(config)
         results = {}
@@ -308,6 +321,15 @@ async def get_liveness():
     Returns 200 if the service is alive and responding.
     """
     return {"status": "alive", "service": "Darbot Agent Engine"}
+
+@app.get("/health", tags=["health"])
+async def get_basic_health():
+    """
+    Basic health check endpoint for simple monitoring.
+    
+    Returns 200 if the service is running.
+    """
+    return {"status": "healthy", "service": "Darbot Agent Engine"}
 
 frontend_url = Config.FRONTEND_SITE_NAME
 
@@ -1162,3 +1184,8 @@ if __name__ == "__main__":
         port=config.BACKEND_PORT, 
         reload=True
     )
+
+@app.get("/health", tags=["meta"])
+async def compatibility_health():
+    """Shallow health probe kept for legacy test-suite."""
+    return {"status": "ok"}

@@ -1,11 +1,13 @@
 {
-  "timestamp": "2025-06-04T04:56:44.161Z",
+  "timestamp": "2025-06-04T20:01:12.344Z",
   "summary": {
     "backend": "fail",
     "frontend": "fail",
     "navigation": "pass",
     "taskCreation": "fail",
-    "totalErrors": 23
+    "totalErrors": 10,
+    "totalTests": 7,
+    "passedTests": 2
   },
   "details": {
     "backend": {
@@ -28,8 +30,8 @@
         },
         {
           "name": "Diagnostics",
-          "status": "pass",
-          "details": "{\"apiEndpoint\":\"missing\",\"apiEndpointValue\":null,\"localStorage\":\"working\",\"iframe\":\"found\",\"iframeSrc\":\"http://localhost:3000/home/home.html?nocache=1749012994191\"}"
+          "status": "fail",
+          "details": "page.evaluate: Target page, context or browser has been closed"
         }
       ]
     },
@@ -43,12 +45,12 @@
         {
           "name": "Task Creation Test",
           "status": "fail",
-          "details": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/?v=home\", waiting until \"networkidle\"\u001b[22m\n"
+          "details": "page.waitForTimeout: Target page, context or browser has been closed"
         },
         {
           "name": "Task Management Test",
           "status": "fail",
-          "details": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"networkidle\"\u001b[22m\n"
+          "details": "page.goto: Target page, context or browser has been closed"
         }
       ]
     },
@@ -72,128 +74,59 @@
         "type": "request_failed",
         "url": "http://localhost:8001/docs",
         "failure": "net::ERR_CONNECTION_REFUSED",
-        "timestamp": "2025-06-04T04:56:19.366Z"
-      },
-      {
-        "type": "console_error",
-        "message": "viewIframe element not found",
-        "timestamp": "2025-06-04T04:56:20.595Z"
+        "timestamp": "2025-06-04T20:00:43.478Z"
       },
       {
         "type": "console_error",
         "message": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
-        "timestamp": "2025-06-04T04:56:22.931Z"
+        "timestamp": "2025-06-04T20:00:47.054Z"
       },
       {
         "type": "console_error",
-        "message": "Error fetching tasks: Error: HTTP error! status: 500\n    at http://localhost:3000/app.js:178:35",
-        "timestamp": "2025-06-04T04:56:22.931Z"
-      },
-      {
-        "type": "request_failed",
-        "url": "http://localhost:3000/api/plans",
-        "failure": "net::ERR_ABORTED",
-        "timestamp": "2025-06-04T04:56:24.019Z"
-      },
-      {
-        "type": "request_failed",
-        "url": "http://localhost:3000/api/plans",
-        "failure": "net::ERR_ABORTED",
-        "timestamp": "2025-06-04T04:56:24.019Z"
-      },
-      {
-        "type": "request_failed",
-        "url": "http://localhost:3000/api/plans",
-        "failure": "net::ERR_ABORTED",
-        "timestamp": "2025-06-04T04:56:24.019Z"
-      },
-      {
-        "type": "console_error",
-        "message": "Error fetching tasks: TypeError: Failed to fetch\n    at http://localhost:3000/app.js:171:17",
-        "timestamp": "2025-06-04T04:56:24.020Z"
-      },
-      {
-        "type": "console_error",
-        "message": "viewIframe element not found",
-        "timestamp": "2025-06-04T04:56:24.362Z"
+        "message": "Error fetching tasks: Error: HTTP error! status: 500\n    at http://localhost:3000/app.js:200:35",
+        "timestamp": "2025-06-04T20:00:47.056Z"
       },
       {
         "type": "console_error",
         "message": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
-        "timestamp": "2025-06-04T04:56:26.620Z"
+        "timestamp": "2025-06-04T20:00:49.862Z"
       },
       {
         "type": "console_error",
-        "message": "Error fetching tasks: Error: HTTP error! status: 500\n    at http://localhost:3000/app.js:178:35",
-        "timestamp": "2025-06-04T04:56:26.622Z"
-      },
-      {
-        "type": "console_error",
-        "message": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
-        "timestamp": "2025-06-04T04:56:29.192Z"
-      },
-      {
-        "type": "console_error",
-        "message": "Error fetching tasks: Error: HTTP error! status: 500\n    at http://localhost:3000/app.js:178:35",
-        "timestamp": "2025-06-04T04:56:29.193Z"
+        "message": "Error fetching tasks: Error: HTTP error! status: 500\n    at http://localhost:3000/app.js:200:35",
+        "timestamp": "2025-06-04T20:00:49.862Z"
       },
       {
         "type": "console_error",
         "message": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
-        "timestamp": "2025-06-04T04:56:31.775Z"
+        "timestamp": "2025-06-04T20:00:56.374Z"
       },
       {
         "type": "console_error",
-        "message": "Error fetching tasks: Error: HTTP error! status: 500\n    at http://localhost:3000/app.js:178:35",
-        "timestamp": "2025-06-04T04:56:31.775Z"
-      },
-      {
-        "type": "request_failed",
-        "url": "http://localhost:3000/api/plans",
-        "failure": "net::ERR_ABORTED",
-        "timestamp": "2025-06-04T04:56:34.161Z"
-      },
-      {
-        "type": "console_error",
-        "message": "viewIframe element not found",
-        "timestamp": "2025-06-04T04:56:34.512Z"
+        "message": "Error fetching tasks: Error: HTTP error! status: 500\n    at http://localhost:3000/app.js:200:35",
+        "timestamp": "2025-06-04T20:00:56.375Z"
       },
       {
         "type": "console_error",
         "message": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
-        "timestamp": "2025-06-04T04:56:36.710Z"
+        "timestamp": "2025-06-04T20:00:59.086Z"
       },
       {
         "type": "console_error",
-        "message": "Error fetching tasks: Error: HTTP error! status: 500\n    at http://localhost:3000/app.js:178:35",
-        "timestamp": "2025-06-04T04:56:36.711Z"
-      },
-      {
-        "type": "console_error",
-        "message": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
-        "timestamp": "2025-06-04T04:56:39.257Z"
-      },
-      {
-        "type": "console_error",
-        "message": "Error fetching tasks: Error: HTTP error! status: 500\n    at http://localhost:3000/app.js:178:35",
-        "timestamp": "2025-06-04T04:56:39.257Z"
+        "message": "Error fetching tasks: Error: HTTP error! status: 500\n    at http://localhost:3000/app.js:200:35",
+        "timestamp": "2025-06-04T20:00:59.087Z"
       },
       {
         "type": "console_error",
         "message": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
-        "timestamp": "2025-06-04T04:56:41.758Z"
-      },
-      {
-        "type": "console_error",
-        "message": "Error fetching tasks: Error: HTTP error! status: 500\n    at http://localhost:3000/app.js:178:35",
-        "timestamp": "2025-06-04T04:56:41.759Z"
+        "timestamp": "2025-06-04T20:01:07.813Z"
       }
     ]
   },
   "recommendations": [
     "Backend server is not running or accessible. Start the backend service and ensure it's listening on port 8001.",
     "Frontend has loading issues. Check console errors and ensure all dependencies are properly loaded.",
-    "23 errors detected. Review console errors and fix JavaScript issues.",
+    "10 errors detected. Review console errors and fix JavaScript issues.",
     "Task creation is not working. Check backend API connectivity and authentication."
   ]
 }

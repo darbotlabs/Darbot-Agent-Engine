@@ -36,29 +36,51 @@
         const urlParams = new URLSearchParams(window.location.search);
         urlParams.set(param, value);
         window.history.replaceState(null, null, `?${urlParams.toString()}`);
+    };    const switchView = () => {
+        // Add retry logic for iframe element access
+        const getIframeWithRetry = (retries = 5) => {
+            const viewIframe = document.getElementById('viewIframe');
+            if (viewIframe) {
+                return viewIframe;
+            } else if (retries > 0) {
+                console.log(`viewIframe not found, retrying... (${retries} attempts left)`);
+                return new Promise(resolve => {
+                    setTimeout(() => resolve(getIframeWithRetry(retries - 1)), 100);
+                });
+            } else {
+                console.error('viewIframe element not found after retries');
+                return null;
+            }
+        };
+
+        const iframe = getIframeWithRetry();
+        if (iframe instanceof Promise) {
+            iframe.then(viewIframe => {
+                if (viewIframe) {
+                    setIframeSrc(viewIframe);
+                }
+            });
+        } else if (iframe) {
+            setIframeSrc(iframe);
+        }
     };
 
-    const switchView = () => {
-        const viewIframe = document.getElementById('viewIframe');
-        if (viewIframe) {
-            const viewRoute = getQueryParam('v');
-            const viewContext = getStoredData('context');
-            const noCache = '?nocache=' + new Date().getTime();
-            console.log(`Switching view to: ${viewRoute || 'default'}`);
-            switch (viewRoute) {
-                case 'home':
-                    viewIframe.src = 'home/home.html' + noCache;
-                    break;
-                case 'task':
-                    viewIframe.src = `task/${viewContext}.html` + noCache;
-                    break;
-                default:
-                    viewIframe.src = 'home/home.html' + noCache;
-            }
-            console.log(`Iframe src set to: ${viewIframe.src}`);
-        } else {
-            console.error('viewIframe element not found');
+    const setIframeSrc = (viewIframe) => {
+        const viewRoute = getQueryParam('v');
+        const viewContext = getStoredData('context');
+        const noCache = '?nocache=' + new Date().getTime();
+        console.log(`Switching view to: ${viewRoute || 'default'}`);
+        switch (viewRoute) {
+            case 'home':
+                viewIframe.src = 'home/home.html' + noCache;
+                break;
+            case 'task':
+                viewIframe.src = `task/${viewContext}.html` + noCache;
+                break;
+            default:
+                viewIframe.src = 'home/home.html' + noCache;
         }
+        console.log(`Iframe src set to: ${viewIframe.src}`);
     };
     // get user session 
     const getUserInfo = async () => {
@@ -125,7 +147,25 @@
             if (event.data && event.data.action) {
                 if (event.data.action === 'taskStarted') {
                     console.log('Task started event received, fetching tasks...');
-                    fetchTasksIfNeeded();
+                    fetchTasksIfNeeded().then(() => {
+                        // Immediately switch to the new task view
+                        if (event.data.session_id && event.data.task_name) {
+                            setStoredData('task', JSON.stringify({
+                                id: event.data.session_id,
+                                name: event.data.task_name
+                            }));
+                            setQueryParam('v', 'task');
+                            switchView();
+                            // Optionally, visually select the new task in the sidebar
+                            setTimeout(() => {
+                                const newTaskElem = document.querySelector(`.menu-task[data-id='${event.data.session_id}']`);
+                                if (newTaskElem) {
+                                    document.querySelectorAll('.menu-task').forEach(task => task.classList.remove('is-active'));
+                                    newTaskElem.classList.add('is-active');
+                                }
+                            }, 500);
+                        }
+                    });
                 }
             }
         });
@@ -327,9 +367,7 @@
                 text.textContent = 'Dark Mode';
             }
         }
-    };
-
-    const initializeApp = async () => {
+    };    const initializeApp = async () => {
         // Fetch user info when the app loads
         const userInfo = await getUserInfo();
         if (!userInfo) {
@@ -340,11 +378,34 @@
         }
     };
 
-    fetchTasksIfNeeded();
-    initializeApp();
-    homeActions();
-    switchView();
-    messageListeners();
-    modalActions();
-    themeActions();
+    // Wait for DOM to be ready before initializing
+    const domReady = () => {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                console.log('DOM ready, initializing app...');
+                initializeUI();
+            });
+        } else {
+            // DOM is already ready
+            console.log('DOM already ready, initializing app...');
+            initializeUI();
+        }
+    };
+
+    const initializeUI = () => {
+        fetchTasksIfNeeded();
+        initializeApp();
+        homeActions();
+        switchView();
+        messageListeners();
+        modalActions();
+        themeActions();
+    };
+
+    // Start the app when DOM is ready
+    window.addEventListener("DOMContentLoaded", () => {
+        const iframe = document.getElementById("viewIframe");
+        if (!iframe) return; // graceful early exit for tests
+        initializeUI();
+    });
 })();
