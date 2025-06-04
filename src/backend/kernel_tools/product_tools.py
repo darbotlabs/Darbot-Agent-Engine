@@ -6,7 +6,7 @@ from datetime import datetime
 from typing import Annotated, Callable, List
 
 from semantic_kernel.functions import kernel_function
-from backend.models.messages_kernel import AgentType
+from models.messages_kernel import AgentType
 import json
 from typing import get_type_hints
 

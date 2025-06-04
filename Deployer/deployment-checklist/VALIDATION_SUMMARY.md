@@ -1,6 +1,6 @@
 # Validation Summary for Multi-Agent Custom Automation Engine
 
-## Completed Tasks
+## Verification process
 
 ### 1. Prerequisites Script Validation ✅
 
@@ -18,7 +18,7 @@
 
 ### 3. Deployment Validation ✅
 
-- Updated to use Azure CLI commands instead of PowerShell cmdlets
+- Updateto use Azure CLI commands instead of PowerShell cmdlets
 - Successfully verified resource group exists
 - Successfully verified deployment exists and is in "Succeeded" state
 - Found and configured existing deployment ID: `0ac64f82-105c-4025-9b3d-cf5c4494c52d`

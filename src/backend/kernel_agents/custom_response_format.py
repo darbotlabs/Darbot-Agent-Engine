@@ -4,7 +4,7 @@ Custom ResponseFormat implementation to fix compatibility issues.
 # Thought into existence by Darbot
 
 # Make this module export the ResponseFormat class directly
-# This allows "from backend.kernel_agents.custom_response_format import ResponseFormat" to work
+# This allows "from kernel_agents.custom_response_format import ResponseFormat" to work
 __all__ = ["ResponseFormat"]
 
 from typing import Any, Dict

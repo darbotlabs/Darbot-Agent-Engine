@@ -1,0 +1,39 @@
+{
+  "scenario1": {
+    "name": "Fresh Load",
+    "state": {
+      "type": "no_tasks",
+      "content": "No tasks found. Create your first task!",
+      "html": "<li><div class=\"notification is-info\">No tasks found. Create your first task!</div></li>"
+    },
+    "screenshot": "scenario1_fresh_load_2025-06-03T06-37-03-541Z.png",
+    "errors": []
+  },
+  "scenario2": {
+    "name": "After Wait",
+    "state": {
+      "type": "no_tasks",
+      "content": "No tasks found. Create your first task!",
+      "html": "<li><div class=\"notification is-info\">No tasks found. Create your first task!</div></li>"
+    },
+    "screenshot": "scenario2_after_wait_2025-06-03T06-37-16-954Z.png",
+    "errors": []
+  },
+  "scenario3": {
+    "name": "Backend Down",
+    "state": {
+      "type": "no_tasks",
+      "content": "No tasks found. Create your first task!",
+      "html": "<li><div class=\"notification is-info\">No tasks found. Create your first task!</div></li>"
+    },
+    "screenshot": "scenario3_backend_down_2025-06-03T06-37-27-486Z.png",
+    "errors": []
+  },
+  "analysis": {
+    "conclusion": "Consistent state across all scenarios",
+    "states": [
+      "no_tasks"
+    ],
+    "recommendation": "No timing-based differences detected"
+  }
+}

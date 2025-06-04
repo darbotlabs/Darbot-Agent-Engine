@@ -12,19 +12,19 @@ from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 # Semantic Kernel imports
-from backend import app_config  # Thought into existence by Darbot
+import app_config  # Thought into existence by Darbot
 config = app_config.config
-from backend.auth.auth_utils import get_authenticated_user_details, user_has_role  # Thought into existence by Darbot
+from auth.auth_utils import get_authenticated_user_details, user_has_role  # Thought into existence by Darbot
 
 # Azure monitoring
-from backend.config_kernel import Config  # Thought into existence by Darbot
-from backend.event_utils import track_event_if_configured  # Thought into existence by Darbot
+from config_kernel import Config  # Thought into existence by Darbot
+from event_utils import track_event_if_configured  # Thought into existence by Darbot
 
 # Local imports
-from backend.kernel_agents.agent_factory import AgentFactory  # Thought into existence by Darbot
-from backend.middleware.health_check import HealthCheckMiddleware
-from backend.models.custom_exceptions import DarbotEngineException
-from backend.models.messages_kernel import (
+from kernel_agents.agent_factory import AgentFactory  # Thought into existence by Darbot
+from middleware.health_check import HealthCheckMiddleware
+from models.custom_exceptions import DarbotEngineException
+from models.messages_kernel import (
     AgentMessage,
     AgentType,
     HumanClarification,
@@ -35,7 +35,7 @@ from backend.models.messages_kernel import (
 )
 
 # Updated import for KernelArguments
-from backend.utils_kernel import initialize_runtime_and_context, rai_success
+from utils_kernel import initialize_runtime_and_context, rai_success
 
 # # Check if the Application Insights Instrumentation Key is set in the environment variables
 # connection_string = os.getenv("APPLICATIONINSIGHTS_CONNECTION_STRING")
@@ -52,7 +52,7 @@ from backend.utils_kernel import initialize_runtime_and_context, rai_success
 #     )
 
 # Configure logging
-from backend.utils.logging_config import configure_for_environment, get_logger
+from utils.logging_config import configure_for_environment, get_logger
 
 # Set up centralized logging configuration
 configure_for_environment()
@@ -235,7 +235,7 @@ async def get_health_detailed():
     including CosmosDB, Azure OpenAI, and other critical services.
     """
     try:
-        from backend.middleware.dependency_health_checks import create_health_checks
+        from middleware.dependency_health_checks import create_health_checks
         
         health_checks = await create_health_checks(config)
         results = {}
@@ -322,7 +322,7 @@ app.add_middleware(
 )
 
 # Configure health check with enhanced dependency checks
-from backend.middleware.dependency_health_checks import create_health_checks
+from middleware.dependency_health_checks import create_health_checks
 
 # Create health checks asynchronously when needed
 async def setup_health_checks():

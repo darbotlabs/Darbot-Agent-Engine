@@ -7,8 +7,8 @@ import logging
 import os
 from typing import Dict, List, Optional, Type, TypeVar
 
-from ..models.agent_messages import AgentMessage, ChatMessage
-from ..models.plan_steps import Plan, Step
+from models.messages_kernel import AgentMessage, ChatMessage
+from models.messages_kernel import Plan, Step
 from .cosmos_memory_kernel import CosmosMemoryContext
 
 T = TypeVar("T")

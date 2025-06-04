@@ -11,9 +11,13 @@
     const tasksStats = document.getElementById("tasksStats");
     const taskAgentsModal = document.getElementById("taskAgentsModal");
     const taskWokFlowModal = document.getElementById("taskWokFlowModal");
-    
-    if(AUTH_ENABLED !== undefined) {
+      // Thought into existence by Darbot - Safe AUTH_ENABLED check
+    if(typeof AUTH_ENABLED !== 'undefined') {
         setStoredData('authEnabled', AUTH_ENABLED.toString().toLowerCase());
+    } else {
+        // Default to false for local development
+        setStoredData('authEnabled', 'false');
+        console.log('AUTH_ENABLED not defined, defaulting to false for local development');
     }
 
     //if (!getStoredData('apiEndpoint'))setStoredData('apiEndpoint', apiEndpoint);
@@ -135,6 +139,26 @@
             </div>
         `;
     }
+
+    // Thought into existence by Darbot
+    // Use correct Azure endpoints for task creation and plan fetch
+    const createTask = async (sessionId, description, headers) => {
+      return fetch("/api/input_task", {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify({
+          session_id: sessionId,
+          description: description,
+        }),
+      }).then((response) => response.json());
+    };
+
+    const fetchPlans = async (session_id, headers) => {
+      return fetch(`/api/plans?session_id=${session_id}`, {
+        method: "GET",
+        headers: headers,
+      }).then((response) => response.json());
+    };
 
     const fetchTasksIfNeeded = async () => {
         console.log('fetchTasksIfNeeded called');

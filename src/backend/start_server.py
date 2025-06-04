@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 
 import uvicorn
-from backend.app_config import config
+from app_config import config
 
 # Configure logging
 logging.basicConfig(

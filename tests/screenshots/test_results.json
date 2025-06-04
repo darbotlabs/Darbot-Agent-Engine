@@ -1,0 +1,87 @@
+{
+  "themeToggle": {
+    "status": "pass",
+    "tests": [
+      {
+        "name": "Visibility",
+        "status": "pass",
+        "details": "Theme toggle is visible"
+      },
+      {
+        "name": "Container",
+        "status": "pass",
+        "details": "Container is visible"
+      },
+      {
+        "name": "Position",
+        "status": "pass",
+        "details": "Theme toggle is at the bottom of the sidebar"
+      },
+      {
+        "name": "Toggle Functionality",
+        "status": "pass",
+        "details": "Theme changed from light to dark"
+      },
+      {
+        "name": "Toggle Revert",
+        "status": "pass",
+        "details": "Theme reverted back to light"
+      }
+    ]
+  },
+  "navigation": {
+    "status": "pass",
+    "tests": [
+      {
+        "name": "New Task Button",
+        "status": "pass",
+        "details": "Successfully navigated to home page"
+      }
+    ]
+  },
+  "taskCreation": {
+    "status": "pass",
+    "tests": [
+      {
+        "name": "Task Input",
+        "status": "pass",
+        "details": "Successfully entered task text"
+      },
+      {
+        "name": "Task Submission",
+        "status": "pass",
+        "details": "Successfully submitted task"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "type": "page_error",
+      "message": "AUTH_ENABLED is not defined",
+      "stack": "ReferenceError: AUTH_ENABLED is not defined\n    at http://localhost:3000/app.js:15:5\n    at http://localhost:3000/app.js:326:3",
+      "timestamp": "2025-06-03T06:38:59.177Z"
+    },
+    {
+      "type": "page_error",
+      "message": "AUTH_ENABLED is not defined",
+      "stack": "ReferenceError: AUTH_ENABLED is not defined\n    at http://localhost:3000/app.js:15:5\n    at http://localhost:3000/app.js:326:3",
+      "timestamp": "2025-06-03T06:39:03.720Z"
+    },
+    {
+      "type": "page_error",
+      "message": "AUTH_ENABLED is not defined",
+      "stack": "ReferenceError: AUTH_ENABLED is not defined\n    at http://localhost:3000/app.js:15:5\n    at http://localhost:3000/app.js:326:3",
+      "timestamp": "2025-06-03T06:39:06.237Z"
+    },
+    {
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "timestamp": "2025-06-03T06:39:12.068Z"
+    },
+    {
+      "type": "console_error",
+      "message": "Error creating task: Error: HTTP error! status: 400\n    at http://localhost:3000/home/home.js:119:21",
+      "timestamp": "2025-06-03T06:39:12.069Z"
+    }
+  ]
+}

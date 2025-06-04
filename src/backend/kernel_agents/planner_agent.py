@@ -5,17 +5,17 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from semantic_kernel.functions import KernelFunction  # Added missing import
 
-from backend.event_utils import track_event_if_configured  # Thought into existence by Darbot
-from backend.kernel_agents.custom_response_format import ResponseFormat
-from backend.context.cosmos_memory_kernel import CosmosMemoryContext
-from backend.kernel_agents.agent_base import BaseAgent
-from backend.kernel_tools.generic_tools import GenericTools
-from backend.kernel_tools.hr_tools import HrTools
-from backend.kernel_tools.marketing_tools import MarketingTools
-from backend.kernel_tools.procurement_tools import ProcurementTools
-from backend.kernel_tools.product_tools import ProductTools
-from backend.kernel_tools.tech_support_tools import TechSupportTools
-from backend.models.messages_kernel import (AgentMessage, AgentType,
+from event_utils import track_event_if_configured  # Thought into existence by Darbot
+from kernel_agents.custom_response_format import ResponseFormat
+from context.cosmos_memory_kernel import CosmosMemoryContext
+from kernel_agents.agent_base import BaseAgent
+from kernel_tools.generic_tools import GenericTools
+from kernel_tools.hr_tools import HrTools
+from kernel_tools.marketing_tools import MarketingTools
+from kernel_tools.procurement_tools import ProcurementTools
+from kernel_tools.product_tools import ProductTools
+from kernel_tools.tech_support_tools import TechSupportTools
+from models.messages_kernel import (AgentMessage, AgentType,
                                     HumanFeedbackStatus, InputTask, Plan,
                                     PlannerResponsePlan, PlanStatus, Step,
                                     StepStatus)

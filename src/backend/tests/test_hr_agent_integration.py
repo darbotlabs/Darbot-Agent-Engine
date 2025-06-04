@@ -9,10 +9,10 @@ import asyncio
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from backend.config_kernel import Config
-from backend.kernel_agents.agent_factory import AgentFactory
-from backend.models.messages_kernel import AgentType
+from kernel_agents.agent_factory import AgentFactory
+from models.messages_kernel import AgentType
 from semantic_kernel.agents.azure_ai.azure_ai_agent import AzureAIAgent
-from backend.kernel_agents.hr_agent import HrAgent
+from kernel_agents.hr_agent import HrAgent
 from semantic_kernel.functions.kernel_arguments import KernelArguments
 
 # Configure logging for the tests

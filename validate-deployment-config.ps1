@@ -107,6 +107,34 @@ foreach ($script in $validationScripts) {
     }
 }
 
+# Additional validation: Check for incorrect API endpoint usage in scripts
+Write-Host "`nChecking for incorrect API endpoint usage in scripts..." -ForegroundColor Cyan
+$incorrectEndpointFiles = Get-ChildItem -Path "d:\0GH_PROD\Darbot-Agent-Engine" -Recurse -Include *.py,*.js,*.ts,*.json,*.ps1 -ErrorAction SilentlyContinue | Where-Object { $_.FullName -notmatch '\\__pycache__\\' }
+$foundIncorrect = $false
+foreach ($file in $incorrectEndpointFiles) {
+    $content = Get-Content $file.FullName -Raw -ErrorAction SilentlyContinue
+    if ($content -match 'POST.*?/api/plans') {
+        Write-Host "❌ Potential incorrect POST to /api/plans found in: $($file.FullName)" -ForegroundColor Red
+        $foundIncorrect = $true
+    }
+}
+if (-not $foundIncorrect) {
+    Write-Host "✓ No incorrect POST requests to /api/plans found in scripts." -ForegroundColor Green
+}
+
+# Additional validation: Check backend .env for Azure mode
+$envFilePath = "d:\0GH_PROD\Darbot-Agent-Engine\src\backend\.env"
+if (Test-Path $envFilePath) {
+    $envContent = Get-Content $envFilePath -Raw
+    if ($envContent -match 'USE_LOCAL_MEMORY\s*=\s*True') {
+        Write-Host "❌ Backend .env is set to USE_LOCAL_MEMORY=True (local/mock mode). Set to False for Azure deployment." -ForegroundColor Red
+    } else {
+        Write-Host "✓ Backend .env is set to use Azure (not mock/local mode)." -ForegroundColor Green
+    }
+} else {
+    Write-Host "❌ Backend .env file not found at: $envFilePath" -ForegroundColor Red
+}
+
 Write-Host "`nDeployment Configuration Validation Complete!" -ForegroundColor Cyan
 Write-Host "If all checks passed, your VS Code tasks should now be available." -ForegroundColor Yellow
 Write-Host "Access them via the Command Palette (Ctrl+Shift+P) and type 'Tasks: Run Task'" -ForegroundColor Yellow

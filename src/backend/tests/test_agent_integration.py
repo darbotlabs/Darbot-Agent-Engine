@@ -14,12 +14,12 @@ from dotenv import load_dotenv
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from backend.config_kernel import Config
-from backend.kernel_agents.agent_factory import AgentFactory
-from backend.models.messages_kernel import AgentType
-from backend.utils_kernel import get_agents
+from kernel_agents.agent_factory import AgentFactory
+from models.messages_kernel import AgentType
+from utils_kernel import get_agents
 from semantic_kernel.functions.kernel_arguments import KernelArguments
 
-# Load environment variables from .env file
+# Load environment variables from env file
 load_dotenv()
 
 

@@ -4,10 +4,10 @@ import logging
 
 
 def get_authenticated_user_details(request_headers):
-    user_object = {}
-
-    # check the headers for the Principal-Id (the guid of the signed in user)
-    if "x-ms-client-principal-id" not in request_headers:
+    user_object = {}    # check the headers for the Principal-Id (the guid of the signed in user)
+    # Thought into existence by Darbot - Check headers case-insensitively
+    normalized_request_headers = {k.lower(): v for k, v in request_headers.items()}
+    if "x-ms-client-principal-id" not in normalized_request_headers:
         logging.info("No user principal found in headers")
         # if it's not, assume we're in development mode and return a default user
         from . import sample_user

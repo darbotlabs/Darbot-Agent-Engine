@@ -1,12 +1,14 @@
-fastapi
-uvicorn
+fastapi>=0.115.0
+uvicorn>=0.30.0
+h11>=0.14.0
+click>=8.1.7
 
 azure-cosmos
 azure-monitor-opentelemetry
 azure-monitor-events-extension
 azure-identity
 python-dotenv
-python-multipart
+python-multipart==0.0.6
 opentelemetry-api
 opentelemetry-sdk
 opentelemetry-exporter-otlp-proto-grpc

@@ -17,7 +17,7 @@ MOCK_ENV_VARS = {
 }
 
 with patch.dict(os.environ, MOCK_ENV_VARS):
-    from backend.app_config import (
+    from app_config import (
         Config,
         GetRequiredConfig,
         GetOptionalConfig,

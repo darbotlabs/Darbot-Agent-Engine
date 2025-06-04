@@ -1,0 +1,5 @@
+{
+  "session_id": "test_session_12345", 
+  "description": "Test task to verify our fix works",
+  "priority": "medium"
+}

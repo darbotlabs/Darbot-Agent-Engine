@@ -1,3 +1,4 @@
+// Thought into existence by Darbot
 (() => {
   const markdownConverter = new showdown.Converter();
   const apiEndpoint = getStoredData("apiEndpoint");
@@ -180,21 +181,17 @@
       taskCancelButton.addEventListener("click", (event) => {
         const apiTaskStore = JSON.parse(getStoredData("apiTask"));
         handleDisableOfActions("completed")
-
         // Explicitly disable chatbox and message button
         taskMessageTextarea.disabled = true;
         taskMessageTextarea.style.backgroundColor = "#efefef";
         taskMessageTextarea.style.cursor = 'not-allowed';
-
         taskMessageAddButton.disabled = true;
         taskMessageAddButton.style.cursor = 'not-allowed';
-
         const textInputContainer = document.getElementsByClassName("text-input-container");
         if (textInputContainer[0]) {
           textInputContainer[0].style.backgroundColor = '#efefef';
           textInputContainer[0].style.cursor = 'not-allowed';
         }
-
         actionStages(apiTaskStore, false);
       });
     }
@@ -238,7 +235,6 @@
 
   const fetchPlanDetails = async (session_id) => {
     const headers = await window.headers;
-
     return fetch(apiEndpoint + "/api/plans?session_id=" + session_id, {
       method: "GET",
       headers: headers,
@@ -248,41 +244,8 @@
         updateTaskStatusDetails(data[0]);
         updateTaskProgress(data[0]);
         fetchTaskStages(data[0]);
-
         setStoredData("apiTask", JSON.stringify(data[0]));
-        //const isHumanClarificationRequestNull = data?.[0]?.human_clarification_request === null
-        const isHumanClarificationResponseNotNull = data?.[0]?.human_clarification_response !== null;
-        const taskMessageTextareaElement = document.getElementById("taskMessageTextarea");
-        const taskMessageAddButton = document.getElementById("taskMessageAddButton");
-        const textInputContainer = document.getElementsByClassName("text-input-container");
-
-        if (isHumanClarificationResponseNotNull) {
-          // Update the local state to set human_clarification_request to null
-          data[0].human_clarification_request = null;
-          console.log("Human clarification request set to null locally.");
-        }
-
-        const isHumanClarificationRequestNull = data?.[0]?.human_clarification_request === null
-
-        if (isHumanClarificationRequestNull && taskMessageTextareaElement) {
-          taskMessageTextareaElement.setAttribute('disabled', true)
-          taskMessageTextareaElement.style.backgroundColor = "#efefef";
-          taskMessageTextareaElement.style.cursor = 'not-allowed';
-        }
-
-        if (isHumanClarificationRequestNull && taskMessageAddButton) {
-          taskMessageAddButton.setAttribute('disabled', true)
-          taskMessageAddButton.style.cursor = 'not-allowed';
-        }
-
-        if (isHumanClarificationRequestNull && textInputContainer[0]) {
-          textInputContainer[0].style.backgroundColor = '#efefef';
-          textInputContainer[0].style.cursor = 'not-allowed';
-        }
-
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+        return data[0];
       });
   };
 
@@ -877,10 +840,8 @@
       // whenever text is sent to the text area, we want to update the character count and dynamically resize the text area
       const textInput = document.getElementById("taskMessageTextarea");
       const charCount = document.getElementById("charCount");
-
       // Update character count
       charCount.textContent = textInput.value.length;
-
       // Dynamically adjust height
       textInput.style.height = "auto";
       textInput.style.height = textInput.scrollHeight + "px";
@@ -899,6 +860,7 @@
       }
     });
   };
+
   updateButtonImage();
   taskHeaderActions();
   taskDetailsActions();

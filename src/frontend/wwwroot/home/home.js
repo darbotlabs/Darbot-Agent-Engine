@@ -105,8 +105,9 @@
       startTaskButton.disabled = true;
       startTaskButton.classList.add("is-loading");      createOverlay();
       showOverlay();      window.headers.then((headers) => {
-        // Thought into existence by Darbot - Using frontend server as proxy
-        fetch("/api/input_task", {  // Relative URL for proxy
+        // Thought into existence by Darbot
+        // Use /api/input_task for Azure task creation
+        fetch("/api/input_task", {
           method: "POST",
           headers: headers,
           body: JSON.stringify({
@@ -126,6 +127,7 @@
               notyf.error("Unable to create plan for this task.");
               newTaskPrompt.disabled = false;
               startTaskButton.disabled = false;
+              startTaskButton.classList.remove("is-loading");
               hideOverlay();
               return;
             }
@@ -166,15 +168,10 @@
             hideOverlay();
           })
           .catch((error) => {
-            console.error("Error creating task:", error);
+            notyf.error("Error creating task: " + error.message);
             newTaskPrompt.disabled = false;
             startTaskButton.disabled = false;
             startTaskButton.classList.remove("is-loading");
-            
-            notyf.error("Failed to create task. Please try again.");
-
-            // Remove spinner and hide overlay
-            removeSpinner();
             hideOverlay();
           });
       });

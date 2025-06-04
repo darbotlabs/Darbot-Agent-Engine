@@ -12,18 +12,18 @@ from typing import Any, Dict, List, Optional
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from backend.config_kernel import Config
-from backend.kernel_agents.agent_factory import AgentFactory
-from backend.models.messages_kernel import AgentType
+from kernel_agents.agent_factory import AgentFactory
+from models.messages_kernel import AgentType
 from semantic_kernel.agents.azure_ai.azure_ai_agent import AzureAIAgent
 from semantic_kernel.functions.kernel_arguments import KernelArguments
 from semantic_kernel import Kernel
 
 # Import agent types to test
-from backend.kernel_agents.hr_agent import HrAgent
-from backend.kernel_agents.human_agent import HumanAgent
-from backend.kernel_agents.marketing_agent import MarketingAgent
-from backend.kernel_agents.procurement_agent import ProcurementAgent
-from backend.kernel_agents.tech_support_agent import TechSupportAgent
+from kernel_agents.hr_agent import HrAgent
+from kernel_agents.human_agent import HumanAgent
+from kernel_agents.marketing_agent import MarketingAgent
+from kernel_agents.procurement_agent import ProcurementAgent
+from kernel_agents.tech_support_agent import TechSupportAgent
 
 # Configure logging for the tests
 logging.basicConfig(level=logging.INFO)

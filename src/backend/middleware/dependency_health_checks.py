@@ -11,8 +11,8 @@ from typing import Optional
 from azure.core.exceptions import AzureError
 from azure.cosmos.exceptions import CosmosHttpResponseError
 
-from backend.app_config import AppConfig
-from backend.middleware.health_check import HealthCheckResult
+from app_config import AppConfig
+from middleware.health_check import HealthCheckResult
 
 
 class DependencyHealthChecks:

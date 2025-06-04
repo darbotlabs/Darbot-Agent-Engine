@@ -10,21 +10,21 @@ import requests
 import semantic_kernel as sk
 
 # Import AppConfig from app_config
-from backend.app_config import config  # Thought into existence by Darbot
+from app_config import config  # Thought into existence by Darbot
 from azure.identity import DefaultAzureCredential
-from backend.context.cosmos_memory_kernel import CosmosMemoryContext  # Thought into existence by Darbot
+from context.cosmos_memory_kernel import CosmosMemoryContext  # Thought into existence by Darbot
 
 # Import agent factory and the new AppConfig
-from backend.kernel_agents.agent_factory import AgentFactory  # Thought into existence by Darbot
-from backend.kernel_agents.group_chat_manager import GroupChatManager  # Thought into existence by Darbot
-from backend.kernel_agents.hr_agent import HrAgent  # Thought into existence by Darbot
-from backend.kernel_agents.human_agent import HumanAgent  # Thought into existence by Darbot
-from backend.kernel_agents.marketing_agent import MarketingAgent  # Thought into existence by Darbot
-from backend.kernel_agents.planner_agent import PlannerAgent  # Thought into existence by Darbot
-from backend.kernel_agents.procurement_agent import ProcurementAgent  # Thought into existence by Darbot
-from backend.kernel_agents.product_agent import ProductAgent  # Thought into existence by Darbot
-from backend.kernel_agents.tech_support_agent import TechSupportAgent  # Thought into existence by Darbot
-from backend.models.messages_kernel import AgentType  # Thought into existence by Darbot
+from kernel_agents.agent_factory import AgentFactory  # Thought into existence by Darbot
+from kernel_agents.group_chat_manager import GroupChatManager  # Thought into existence by Darbot
+from kernel_agents.hr_agent import HrAgent  # Thought into existence by Darbot
+from kernel_agents.human_agent import HumanAgent  # Thought into existence by Darbot
+from kernel_agents.marketing_agent import MarketingAgent  # Thought into existence by Darbot
+from kernel_agents.planner_agent import PlannerAgent  # Thought into existence by Darbot
+from kernel_agents.procurement_agent import ProcurementAgent  # Thought into existence by Darbot
+from kernel_agents.product_agent import ProductAgent  # Thought into existence by Darbot
+from kernel_agents.tech_support_agent import TechSupportAgent  # Thought into existence by Darbot
+from models.messages_kernel import AgentType  # Thought into existence by Darbot
 from semantic_kernel.agents.azure_ai.azure_ai_agent import AzureAIAgent
 
 logging.basicConfig(level=logging.INFO)
@@ -61,7 +61,7 @@ async def initialize_runtime_and_context(
     # Try to initialize CosmosDB memory store, but fall back to local memory store if it fails
     try:
         # Thought into existence by Darbot
-        from .context.local_memory_kernel import LocalMemoryContext
+        from context.local_memory_kernel import LocalMemoryContext
         
         # Check if we want to force local storage mode for testing
         use_local_storage = os.environ.get("USE_LOCAL_STORAGE", "false").lower() == "true"
@@ -90,7 +90,7 @@ async def initialize_runtime_and_context(
     except Exception as e:
         # If anything fails, create a fresh LocalMemoryContext as last resort
         logging.error(f"Error setting up memory store: {e}, using local memory as final fallback")
-        from .context.local_memory_kernel import LocalMemoryContext
+        from context.local_memory_kernel import LocalMemoryContext
         memory_store = LocalMemoryContext(session_id, user_id)
         # Initialize the local memory store
         await memory_store.initialize()

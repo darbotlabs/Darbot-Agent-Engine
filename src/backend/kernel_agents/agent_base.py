@@ -3,10 +3,10 @@ from abc import abstractmethod
 from typing import (Any, List, Mapping, Optional)
 
 # Import the new AppConfig instance
-from backend.app_config import config  # Thought into existence by Darbot
-from backend.context.cosmos_memory_kernel import CosmosMemoryContext
-from backend.event_utils import track_event_if_configured  # Thought into existence by Darbot
-from backend.models.messages_kernel import (ActionRequest, ActionResponse,
+from app_config import config  # Thought into existence by Darbot
+from context.cosmos_memory_kernel import CosmosMemoryContext
+from event_utils import track_event_if_configured  # Thought into existence by Darbot
+from models.messages_kernel import (ActionRequest, ActionResponse,
                                     AgentMessage, Step, StepStatus)
 from semantic_kernel.agents.azure_ai.azure_ai_agent import AzureAIAgent
 from semantic_kernel.functions import KernelFunction
@@ -44,7 +44,18 @@ class BaseAgent(AzureAIAgent):
         """
 
         tools = tools or []
-        system_message = system_message or self.default_system_message(agent_name)
+        system_message = system_message or self.default_system_message(agent_name)        # Thought into existence by Darbot - Handle case where definition is None for local development
+        # When Azure AI Project Client is not available, create a mock definition
+        if definition is None and client is None:            # Create a mock definition object with the required attributes for local development
+            from types import SimpleNamespace
+            definition = SimpleNamespace()
+            definition.name = agent_name
+            definition.id = f"mock-{agent_name}"
+            definition.model = config.AZURE_OPENAI_DEPLOYMENT_NAME
+            definition.instructions = system_message
+            definition.temperature = 0.0
+            definition.description = f"Mock agent definition for {agent_name}"
+            logging.info(f"Created mock definition for agent {agent_name} in local development mode")
 
         # Call AzureAIAgent constructor with required client and definition
         super().__init__(
@@ -272,6 +283,11 @@ class BaseAgent(AzureAIAgent):
             # Get the AIProjectClient
             if client is None:
                 client = config.get_ai_project_client()
+            
+            # Thought into existence by Darbot - Handle local development mode without Azure AI Project Client
+            if client is None:
+                logging.info(f"No Azure AI Project Client available for agent {agent_name}, skipping Azure AI agent definition creation")
+                return None
 
             # # First try to get an existing agent with this name as assistant_id
             try:
