@@ -55,7 +55,7 @@
    ```
 
 2. **Test Infrastructure Setup**
-   - Created `playwright.config.js` with multi-browser support
+   - Created `tests/playwright.config.js` with multi-browser support and removed the old root config
    - Established comprehensive test suite with screenshot capture
    - Implemented automated UI interaction testing
 

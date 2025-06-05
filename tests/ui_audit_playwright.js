@@ -521,17 +521,14 @@ async function main() {
     });
     
     const success = await auditor.runFullAudit();
-    
-    if (success) {
-        // Keep running for manual inspection
-        console.log('\n⏳ Keeping browser open for manual inspection...');
-        while (true) {
-            await new Promise(resolve => setTimeout(resolve, 1000));
-        }
-    } else {
+
+    if (!success) {
         await auditor.cleanup();
         process.exit(1);
     }
+
+    await auditor.cleanup();
+    console.log('✅ Audit complete');
 }
 
 main().catch(console.error);

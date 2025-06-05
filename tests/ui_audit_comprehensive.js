@@ -639,19 +639,14 @@ async function main() {
     });
     
     const result = await auditor.runFullAudit();
-    
-    if (result) {
-        console.log('\n⏳ Keeping browser open for manual inspection...');
-        console.log('Press Ctrl+C to close and exit');
-        
-        // Keep running for manual inspection
-        while (true) {
-            await new Promise(resolve => setTimeout(resolve, 1000));
-        }
-    } else {
+
+    if (!result) {
         await auditor.cleanup();
         process.exit(1);
     }
+
+    await auditor.cleanup();
+    console.log('✅ Audit complete');
 }
 
 main().catch(console.error);
