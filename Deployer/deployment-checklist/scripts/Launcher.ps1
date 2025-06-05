@@ -195,6 +195,25 @@ function Test-PythonEnvironment {
     return $false
 }
 
+function Test-NodeEnvironment {
+    try {
+        $nodeVersion = node --version 2>&1
+        if ($nodeVersion -match "v(\d+\.\d+)") {
+            $version = [version]$matches[1]
+            if ($version -ge [version]"16.0") {
+                Write-Log "Node.js $nodeVersion detected" "SUCCESS"
+                return $true
+            } else {
+                Write-Log "Node.js $nodeVersion is too old (requires 16.0+)" "WARNING"
+                return $false
+            }
+        }
+    } catch {}
+    Write-Log "Node.js not found - required for testing infrastructure" "WARNING"
+    Write-Log "Install from: https://nodejs.org/" "INFO"
+    return $false
+}
+
 function Install-Dependencies {
     param(
         [string]$RequirementsFile,
@@ -253,11 +272,31 @@ function Start-ServerProcess {
     )
     
     Write-Log "Starting $Name server on port $Port..." "INFO"
+    Write-Log "Working Directory: $WorkingDirectory" "DEBUG"
+    Write-Log "Command: $Command" "DEBUG"
+    
+    # Validate working directory exists
+    if (-not (Test-Path $WorkingDirectory)) {
+        Write-Log "Working directory does not exist: $WorkingDirectory" "ERROR"
+        return $null
+    }
     
     # Create process start info
     $psi = New-Object System.Diagnostics.ProcessStartInfo
-    $psi.FileName = "python"
-    $psi.Arguments = "-u -m $Command"
+    
+    # Handle different command formats
+    if ($Command -match "^uvicorn\s+(.+)") {
+        # Direct uvicorn command
+        $psi.FileName = "uvicorn"
+        $psi.Arguments = $matches[1]
+        Write-Log "Using direct uvicorn command: uvicorn $($matches[1])" "DEBUG"
+    } else {
+        # Python module command
+        $psi.FileName = "python"
+        $psi.Arguments = "-u -m $Command"
+        Write-Log "Using python module command: python -u -m $Command" "DEBUG"
+    }
+    
     $psi.WorkingDirectory = $WorkingDirectory
     $psi.UseShellExecute = $false
     $psi.RedirectStandardOutput = $true
@@ -270,6 +309,7 @@ function Start-ServerProcess {
     
     foreach ($key in $AdditionalEnv.Keys) {
         $psi.EnvironmentVariables[$key] = $AdditionalEnv[$key]
+        Write-Log "Set env var: $key = $($AdditionalEnv[$key])" "DEBUG"
     }
     
     # Copy current environment
@@ -288,28 +328,48 @@ function Start-ServerProcess {
                 Process = $process
                 Port = $Port
                 StartTime = Get-Date
-            }            # Start async output readers for both stdout and stderr
+            }
+            
+            # Start async output readers for both stdout and stderr
             Start-Job -ScriptBlock {
                 param($process, $name, $logFile)
-                while (-not $process.StandardOutput.EndOfStream) {
-                    $line = $process.StandardOutput.ReadLine()
-                    if ($line) {
-                        Add-Content -Path $logFile -Value "[$name] $line" -ErrorAction SilentlyContinue
+                try {
+                    while (-not $process.StandardOutput.EndOfStream) {
+                        $line = $process.StandardOutput.ReadLine()
+                        if ($line) {
+                            $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+                            Add-Content -Path $logFile -Value "[$timestamp] [$name] $line" -ErrorAction SilentlyContinue
+                        }
                     }
+                } catch {
+                    Add-Content -Path $logFile -Value "[$name] Output reader error: $_" -ErrorAction SilentlyContinue
                 }
             } -ArgumentList $process, $Name, $script:LogFile
             
             Start-Job -ScriptBlock {
                 param($process, $name, $logFile)
-                while (-not $process.StandardError.EndOfStream) {
-                    $line = $process.StandardError.ReadLine()
-                    if ($line) {
-                        Add-Content -Path $logFile -Value "[$name ERROR] $line" -ErrorAction SilentlyContinue
+                try {
+                    while (-not $process.StandardError.EndOfStream) {
+                        $line = $process.StandardError.ReadLine()
+                        if ($line) {
+                            $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+                            Add-Content -Path $logFile -Value "[$timestamp] [$name ERROR] $line" -ErrorAction SilentlyContinue
+                        }
                     }
+                } catch {
+                    Add-Content -Path $logFile -Value "[$name] Error reader error: $_" -ErrorAction SilentlyContinue
                 }
             } -ArgumentList $process, $Name, $script:LogFile
             
             Write-Log "$Name server started (PID: $($process.Id))" "SUCCESS"
+            
+            # Give the process a moment to start and check if it immediately crashes
+            Start-Sleep -Milliseconds 1000
+            if ($process.HasExited) {
+                Write-Log "$Name process exited immediately (Exit Code: $($process.ExitCode))" "ERROR"
+                return $null
+            }
+            
             return $process
         }
     } catch {
@@ -331,32 +391,48 @@ function Test-ServerHealth {
     for ($i = 1; $i -le $MaxRetries; $i++) {
         try {
             # First check if process is still running
-            $process = ($script:ProcessList | Where-Object { $_.Name -eq $Name }).Process
-            if ($process -and $process.HasExited) {
-                Write-Log "$Name process has exited unexpectedly" "ERROR"
+            $processInfo = ($script:ProcessList | Where-Object { $_.Name -eq $Name })
+            if ($processInfo -and $processInfo.Process.HasExited) {
+                Write-Log "$Name process has exited unexpectedly (Exit Code: $($processInfo.Process.ExitCode))" "ERROR"
                 
                 # Try to read the log file for error details
                 if ($script:LogFile -and (Test-Path $script:LogFile)) {
-                    $recentLogs = Get-Content $script:LogFile -Tail 20 | Where-Object { $_ -match $Name }
+                    Write-Log "Recent $Name logs:" "ERROR"
+                    $recentLogs = Get-Content $script:LogFile -Tail 30 | Where-Object { $_ -match $Name }
                     if ($recentLogs) {
-                        Write-Log "Recent $Name logs:" "ERROR"
-                        $recentLogs | ForEach-Object { Write-Log $_ "ERROR" }
+                        $recentLogs | ForEach-Object { Write-Log "  $_" "ERROR" }
+                    } else {
+                        # Show all recent logs if no name-specific logs found
+                        $allRecentLogs = Get-Content $script:LogFile -Tail 15
+                        $allRecentLogs | ForEach-Object { Write-Log "  $_" "ERROR" }
                     }
+                } else {
+                    Write-Log "No log file available for error details" "WARNING"
                 }
                 return $false
             }
             
+            # Try the health check
             $response = Invoke-WebRequest -Uri $Url -Method Get -UseBasicParsing -TimeoutSec 5 -ErrorAction Stop
             if ($response.StatusCode -eq 200) {
-                Write-Log "$Name is healthy" "SUCCESS"
+                Write-Log "$Name is healthy (HTTP $($response.StatusCode))" "SUCCESS"
                 return $true
+            } else {
+                Write-Log "$Name health check returned HTTP $($response.StatusCode)" "WARNING"
             }
         } catch {
             if ($i % 10 -eq 0) {  # Log every 10th attempt
-                Write-Log "Health check attempt $i/$MaxRetries - $Name not ready yet..." "INFO"
+                Write-Log "Health check attempt $i/$MaxRetries - $Name not ready yet: $($_.Exception.Message)" "INFO"
             } else {
                 Write-Log "Health check attempt $i/$MaxRetries failed: $($_.Exception.Message)" "DEBUG"
             }
+        }
+        
+        # Check again if process crashed while we were waiting
+        $processInfo = ($script:ProcessList | Where-Object { $_.Name -eq $Name })
+        if ($processInfo -and $processInfo.Process.HasExited) {
+            Write-Log "$Name process exited during health check" "ERROR"
+            return $false
         }
         
         if ($i -lt $MaxRetries) {
@@ -364,7 +440,17 @@ function Test-ServerHealth {
         }
     }
     
-    Write-Log "$Name health check failed after $MaxRetries attempts" "WARNING"
+    Write-Log "$Name health check failed after $MaxRetries attempts" "ERROR"
+    
+    # Show final logs when health check ultimately fails
+    if ($script:LogFile -and (Test-Path $script:LogFile)) {
+        Write-Log "Final $Name logs for debugging:" "ERROR"
+        $finalLogs = Get-Content $script:LogFile -Tail 20 | Where-Object { $_ -match $Name }
+        if ($finalLogs) {
+            $finalLogs | ForEach-Object { Write-Log "  $_" "ERROR" }
+        }
+    }
+    
     return $false
 }
 
@@ -491,6 +577,9 @@ if (-not (Test-PythonEnvironment)) {
     exit 1
 }
 
+# Node.js check for testing infrastructure
+Test-NodeEnvironment | Out-Null
+
 # Azure CLI check
 if (-not (Test-AzureCliInstalled)) {
     Write-Log "Azure CLI not found - Azure authentication may fail" "WARNING"
@@ -504,6 +593,7 @@ if (-not (Test-AzureCliInstalled)) {
 [System.Environment]::SetEnvironmentVariable("PYTHONPATH", "$script:RootPath\src", "Process")
 
 # Install dependencies
+# Note: Frontend uses Python FastAPI server (not React/Vite), so Python dependency installation is correct
 $backendReqs = "$script:RootPath\src\backend\requirements.txt"
 $frontendReqs = "$script:RootPath\src\frontend\requirements.txt"
 
