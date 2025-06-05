@@ -152,6 +152,18 @@ By using the *Multi-Agent Custom Automation Engine* solution accelerator, users 
 Supporting documentation
 </h2>
 
+Additional documentation:
+* [Deployment Checklist](./documentation/deployment_README.md)
+* [Gamified Deployment Guide](./documentation/deployment_README_UPDATED.md)
+* [Darbot API Documentation](./documentation/darbot_api_README.md)
+* [Frontend Instructions](./documentation/frontend_README.md)
+* [Backend Instructions](./documentation/backend_README.md)
+* [Validation Scripts](./documentation/tests_validation_README.md)
+* [Test Data Overview](./documentation/tests_data_README.md)
+* [Test Fixtures Guide](./documentation/tests_fixtures_README.md)
+* [Debug Tools](./documentation/debug_tools_README.md)
+* [Launcher Guide](./documentation/launcher_README.md)
+
 ### Security guidelines
 
 This template uses Azure Key Vault to store all connections to communicate between resources.
