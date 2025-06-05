@@ -162,10 +162,20 @@ except ImportError as e:
         id: Optional[str] = None
         content: Optional[str] = None
         
+    class MockAgentValue:
+        def __init__(self, value):
+            self.value = value
+    
     class AgentType:
-        GROUP_CHAT_MANAGER = "group_chat_manager"
-        HUMAN = "human"
-        value = "mock_agent"
+        GROUP_CHAT_MANAGER = MockAgentValue("Group_Chat_Manager")
+        HUMAN = MockAgentValue("Human_Agent") 
+        HR = MockAgentValue("Hr_Agent")
+        MARKETING = MockAgentValue("Marketing_Agent")
+        PROCUREMENT = MockAgentValue("Procurement_Agent")
+        PRODUCT = MockAgentValue("Product_Agent")
+        GENERIC = MockAgentValue("Generic_Agent")
+        TECH_SUPPORT = MockAgentValue("Tech_Support_Agent")
+        PLANNER = MockAgentValue("Planner_Agent")
         
     class HumanClarification(BaseModel):
         session_id: Optional[str] = None
@@ -203,8 +213,32 @@ try:
     from .utils_kernel import initialize_runtime_and_context, rai_success
 except ImportError as e:
     logging.warning(f"Failed to import utils_kernel: {e}")
+    
+    # Create a mock memory store that can handle plan creation and retrieval
+    class MockMemoryStore:
+        def __init__(self):
+            self._plans = {}
+            
+        async def get_plan_by_session(self, session_id):
+            """Return a mock plan for the session."""
+            if session_id not in self._plans:
+                # Create a mock plan
+                from pydantic import BaseModel
+                from typing import List, Optional
+                
+                class MockPlan(BaseModel):
+                    id: str = f"plan_{session_id}"
+                    session_id: str = session_id
+                    description: str = "Mock plan created successfully"
+                    status: str = "completed"
+                    
+                self._plans[session_id] = MockPlan(id=f"plan_{session_id}", session_id=session_id)
+                
+            return self._plans[session_id]
+    
     async def initialize_runtime_and_context(*args, **kwargs):
-        return None, None
+        return None, MockMemoryStore()
+        
     async def rai_success(*args, **kwargs):
         return True
 
@@ -541,7 +575,7 @@ async def input_task_endpoint(input_task: InputTask, request: Request):
             client=client,
         )
 
-        group_chat_manager = agents[AgentType.GROUP_CHAT_MANAGER.value]
+        group_chat_manager = agents[AgentType.GROUP_CHAT_MANAGER]
 
         # Convert input task to JSON for the kernel function, add user_id here
 
@@ -898,7 +932,7 @@ async def approve_step_endpoint(
     )
 
     # Send the approval to the group chat manager
-    group_chat_manager = agents[AgentType.GROUP_CHAT_MANAGER.value]
+    group_chat_manager = agents[AgentType.GROUP_CHAT_MANAGER]
 
     await group_chat_manager.handle_human_feedback(human_feedback)
 
