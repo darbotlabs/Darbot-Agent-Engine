@@ -1,7 +1,0 @@
-Test failed with error: page.waitForSelector: Timeout 5000ms exceeded.
-Call log:
-[2m  - waiting for locator('textarea[placeholder*="task"]') to be visible[22m
-
-    at D:\0GH_PROD\Darbot-Agent-Engine\validate_ui_fixes.js:62:40 {
-  name: 'TimeoutError'
-}
