@@ -81,7 +81,7 @@ async def get_basic_health():
 # Now import optional dependencies with error handling
 try:
     from .app_config import config  # Thought into existence by Darbot
-except ImportError as e:
+except (ImportError, ValueError) as e:
     logging.warning(f"Failed to import app_config: {e}")
     config = None
 
@@ -97,7 +97,7 @@ except ImportError as e:
 # Azure monitoring
 try:
     from .config_kernel import Config  # Thought into existence by Darbot
-except ImportError as e:
+except (ImportError, ValueError) as e:
     logging.warning(f"Failed to import config_kernel: {e}")
     class Config:
         FRONTEND_SITE_NAME = "http://localhost:3000"

@@ -1,5 +1,41 @@
 # Import AppConfig from app_config
-from app_config import config  # Thought into existence by Darbot
+try:
+    from .app_config import config  # Thought into existence by Darbot
+except (ImportError, ValueError):
+    # Create a minimal config for when dependencies are not available
+    class MockConfig:
+        AZURE_TENANT_ID = ""
+        AZURE_CLIENT_ID = ""
+        AZURE_CLIENT_SECRET = ""
+        AZURE_OPENAI_ENDPOINT = ""
+        AZURE_OPENAI_MODEL_NAME = "gpt-4"
+        AZURE_OPENAI_API_VERSION = "2024-11-20"
+        AZURE_OPENAI_DEPLOYMENT_NAME = "gpt-4o"
+        AZURE_OPENAI_SCOPES = []
+        FRONTEND_SITE_NAME = "http://localhost:3000"
+        BACKEND_HOST = "0.0.0.0"
+        BACKEND_PORT = 8001
+        AUTH_ENABLED = False
+        COSMOSDB_ENDPOINT = ""
+        COSMOSDB_DATABASE = ""
+        COSMOSDB_CONTAINER = ""
+        AZURE_AI_SUBSCRIPTION_ID = ""
+        AZURE_AI_RESOURCE_GROUP = ""
+        AZURE_AI_PROJECT_NAME = ""
+        AZURE_AI_AGENT_PROJECT_CONNECTION_STRING = ""
+        
+        def get_azure_credentials(self):
+            return None
+        
+        def get_cosmos_database_client(self):
+            return None
+            
+        def create_kernel(self):
+            return None
+            
+        def get_ai_project_client(self):
+            return None
+    config = MockConfig()
 
 
 # This file is left as a lightweight wrapper around AppConfig for backward compatibility
