@@ -129,8 +129,8 @@ azd deploy
 **Congratulations!** You have successfully deployed the Multi-Agent Custom Automation Engine. Your AI agents are now ready to help automate complex tasks in your organization.
 
 - [ ] Review the README.md for additional information and resources
-- [ ] Explore the documentation in the `docs` and `documentation` folders
+- [ ] Explore the documentation in the `documentation` folder
 - [ ] Check out sample questions in `documentation/SampleQuestions.md`
-- [ ] Customize the solution as needed using `docs/CustomizeSolution.md`
+- [ ] Customize the solution as needed using `documentation/CustomizeSolution.md`
 
 By completing all these levels, you have transformed from a deployment novice to an AI automation expert!
