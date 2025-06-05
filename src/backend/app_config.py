@@ -35,7 +35,7 @@ class AppConfig:
         self.AZURE_OPENAI_API_VERSION = self._get_required(
             "AZURE_OPENAI_API_VERSION", "2024-11-20"
         )
-        self.AZURE_OPENAI_ENDPOINT = self._get_required("AZURE_OPENAI_ENDPOINT")
+        self.AZURE_OPENAI_ENDPOINT = self._get_required("AZURE_OPENAI_ENDPOINT", "https://mock-openai.openai.azure.com/")
         self.AZURE_OPENAI_SCOPES = [
             f"{self._get_optional('AZURE_OPENAI_SCOPE', 'https://cognitiveservices.azure.com/.default')}"
         ]        # Frontend settings
@@ -47,13 +47,13 @@ class AppConfig:
         self.BACKEND_PORT = int(self._get_optional("BACKEND_PORT", "8001"))
         
         # Azure AI settings
-        self.AZURE_AI_SUBSCRIPTION_ID = self._get_required("AZURE_AI_SUBSCRIPTION_ID")
-        self.AZURE_AI_RESOURCE_GROUP = self._get_required("AZURE_AI_RESOURCE_GROUP")
-        self.AZURE_AI_RESOURCE_NAME = self._get_required("AZURE_AI_RESOURCE_NAME")
-        self.AZURE_AI_PROJECT_NAME = self._get_required("AZURE_AI_PROJECT_NAME")
-        self.AZURE_AI_PROJECT_ENDPOINT = self._get_required("AZURE_AI_PROJECT_ENDPOINT")
+        self.AZURE_AI_SUBSCRIPTION_ID = self._get_required("AZURE_AI_SUBSCRIPTION_ID", "00000000-0000-0000-0000-000000000000")
+        self.AZURE_AI_RESOURCE_GROUP = self._get_required("AZURE_AI_RESOURCE_GROUP", "mock-resource-group")
+        self.AZURE_AI_RESOURCE_NAME = self._get_required("AZURE_AI_RESOURCE_NAME", "mock-ai-resource")
+        self.AZURE_AI_PROJECT_NAME = self._get_required("AZURE_AI_PROJECT_NAME", "mock-project")
+        self.AZURE_AI_PROJECT_ENDPOINT = self._get_required("AZURE_AI_PROJECT_ENDPOINT", "https://mock-project.eastus.api.azureml.ms")
         self.AZURE_AI_AGENT_PROJECT_CONNECTION_STRING = self._get_required(
-            "AZURE_AI_AGENT_PROJECT_CONNECTION_STRING"
+            "AZURE_AI_AGENT_PROJECT_CONNECTION_STRING", "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://mock.applicationinsights.azure.com/"
         )
         
         # Cached clients and resources
