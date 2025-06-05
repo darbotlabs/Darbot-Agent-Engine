@@ -1,0 +1,126 @@
+{
+  "timestamp": "2025-06-05T01:10:44.772851",
+  "session_id": "prod-validation-7c47687e",
+  "tests": {
+    "backend_health": true,
+    "task_creation": false
+  },
+  "audit_events": [
+    {
+      "timestamp": "2025-06-05T01:10:44.773086",
+      "event_type": "VALIDATION_START",
+      "session_id": "prod-validation-7c47687e",
+      "details": {
+        "session_id": "prod-validation-7c47687e",
+        "backend_url": "http://localhost:8001"
+      }
+    },
+    {
+      "timestamp": "2025-06-05T01:10:44.773228",
+      "event_type": "AZURE_CONFIG_CHECK",
+      "session_id": "prod-validation-7c47687e",
+      "details": {
+        "all_configured": false,
+        "config_details": {
+          "AZURE_OPENAI_ENDPOINT": {
+            "configured": false,
+            "value_type": "mock/missing"
+          },
+          "AZURE_OPENAI_DEPLOYMENT_NAME": {
+            "configured": false,
+            "value_type": "mock/missing"
+          },
+          "AZURE_AI_PROJECT_ENDPOINT": {
+            "configured": false,
+            "value_type": "mock/missing"
+          },
+          "APPLICATIONINSIGHTS_CONNECTION_STRING": {
+            "configured": false,
+            "value_type": "mock/missing"
+          }
+        }
+      }
+    },
+    {
+      "timestamp": "2025-06-05T01:10:59.792452",
+      "event_type": "BACKEND_HEALTH_CHECK",
+      "session_id": "prod-validation-7c47687e",
+      "details": {
+        "status": "success",
+        "response_time_ms": 15018.069000000001,
+        "health_data": {
+          "overall_status": "error",
+          "service": "Darbot Agent Engine",
+          "version": "1.0.0",
+          "error": "Health check system error: attempted relative import with no known parent package",
+          "timestamp": "404.685978287"
+        }
+      }
+    },
+    {
+      "timestamp": "2025-06-05T01:11:14.810602",
+      "event_type": "AZURE_AI_CONNECTIVITY",
+      "session_id": "prod-validation-7c47687e",
+      "details": {
+        "status": "failed",
+        "status_code": 404,
+        "response": "{\"error\":{\"code\":\"HTTP_404\",\"message\":\"Not Found\",\"details\":{},\"path\":\"/api/health/ai\",\"timestamp\":\"419.704321112\"}}"
+      }
+    },
+    {
+      "timestamp": "2025-06-05T01:11:14.810947",
+      "event_type": "TASK_CREATION_START",
+      "session_id": "prod-validation-7c47687e",
+      "details": {
+        "task_description": "Create a comprehensive marketing strategy for launching a new SaaS product targeting small businesses, including market analysis, competitive positioning, pricing strategy, and go-to-market plan with specific deliverables and timelines.",
+        "session_id": "prod-validation-7c47687e"
+      }
+    },
+    {
+      "timestamp": "2025-06-05T01:12:14.875267",
+      "event_type": "TASK_CREATION_RESPONSE",
+      "session_id": "prod-validation-7c47687e",
+      "details": {
+        "status_code": 400,
+        "processing_time_seconds": 60.06422162055969,
+        "response_size_bytes": 127,
+        "response_headers": {
+          "date": "Thu, 05 Jun 2025 01:12:14 GMT",
+          "server": "uvicorn",
+          "content-length": "127",
+          "content-type": "application/json"
+        }
+      }
+    },
+    {
+      "timestamp": "2025-06-05T01:12:14.875401",
+      "event_type": "TASK_CREATION_FAILED",
+      "session_id": "prod-validation-7c47687e",
+      "details": {
+        "status_code": 400,
+        "error_response": "{\"error\":{\"code\":\"HTTP_400\",\"message\":\"Error creating plan\",\"details\":{},\"path\":\"/api/input_task\",\"timestamp\":\"479.769129387\"}}",
+        "processing_time": 60.06422162055969
+      }
+    }
+  ],
+  "azure_service_status": {
+    "AZURE_OPENAI_ENDPOINT": {
+      "configured": false,
+      "value_type": "mock/missing"
+    },
+    "AZURE_OPENAI_DEPLOYMENT_NAME": {
+      "configured": false,
+      "value_type": "mock/missing"
+    },
+    "AZURE_AI_PROJECT_ENDPOINT": {
+      "configured": false,
+      "value_type": "mock/missing"
+    },
+    "APPLICATIONINSIGHTS_CONNECTION_STRING": {
+      "configured": false,
+      "value_type": "mock/missing"
+    }
+  },
+  "overall_success": false,
+  "errors": []
+}
