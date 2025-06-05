@@ -45,7 +45,7 @@ Other Playwright-based tests reside under the `tests` directory.
 
 | Script | Description | Location |
 |-------|-------------|---------|
-| `Launcher.ps1` | Main PowerShell utility to start the complete stack. | `Deployer/deployment-checklist/scripts/Launcher.ps1` |
+| `Launcher.ps1` | PowerShell utility to coordinate deployment and start the complete stack. | `Deployer/deployment-checklist/scripts/Launcher.ps1` |
 | `open_with_edge.bat` | Open the web interface in Microsoft Edge. | `open_with_edge.bat` |
 | `start_with_edge.bat` | Launch backend and frontend, then open Edge. | `start_with_edge.bat` |
 
