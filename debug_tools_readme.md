@@ -23,7 +23,7 @@ This package contains several debugging and testing tools designed to help ident
 ### Validation and Testing
 
 - **`validate_ui_fixes.js`**: Validates UI functionality with Playwright to check for visual and interactive issues
-- **`network_debug.js`**: Analyzes network requests and console logs to identify API communication problems
+- **`tests/network_debug.js`**: Analyzes network requests and console logs to identify API communication problems
 - **`test_api_endpoints.py`**: Tests backend API endpoints directly to check for availability and response formats
 
 ### Utility Scripts

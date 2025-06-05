@@ -116,19 +116,8 @@ async function launchDarbotUI() {
             console.log('📸 UI screenshot saved');
             
             console.log('🎉 Darbot Agent Engine is now running in Microsoft Edge!');
-            console.log('👀 Monitor console for navigation errors');
-            console.log('🛠️ Navigate in the browser to see the error, then press Ctrl+C here');
-            
-            // Keep script running for debugging
-            let keepRunning = true;
-            process.on('SIGINT', () => {
-                keepRunning = false;
-                console.log('\n👋 Shutting down...');
-            });
-            
-            while (keepRunning) {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-            }
+            console.log('👀 Monitor console for any errors.');
+            await page.waitForTimeout(5000);
             
         } catch (error) {
             console.log('❌ Frontend error:', error.message);

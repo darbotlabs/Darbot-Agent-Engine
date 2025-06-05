@@ -89,12 +89,8 @@ async function testTaskCreationFlow() {
         await page.screenshot({ path: 'error_state.png', fullPage: true });
         return false;
     } finally {
-        // Keep browser open for inspection
-        console.log('🔍 Keeping browser open for manual inspection...');
-        console.log('Press Ctrl+C to close');
-        
-        // Wait indefinitely until user stops the process
-        await new Promise(() => {});
+        await browser.close();
+        console.log('🔒 Browser closed');
     }
 }
 
