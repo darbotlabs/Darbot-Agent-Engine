@@ -14,7 +14,7 @@ $frontendJob = Start-Job -ScriptBlock {
 # Start the backend server with Azure integration
 $backendJob = Start-Job -ScriptBlock {
     cd D:\0GH_PROD\Darbot-Agent-Engine
-    pwsh .\scripts\run_servers.ps1 -UseAzure `
+    pwsh .\run_servers.ps1 -UseAzure `
         -AzureOpenAIEndpoint "https://cat-studio-foundry.openai.azure.com/" `
         -AzureResourceGroup "Studio-CAT" `
         -AzureAIProjectName "cat-studio-foundry" `

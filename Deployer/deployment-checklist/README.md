@@ -30,6 +30,7 @@ For a successful deployment, ensure that you complete the validation checkpoints
 ## Scripts
 
 The following PowerShell scripts are included to assist with the deployment process:
+All PowerShell scripts are located in the `scripts` directory.
 
 - `validate-prerequisites.ps1`: Checks if all necessary prerequisites are met.
 - `validate-azure-setup.ps1`: Verifies that the Azure environment is correctly configured.
