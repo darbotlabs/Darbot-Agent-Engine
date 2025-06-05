@@ -15,6 +15,7 @@ Welcome to the gamified deployment experience for the Multi-Agent Custom Automat
 - `DEPLOYMENT_TASKS.md`: The main game guide with levels and achievements
 - `VALIDATION_SUMMARY.md`: Overview of validation results and deployment status
 - `scripts/`: Power-up scripts to validate your progress:
+  All PowerShell scripts are located in this directory.
   - `validate-prerequisites.ps1`: Checks if you have the required tools
   - `validate-azure-setup.ps1`: Verifies your Azure environment is ready
   - `validate-deployment.ps1`: Confirms your deployment is successful
