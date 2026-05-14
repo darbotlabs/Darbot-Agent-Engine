@@ -32,6 +32,11 @@ If you'd like to customize the solution accelerator, here are some common areas 
 
 [Custom scenario](./documentation/CustomizeSolution.md)
 
+### Integrations
+Review the integration guide for SWE agents and Microsoft platform connectivity:
+
+[Integrations Guide](./documentation/Integrations.md)
+
 <br/>
 
 ### Additional resources

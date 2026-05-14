@@ -71,6 +71,9 @@ class GroupChatManager(BaseAgent):
             AgentType.PROCUREMENT.value,
             AgentType.TECH_SUPPORT.value,
             AgentType.GENERIC.value,
+            AgentType.SWE_ANTHROPIC.value,
+            AgentType.SWE_GITHUB.value,
+            AgentType.SWE_OPENAI.value,
         ]
         self._agent_tools_list = agent_tools_list or []
         self._agent_instances = agent_instances or {}

@@ -8,6 +8,8 @@ from typing import Dict, List, Optional
 from fastapi import FastAPI, HTTPException, Query, Request, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+
+from .integrations.integration_config import IntegrationConfig
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
@@ -176,6 +178,9 @@ except ImportError as e:
         GENERIC = MockAgentValue("Generic_Agent")
         TECH_SUPPORT = MockAgentValue("Tech_Support_Agent")
         PLANNER = MockAgentValue("Planner_Agent")
+        SWE_ANTHROPIC = MockAgentValue("SWE_Anthropic_Agent")
+        SWE_GITHUB = MockAgentValue("SWE_GitHub_Agent")
+        SWE_OPENAI = MockAgentValue("SWE_OpenAI_Agent")
         
     class HumanClarification(BaseModel):
         session_id: Optional[str] = None
@@ -392,6 +397,13 @@ async def get_server_info():
         "frontend_url": config.FRONTEND_SITE_NAME,
         "status": "running"
     }
+
+
+@app.get("/api/integrations", tags=["info"])
+async def get_integration_status():
+    """Get integration configuration status for external providers."""
+    integration_config = IntegrationConfig()
+    return integration_config.summarize()
 
 # Enhanced health check endpoint
 @app.get("/api/health", tags=["health"])
