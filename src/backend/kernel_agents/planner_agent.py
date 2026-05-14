@@ -14,6 +14,7 @@ from kernel_tools.hr_tools import HrTools
 from kernel_tools.marketing_tools import MarketingTools
 from kernel_tools.procurement_tools import ProcurementTools
 from kernel_tools.product_tools import ProductTools
+from kernel_tools.swe_tools import SWEAgentTools
 from kernel_tools.tech_support_tools import TechSupportTools
 from models.messages_kernel import (AgentMessage, AgentType,
                                     HumanFeedbackStatus, InputTask, Plan,
@@ -85,6 +86,9 @@ class PlannerAgent(BaseAgent):
             AgentType.PROCUREMENT.value,
             AgentType.TECH_SUPPORT.value,
             AgentType.GENERIC.value,
+            AgentType.SWE_ANTHROPIC.value,
+            AgentType.SWE_GITHUB.value,
+            AgentType.SWE_OPENAI.value,
         ]
         self._agent_tools_list = {
             AgentType.HR: HrTools.generate_tools_json_doc(),
@@ -93,6 +97,9 @@ class PlannerAgent(BaseAgent):
             AgentType.PROCUREMENT: ProcurementTools.generate_tools_json_doc(),
             AgentType.TECH_SUPPORT: TechSupportTools.generate_tools_json_doc(),
             AgentType.GENERIC: GenericTools.generate_tools_json_doc(),
+            AgentType.SWE_ANTHROPIC: SWEAgentTools.generate_tools_json_doc(),
+            AgentType.SWE_GITHUB: SWEAgentTools.generate_tools_json_doc(),
+            AgentType.SWE_OPENAI: SWEAgentTools.generate_tools_json_doc(),
         }
 
         self._agent_instances = agent_instances or {}
@@ -590,4 +597,3 @@ class PlannerAgent(BaseAgent):
 
             """
         return instruction_template
-

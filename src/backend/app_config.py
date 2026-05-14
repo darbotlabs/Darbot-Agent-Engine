@@ -55,6 +55,31 @@ class AppConfig:
         self.AZURE_AI_AGENT_PROJECT_CONNECTION_STRING = self._get_required(
             "AZURE_AI_AGENT_PROJECT_CONNECTION_STRING", "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://mock.applicationinsights.azure.com/"
         )
+        self.AZURE_AI_FOUNDRY_LOCAL_ENDPOINT = self._get_optional("AZURE_AI_FOUNDRY_LOCAL_ENDPOINT")
+
+        # SWE agent provider settings
+        self.SWE_ANTHROPIC_API_KEY = self._get_optional("SWE_ANTHROPIC_API_KEY")
+        self.SWE_GITHUB_TOKEN = self._get_optional("SWE_GITHUB_TOKEN")
+        self.SWE_OPENAI_API_KEY = self._get_optional("SWE_OPENAI_API_KEY")
+
+        # Microsoft 365 integration settings
+        self.M365_TENANT_ID = self._get_optional("M365_TENANT_ID")
+        self.M365_CLIENT_ID = self._get_optional("M365_CLIENT_ID")
+        self.M365_CLIENT_SECRET = self._get_optional("M365_CLIENT_SECRET")
+        self.M365_SCOPES = self._get_optional("M365_SCOPES")
+
+        # Power Platform integration settings
+        self.POWER_PLATFORM_TENANT_ID = self._get_optional("POWER_PLATFORM_TENANT_ID")
+        self.POWER_PLATFORM_CLIENT_ID = self._get_optional("POWER_PLATFORM_CLIENT_ID")
+        self.POWER_PLATFORM_CLIENT_SECRET = self._get_optional("POWER_PLATFORM_CLIENT_SECRET")
+        self.POWER_PLATFORM_ENVIRONMENT_ID = self._get_optional("POWER_PLATFORM_ENVIRONMENT_ID")
+        self.POWER_PLATFORM_REGION = self._get_optional("POWER_PLATFORM_REGION")
+
+        # Copilot Studio integration settings
+        self.COPILOT_STUDIO_TENANT_ID = self._get_optional("COPILOT_STUDIO_TENANT_ID")
+        self.COPILOT_STUDIO_CLIENT_ID = self._get_optional("COPILOT_STUDIO_CLIENT_ID")
+        self.COPILOT_STUDIO_CLIENT_SECRET = self._get_optional("COPILOT_STUDIO_CLIENT_SECRET")
+        self.COPILOT_STUDIO_ENDPOINT = self._get_optional("COPILOT_STUDIO_ENDPOINT")
         
         # Cached clients and resources
         self._azure_credentials = None

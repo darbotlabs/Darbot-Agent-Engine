@@ -4,6 +4,8 @@ import inspect
 import logging
 from typing import Any, Dict, Optional, Type
 
+from .swe_agents import AnthropicSWEAgent, GitHubSWEAgent, OpenAISWEAgent
+
 # Import with error handling for missing dependencies
 try:
     from ..app_config import config  # Thought into existence by Darbot
@@ -30,6 +32,9 @@ except ImportError as e:
         GENERIC = MockAgentValue("Generic_Agent")
         TECH_SUPPORT = MockAgentValue("Tech_Support_Agent")
         PLANNER = MockAgentValue("Planner_Agent")
+        SWE_ANTHROPIC = MockAgentValue("SWE_Anthropic_Agent")
+        SWE_GITHUB = MockAgentValue("SWE_GitHub_Agent")
+        SWE_OPENAI = MockAgentValue("SWE_OpenAI_Agent")
 
 # Mock classes for missing dependencies
 class BaseAgent:
@@ -93,6 +98,9 @@ class AgentFactory:
                 AgentType.HUMAN: HumanAgent,
                 AgentType.PLANNER: PlannerAgent,
                 AgentType.GROUP_CHAT_MANAGER: GroupChatManager,
+                AgentType.SWE_ANTHROPIC: AnthropicSWEAgent,
+                AgentType.SWE_GITHUB: GitHubSWEAgent,
+                AgentType.SWE_OPENAI: OpenAISWEAgent,
             }
         except Exception as e:
             logging.warning(f"Error creating agent classes mapping: {e}")
@@ -112,6 +120,9 @@ class AgentFactory:
                 AgentType.HUMAN: AgentType.HUMAN.value,
                 AgentType.PLANNER: AgentType.PLANNER.value,
                 AgentType.GROUP_CHAT_MANAGER: AgentType.GROUP_CHAT_MANAGER.value,
+                AgentType.SWE_ANTHROPIC: AgentType.SWE_ANTHROPIC.value,
+                AgentType.SWE_GITHUB: AgentType.SWE_GITHUB.value,
+                AgentType.SWE_OPENAI: AgentType.SWE_OPENAI.value,
             }
         except Exception as e:
             logging.warning(f"Error creating agent type strings: {e}")
@@ -131,6 +142,9 @@ class AgentFactory:
                 AgentType.HUMAN: getattr(HumanAgent, 'default_system_message', lambda: "Human Agent")() if hasattr(HumanAgent, 'default_system_message') else "Human Agent",
                 AgentType.PLANNER: getattr(PlannerAgent, 'default_system_message', lambda: "Planner Agent")() if hasattr(PlannerAgent, 'default_system_message') else "Planner Agent",
                 AgentType.GROUP_CHAT_MANAGER: getattr(GroupChatManager, 'default_system_message', lambda: "Group Chat Manager")() if hasattr(GroupChatManager, 'default_system_message') else "Group Chat Manager",
+                AgentType.SWE_ANTHROPIC: getattr(AnthropicSWEAgent, 'default_system_message', lambda: "Anthropic SWE Agent")() if hasattr(AnthropicSWEAgent, 'default_system_message') else "Anthropic SWE Agent",
+                AgentType.SWE_GITHUB: getattr(GitHubSWEAgent, 'default_system_message', lambda: "GitHub SWE Agent")() if hasattr(GitHubSWEAgent, 'default_system_message') else "GitHub SWE Agent",
+                AgentType.SWE_OPENAI: getattr(OpenAISWEAgent, 'default_system_message', lambda: "OpenAI SWE Agent")() if hasattr(OpenAISWEAgent, 'default_system_message') else "OpenAI SWE Agent",
             }
         except Exception as e:
             logging.warning(f"Error creating default system messages: {e}")

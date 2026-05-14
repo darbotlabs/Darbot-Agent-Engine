@@ -93,6 +93,11 @@
       case "Generic_Agent":
         agentIcon = "manager";
         break;
+      case "SWE_Anthropic_Agent":
+      case "SWE_GitHub_Agent":
+      case "SWE_OpenAI_Agent":
+        agentIcon = "tech_agent";
+        break;
       case "Human_Agent":
         let userNumber = getStoredData("userNumber");
         if (userNumber == null) {

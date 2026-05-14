@@ -48,6 +48,9 @@ class AgentType(str, Enum):
     TECH_SUPPORT = "Tech_Support_Agent"
     GROUP_CHAT_MANAGER = "Group_Chat_Manager"
     PLANNER = "Planner_Agent"
+    SWE_ANTHROPIC = "SWE_Anthropic_Agent"
+    SWE_GITHUB = "SWE_GitHub_Agent"
+    SWE_OPENAI = "SWE_OpenAI_Agent"
 
     # Add other agents as needed
 
